@@ -28,7 +28,7 @@ export default function RegisterPage() {
     }
 
     if (password.length < 8) {
-      setError("Le mot de passe doit contenir au moins 8 caracteres.");
+      setError("Le mot de passe doit contenir au moins 8 caractères.");
       setLoading(false);
       return;
     }
@@ -47,7 +47,7 @@ export default function RegisterPage() {
 
       if (authError) {
         if (authError.message.includes("already registered")) {
-          setError("Un compte avec cet email existe deja.");
+          setError("Un compte avec cet email existe déjà.");
         } else {
           setError(authError.message);
         }
@@ -57,7 +57,7 @@ export default function RegisterPage() {
       router.push("/dashboard");
       router.refresh();
     } catch {
-      setError("Erreur lors de l'inscription. Veuillez reessayer.");
+      setError("Erreur lors de l'inscription. Veuillez réessayer.");
     } finally {
       setLoading(false);
     }
@@ -77,10 +77,10 @@ export default function RegisterPage() {
             </span>
           </Link>
           <h1 className="text-2xl font-bold text-white mb-2">
-            Creer ton compte
+            Créer ton compte
           </h1>
           <p className="text-white/60 text-sm">
-            Inscris-toi pour acceder au programme.
+            Inscris-toi pour accéder au programme.
           </p>
         </div>
 
@@ -108,7 +108,7 @@ export default function RegisterPage() {
               id="password"
               label="Mot de passe"
               type="password"
-              placeholder="Minimum 8 caracteres"
+              placeholder="Minimum 8 caractères"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -130,13 +130,13 @@ export default function RegisterPage() {
             )}
 
             <Button type="submit" loading={loading} className="w-full">
-              Creer mon compte
+              Créer mon compte
             </Button>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-white/40 text-sm">
-              Deja un compte ?{" "}
+              Déjà un compte ?{" "}
               <Link
                 href="/login"
                 className="text-primary hover:text-primary-hover transition-colors"

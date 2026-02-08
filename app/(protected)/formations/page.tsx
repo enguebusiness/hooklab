@@ -53,7 +53,7 @@ export default async function FormationsPage() {
         </p>
         <ProgressBar
           value={progressPercent}
-          label={`${completedModules} modules completes sur ${totalModules}`}
+          label={`${completedModules} modules complétés sur ${totalModules}`}
         />
       </div>
 
@@ -72,7 +72,7 @@ export default async function FormationsPage() {
                 Semaine {week}
               </h2>
               <span className="text-white/30 text-sm">
-                {weekCompleted}/{weekTotal} completes
+                {weekCompleted}/{weekTotal} complétés
               </span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -101,7 +101,7 @@ export default async function FormationsPage() {
             Aucun module disponible
           </h3>
           <p className="text-white/40 text-sm">
-            Les modules de formation seront bientot disponibles.
+            Les modules de formation seront bientôt disponibles.
           </p>
         </div>
       )}

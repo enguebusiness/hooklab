@@ -128,18 +128,18 @@ export async function POST(request: Request) {
             await resend.emails.send({
               from: "HookLab <noreply@hooklab.fr>",
               to: email,
-              subject: "Bienvenue dans HookLab ! Tes acces sont prets",
+              subject: "Bienvenue dans HookLab ! Tes accès sont prêts",
               html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                   <h1 style="color: #6D5EF6;">Bienvenue dans HookLab !</h1>
-                  <p>Ton paiement a ete confirme. Voici tes acces :</p>
+                  <p>Ton paiement a été confirmé. Voici tes accès :</p>
                   <div style="background: #1A1F2E; padding: 20px; border-radius: 12px; margin: 20px 0;">
                     <p style="color: #fff; margin: 5px 0;"><strong>Email :</strong> ${email}</p>
                     <p style="color: #fff; margin: 5px 0;"><strong>Mot de passe :</strong> ${tempPassword}</p>
                   </div>
                   <p>Connecte-toi sur <a href="${process.env.NEXT_PUBLIC_APP_URL}/login" style="color: #6D5EF6;">hooklab.fr/login</a> pour commencer.</p>
-                  <p><strong>Pense a changer ton mot de passe apres ta premiere connexion !</strong></p>
-                  <p>A tres vite,<br/>L'equipe HookLab</p>
+                  <p><strong>Pense à changer ton mot de passe après ta première connexion !</strong></p>
+                  <p>À très vite,<br/>L'équipe HookLab</p>
                 </div>
               `,
             });
@@ -204,7 +204,7 @@ export async function POST(request: Request) {
       }
 
       default:
-        console.log(`Webhook non gere: ${event.type}`);
+        console.log(`Webhook non géré: ${event.type}`);
     }
 
     return NextResponse.json({ received: true });

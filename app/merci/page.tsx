@@ -23,38 +23,38 @@ export default function MerciPage() {
         </div>
 
         <h1 className="text-3xl md:text-4xl font-bold tracking-[-0.02em] mb-4">
-          Candidature <span className="gradient-text">envoyee !</span>
+          Candidature <span className="gradient-text">envoyée !</span>
         </h1>
 
         <p className="text-white/60 text-lg mb-2">
-          Merci pour ta candidature. Notre equipe va etudier ton profil
+          Merci pour ta candidature. Notre équipe va étudier ton profil
           attentivement.
         </p>
 
         <p className="text-white/40 mb-8">
-          Tu recevras une reponse par email sous 24 heures. Pense a verifier
+          Tu recevras une réponse par email sous 24 heures. Pense à vérifier
           tes spams !
         </p>
 
         {/* Étapes suivantes */}
         <div className="bg-dark-light border border-dark-border rounded-[20px] p-6 mb-8 text-left">
-          <h2 className="text-white font-semibold mb-4">Prochaines etapes</h2>
+          <h2 className="text-white font-semibold mb-4">Prochaines étapes</h2>
           <div className="space-y-4">
             {[
               {
                 step: "1",
                 title: "Analyse de ton profil",
-                desc: "Notre equipe evalue ta candidature",
+                desc: "Notre équipe évalue ta candidature",
               },
               {
                 step: "2",
                 title: "Email de confirmation",
-                desc: "Tu recois un email avec le lien de paiement",
+                desc: "Tu reçois un email avec le lien de paiement",
               },
               {
                 step: "3",
-                title: "Acces au programme",
-                desc: "Tu commences ta formation immediatement",
+                title: "Accès au programme",
+                desc: "Tu commences ta formation immédiatement",
               },
             ].map((item) => (
               <div key={item.step} className="flex items-start gap-3">
@@ -71,7 +71,7 @@ export default function MerciPage() {
         </div>
 
         <Link href="/">
-          <Button variant="secondary">Retour a l&apos;accueil</Button>
+          <Button variant="secondary">Retour à l&apos;accueil</Button>
         </Link>
       </div>
     </main>

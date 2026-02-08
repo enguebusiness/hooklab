@@ -15,7 +15,7 @@ export default function Hero() {
           <div className="flex flex-wrap justify-center gap-3 mb-8">
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-medium">
               <span className="w-1.5 h-1.5 bg-success rounded-full animate-pulse" />
-              Places limitees - Promo en cours
+              Places limitées - Promo en cours
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-dark-light border border-dark-border rounded-full text-white/60 text-xs font-medium">
               Programme 8 semaines
@@ -30,8 +30,8 @@ export default function Hero() {
 
           {/* Sous-titre */}
           <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Le programme de coaching complet pour devenir createur affilie
-            TikTok Shop et generer tes premiers revenus en ligne.
+            Le programme de coaching complet pour devenir créateur affilié
+            TikTok Shop et générer tes premiers revenus en ligne.
           </p>
 
           {/* CTAs */}
@@ -43,7 +43,7 @@ export default function Hero() {
             </Link>
             <a href="#methode">
               <Button variant="secondary" size="lg">
-                Decouvrir la methode
+                Découvrir la méthode
               </Button>
             </a>
           </div>
@@ -63,8 +63,8 @@ export default function Hero() {
                 ))}
               </div>
               <span className="text-sm text-white/60">
-                <span className="text-white font-semibold">+120</span> eleves
-                formes
+                <span className="text-white font-semibold">+120</span> élèves
+                formés
               </span>
             </div>
             <div className="flex items-center gap-1.5">

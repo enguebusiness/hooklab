@@ -124,7 +124,7 @@ export default function CandidaturePage() {
             Candidature <span className="gradient-text">HookLab</span>
           </h1>
           <p className="text-white/60">
-            Reponds a quelques questions pour qu&apos;on puisse evaluer ton
+            Réponds à quelques questions pour qu&apos;on puisse évaluer ton
             profil.
           </p>
         </div>
@@ -151,8 +151,8 @@ export default function CandidaturePage() {
               </h2>
               <Input
                 id="firstname"
-                label="Prenom"
-                placeholder="Ton prenom"
+                label="Prénom"
+                placeholder="Ton prénom"
                 value={formData.firstname}
                 onChange={(e) => updateField("firstname", e.target.value)}
               />
@@ -166,7 +166,7 @@ export default function CandidaturePage() {
               />
               <Input
                 id="phone"
-                label="Telephone"
+                label="Téléphone"
                 type="tel"
                 placeholder="06 12 34 56 78"
                 value={formData.phone}
@@ -174,7 +174,7 @@ export default function CandidaturePage() {
               />
               <Input
                 id="age"
-                label="Age"
+                label="Âge"
                 type="number"
                 placeholder="25"
                 min="18"
@@ -186,13 +186,13 @@ export default function CandidaturePage() {
               {/* Persona selection */}
               <div className="space-y-1.5">
                 <label className="block text-sm font-medium text-white/80">
-                  Tu es plutot...
+                  Tu es plutôt...
                 </label>
                 <div className="grid grid-cols-2 gap-3">
                   {[
                     {
                       id: "jeune",
-                      label: "Etudiant / Jeune",
+                      label: "Étudiant / Jeune",
                       emoji: "🎓",
                     },
                     {
@@ -231,13 +231,13 @@ export default function CandidaturePage() {
 
               <div className="space-y-1.5">
                 <label className="block text-sm font-medium text-white/80">
-                  Experience e-commerce / reseaux sociaux
+                  Expérience e-commerce / réseaux sociaux
                 </label>
                 <div className="space-y-2">
                   {[
-                    "Debutant complet",
-                    "J'ai deja teste des choses",
-                    "Je genere deja des revenus en ligne",
+                    "Débutant complet",
+                    "J'ai déjà testé des choses",
+                    "Je génère déjà des revenus en ligne",
                   ].map((opt) => (
                     <button
                       key={opt}
@@ -281,11 +281,11 @@ export default function CandidaturePage() {
 
               <div className="space-y-1.5">
                 <label className="block text-sm font-medium text-white/80">
-                  Disponibilite pour commencer
+                  Disponibilité pour commencer
                 </label>
                 <div className="space-y-2">
                   {[
-                    "Immediatement",
+                    "Immédiatement",
                     "Dans 1-2 semaines",
                     "Dans 1 mois",
                   ].map((opt) => (
@@ -360,7 +360,7 @@ export default function CandidaturePage() {
               <Textarea
                 id="biggest_fear"
                 label="Quelle est ta plus grande peur ?"
-                placeholder="Qu'est-ce qui pourrait t'empecher de reussir ?"
+                placeholder="Qu'est-ce qui pourrait t'empêcher de réussir ?"
                 rows={3}
                 value={formData.biggest_fear}
                 onChange={(e) => updateField("biggest_fear", e.target.value)}
@@ -419,7 +419,7 @@ export default function CandidaturePage() {
 
         {/* Step indicator text */}
         <p className="text-center text-white/30 text-sm mt-4">
-          Etape {step} sur 3
+          Étape {step} sur 3
         </p>
       </div>
     </main>

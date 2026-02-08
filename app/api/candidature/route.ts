@@ -42,11 +42,23 @@ export async function POST(request: Request) {
       );
     }
 
-    // Validation age
+    // Validation âge
     if (body.age < 18 || body.age > 65) {
       return NextResponse.json(
-        { error: "L'age doit etre entre 18 et 65 ans." },
+        { error: "L'âge doit être entre 18 et 65 ans." },
         { status: 400 }
+      );
+    }
+
+    // Vérifier que les variables d'environnement Supabase sont configurées
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      console.error("Variables Supabase manquantes:", {
+        url: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
+        serviceRole: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+      });
+      return NextResponse.json(
+        { error: "Configuration serveur incomplète. Contactez l'administrateur." },
+        { status: 500 }
       );
     }
 
@@ -61,7 +73,7 @@ export async function POST(request: Request) {
 
     if (existing) {
       return NextResponse.json(
-        { error: "Une candidature avec cet email existe deja." },
+        { error: "Une candidature avec cet email existe déjà." },
         { status: 409 }
       );
     }
@@ -90,7 +102,7 @@ export async function POST(request: Request) {
     if (insertError) {
       console.error("Erreur insertion candidature:", insertError);
       return NextResponse.json(
-        { error: "Erreur lors de l'enregistrement de la candidature." },
+        { error: "Erreur lors de l'enregistrement. Vérifiez que la base de données est configurée." },
         { status: 500 }
       );
     }
@@ -104,30 +116,30 @@ export async function POST(request: Request) {
         await resend.emails.send({
           from: "HookLab <noreply@hooklab.fr>",
           to: body.email,
-          subject: "Candidature HookLab recue !",
+          subject: "Candidature HookLab reçue !",
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              <h1 style="color: #6D5EF6;">Candidature recue !</h1>
+              <h1 style="color: #6D5EF6;">Candidature reçue !</h1>
               <p>Salut ${body.firstname},</p>
               <p>Merci pour ta candidature au programme HookLab !</p>
-              <p>Notre equipe va etudier ton profil et te repondre sous <strong>24 heures</strong>.</p>
-              <p>A tres vite,<br/>L'equipe HookLab</p>
+              <p>Notre équipe va étudier ton profil et te répondre sous <strong>24 heures</strong>.</p>
+              <p>À très vite,<br/>L'équipe HookLab</p>
             </div>
           `,
         });
       } catch (emailError) {
-        // Log l'erreur mais ne bloque pas la candidature
         console.error("Erreur envoi email:", emailError);
       }
     }
 
     return NextResponse.json(
-      { message: "Candidature enregistree avec succes." },
+      { message: "Candidature enregistrée avec succès." },
       { status: 201 }
     );
-  } catch {
+  } catch (err) {
+    console.error("Erreur serveur candidature:", err);
     return NextResponse.json(
-      { error: "Erreur serveur. Veuillez reessayer." },
+      { error: "Erreur serveur. Veuillez réessayer." },
       { status: 500 }
     );
   }

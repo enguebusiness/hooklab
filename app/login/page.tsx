@@ -38,7 +38,7 @@ export default function LoginPage() {
       router.push("/dashboard");
       router.refresh();
     } catch {
-      setError("Erreur de connexion. Veuillez reessayer.");
+      setError("Erreur de connexion. Veuillez réessayer.");
     } finally {
       setLoading(false);
     }
@@ -61,7 +61,7 @@ export default function LoginPage() {
             Content de te revoir
           </h1>
           <p className="text-white/60 text-sm">
-            Connecte-toi pour acceder a tes formations.
+            Connecte-toi pour accéder à tes formations.
           </p>
         </div>
 

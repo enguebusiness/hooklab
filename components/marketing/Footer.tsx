@@ -32,7 +32,7 @@ export default function Footer() {
                   href="#methode"
                   className="text-white/40 hover:text-white text-sm transition-colors"
                 >
-                  La methode
+                  La méthode
                 </a>
               </li>
               <li>
@@ -40,7 +40,7 @@ export default function Footer() {
                   href="#temoignages"
                   className="text-white/40 hover:text-white text-sm transition-colors"
                 >
-                  Temoignages
+                  Témoignages
                 </a>
               </li>
               <li>
@@ -63,14 +63,14 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Legal</h4>
+            <h4 className="text-white font-semibold text-sm mb-4">Légal</h4>
             <ul className="space-y-2.5">
               <li>
                 <Link
                   href="/mentions-legales"
                   className="text-white/40 hover:text-white text-sm transition-colors"
                 >
-                  Mentions legales
+                  Mentions légales
                 </Link>
               </li>
               <li>
@@ -86,7 +86,7 @@ export default function Footer() {
                   href="/confidentialite"
                   className="text-white/40 hover:text-white text-sm transition-colors"
                 >
-                  Confidentialite
+                  Confidentialité
                 </Link>
               </li>
             </ul>
@@ -96,7 +96,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="border-t border-dark-border mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/30 text-sm">
-            &copy; {new Date().getFullYear()} HookLab. Tous droits reserves.
+            &copy; {new Date().getFullYear()} HookLab. Tous droits réservés.
           </p>
           <div className="flex items-center gap-4">
             <a

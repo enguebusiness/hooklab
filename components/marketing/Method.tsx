@@ -5,7 +5,7 @@ const steps = [
     number: "01",
     title: "Apprends les bases",
     description:
-      "Maitrise les fondamentaux de TikTok Shop, l'algorithme, et les techniques de creation de contenu qui convertissent.",
+      "Maîtrise les fondamentaux de TikTok Shop, l'algorithme, et les techniques de création de contenu qui convertissent.",
     icon: (
       <svg
         className="w-6 h-6"
@@ -25,9 +25,9 @@ const steps = [
   },
   {
     number: "02",
-    title: "Lance ton activite",
+    title: "Lance ton activité",
     description:
-      "Configure ton shop, selectionne tes produits gagnants, et publie tes premieres videos avec notre methode eprouvee.",
+      "Configure ton shop, sélectionne tes produits gagnants, et publie tes premières vidéos avec notre méthode éprouvée.",
     icon: (
       <svg
         className="w-6 h-6"
@@ -49,7 +49,7 @@ const steps = [
     number: "03",
     title: "Scale tes revenus",
     description:
-      "Optimise tes performances, automatise tes process, et developpe une strategie de contenu rentable sur le long terme.",
+      "Optimise tes performances, automatise tes process, et développe une stratégie de contenu rentable sur le long terme.",
     icon: (
       <svg
         className="w-6 h-6"
@@ -76,15 +76,15 @@ export default function Method() {
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="inline-block px-3 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-medium mb-4">
-            La methode
+            La méthode
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.02em] mb-4">
-            3 etapes vers tes{" "}
+            3 étapes vers tes{" "}
             <span className="gradient-text">premiers revenus</span>
           </h2>
           <p className="text-white/60 text-lg">
-            Un programme structure semaine par semaine pour te guider vers la
-            rentabilite.
+            Un programme structuré semaine par semaine pour te guider vers la
+            rentabilité.
           </p>
         </div>
 

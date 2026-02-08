@@ -4,44 +4,44 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "Ai-je besoin d'experience sur TikTok ?",
+    question: "Ai-je besoin d'expérience sur TikTok ?",
     answer:
-      "Non, aucune experience n'est requise. Notre programme part de zero et t'accompagne etape par etape. Beaucoup de nos eleves n'avaient jamais poste de video avant de commencer.",
+      "Non, aucune expérience n'est requise. Notre programme part de zéro et t'accompagne étape par étape. Beaucoup de nos élèves n'avaient jamais posté de vidéo avant de commencer.",
   },
   {
     question: "Combien de temps dois-je consacrer par jour ?",
     answer:
-      "Nous recommandons un minimum de 2 heures par jour pour des resultats optimaux. Le programme est concu pour etre flexible et s'adapter a ton emploi du temps, que tu sois etudiant ou parent.",
+      "Nous recommandons un minimum de 2 heures par jour pour des résultats optimaux. Le programme est conçu pour être flexible et s'adapter à ton emploi du temps, que tu sois étudiant ou parent.",
   },
   {
-    question: "Quand vais-je voir mes premiers resultats ?",
+    question: "Quand vais-je voir mes premiers résultats ?",
     answer:
-      "La plupart de nos eleves generent leurs premieres commissions dans les 2 a 4 premieres semaines. Les resultats varient selon ton implication et le temps consacre.",
+      "La plupart de nos élèves génèrent leurs premières commissions dans les 2 à 4 premières semaines. Les résultats varient selon ton implication et le temps consacré.",
   },
   {
     question: "Dois-je investir de l'argent en plus du programme ?",
     answer:
-      "Non. L'affiliation TikTok Shop ne necessite aucun stock ni investissement supplementaire. Tu gagnes des commissions sur les ventes generees par tes videos.",
+      "Non. L'affiliation TikTok Shop ne nécessite aucun stock ni investissement supplémentaire. Tu gagnes des commissions sur les ventes générées par tes vidéos.",
   },
   {
-    question: "Le programme est-il adapte a tous les ages ?",
+    question: "Le programme est-il adapté à tous les âges ?",
     answer:
-      "Oui, nos eleves ont entre 18 et 55 ans. Le programme propose deux parcours adaptes : un pour les jeunes (18-25 ans) et un pour les parents/reconversion (25-45 ans).",
+      "Oui, nos élèves ont entre 18 et 55 ans. Le programme propose deux parcours adaptés : un pour les jeunes (18-25 ans) et un pour les parents/reconversion (25-45 ans).",
   },
   {
-    question: "Comment se deroule le coaching ?",
+    question: "Comment se déroule le coaching ?",
     answer:
-      "Le coaching comprend des modules video hebdomadaires, des appels de groupe chaque semaine, un support WhatsApp illimite, et l'acces a une communaute privee d'entrepreneurs.",
+      "Le coaching comprend des modules vidéo hebdomadaires, des appels de groupe chaque semaine, un support WhatsApp illimité, et l'accès à une communauté privée d'entrepreneurs.",
   },
   {
     question: "Puis-je payer en plusieurs fois ?",
     answer:
-      "Oui, le paiement se fait en 2 mensualites de 490€. Le premier paiement donne acces immediat au programme, le second est preleve automatiquement le mois suivant.",
+      "Oui, le paiement se fait en 2 mensualités de 490€. Le premier paiement donne accès immédiat au programme, le second est prélevé automatiquement le mois suivant.",
   },
   {
     question: "Y a-t-il une garantie de remboursement ?",
     answer:
-      "Oui, nous offrons une garantie satisfait ou rembourse de 14 jours. Si le programme ne te convient pas, tu es rembourse integralement, sans condition.",
+      "Oui, nous offrons une garantie satisfait ou remboursé de 14 jours. Si le programme ne te convient pas, tu es remboursé intégralement, sans condition.",
   },
 ];
 
@@ -57,7 +57,7 @@ export default function FAQ() {
             FAQ
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.02em] mb-4">
-            Questions <span className="gradient-text">frequentes</span>
+            Questions <span className="gradient-text">fréquentes</span>
           </h2>
           <p className="text-white/60 text-lg">
             Tout ce que tu dois savoir avant de te lancer.

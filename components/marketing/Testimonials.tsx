@@ -3,25 +3,25 @@ import Card from "@/components/ui/Card";
 const testimonials = [
   {
     name: "Sarah M.",
-    role: "Etudiante, 22 ans",
+    role: "Étudiante, 22 ans",
     content:
-      "En 4 semaines, j'ai genere mes premiers 800€ sur TikTok Shop. Le programme m'a donne une methode claire et un accompagnement top.",
+      "En 4 semaines, j'ai généré mes premiers 800€ sur TikTok Shop. Le programme m'a donné une méthode claire et un accompagnement top.",
     revenue: "2 400€/mois",
     avatar: "S",
   },
   {
     name: "Thomas D.",
-    role: "Ex-salarie, 34 ans",
+    role: "Ex-salarié, 34 ans",
     content:
-      "J'hesitais a me lancer, mais le coaching m'a permis de structurer mon activite. Aujourd'hui je vis de TikTok Shop a plein temps.",
+      "J'hésitais à me lancer, mais le coaching m'a permis de structurer mon activité. Aujourd'hui je vis de TikTok Shop à plein temps.",
     revenue: "4 200€/mois",
     avatar: "T",
   },
   {
     name: "Amina K.",
-    role: "Mere au foyer, 29 ans",
+    role: "Mère au foyer, 29 ans",
     content:
-      "Je cherchais un complement de revenus flexible. Grace a HookLab, je gagne un SMIC supplementaire en travaillant 2h par jour.",
+      "Je cherchais un complément de revenus flexible. Grâce à HookLab, je gagne un SMIC supplémentaire en travaillant 2h par jour.",
     revenue: "1 600€/mois",
     avatar: "A",
   },
@@ -34,13 +34,13 @@ export default function Testimonials() {
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="inline-block px-3 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-medium mb-4">
-            Temoignages
+            Témoignages
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.02em] mb-4">
-            Ils ont <span className="gradient-text">transforme</span> leur vie
+            Ils ont <span className="gradient-text">transformé</span> leur vie
           </h2>
           <p className="text-white/60 text-lg">
-            Decouvre les resultats de nos eleves apres le programme.
+            Découvre les résultats de nos élèves après le programme.
           </p>
         </div>
 

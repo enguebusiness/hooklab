@@ -55,7 +55,7 @@ export default async function DashboardPage() {
           Bonjour {profile?.full_name?.split(" ")[0] || "!"} 👋
         </h1>
         <p className="text-white/60">
-          Voici un apercu de ta progression dans le programme.
+          Voici un aperçu de ta progression dans le programme.
         </p>
       </div>
 
@@ -69,7 +69,7 @@ export default async function DashboardPage() {
           <ProgressBar value={progressPercent} showPercentage={false} />
         </Card>
         <Card>
-          <p className="text-white/40 text-sm mb-1">Modules completes</p>
+          <p className="text-white/40 text-sm mb-1">Modules complétés</p>
           <p className="text-2xl font-bold text-white">
             {completedModules}
             <span className="text-white/30 text-lg font-normal">
@@ -122,11 +122,11 @@ export default async function DashboardPage() {
         <Card className="text-center py-12">
           <div className="text-4xl mb-4">🚀</div>
           <h3 className="text-white font-semibold text-lg mb-2">
-            Le programme arrive bientot !
+            Le programme arrive bientôt !
           </h3>
           <p className="text-white/40 text-sm max-w-md mx-auto">
-            Les modules de formation sont en cours de preparation. Tu seras
-            notifie des qu&apos;ils seront disponibles.
+            Les modules de formation sont en cours de préparation. Tu seras
+            notifié dès qu&apos;ils seront disponibles.
           </p>
         </Card>
       )}

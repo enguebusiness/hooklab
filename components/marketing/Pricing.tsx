@@ -4,12 +4,12 @@ import Card from "@/components/ui/Card";
 
 const features = [
   "8 semaines de coaching intensif",
-  "Acces a tous les modules video",
+  "Accès à tous les modules vidéo",
   "Templates et scripts de contenu",
   "Appels de groupe hebdomadaires",
-  "Support WhatsApp illimite",
-  "Communaute privee d'entrepreneurs",
-  "Mises a jour a vie du contenu",
+  "Support WhatsApp illimité",
+  "Communauté privée d'entrepreneurs",
+  "Mises à jour à vie du contenu",
   "Certification HookLab",
 ];
 
@@ -37,7 +37,7 @@ export default function Pricing() {
             {/* Popular badge */}
             <div className="absolute top-0 left-0 right-0 gradient-bg py-2 text-center">
               <span className="text-white text-sm font-semibold">
-                Offre de lancement - Places limitees
+                Offre de lancement - Places limitées
               </span>
             </div>
 
@@ -51,7 +51,7 @@ export default function Pricing() {
                   <span className="text-white/40 text-lg">/mois</span>
                 </div>
                 <p className="text-white/40 mt-2">
-                  x2 mois (980€ total) - Paiement securise via Stripe
+                  x2 mois (980€ total) - Paiement sécurisé via Stripe
                 </p>
               </div>
 
@@ -91,9 +91,9 @@ export default function Pricing() {
 
               {/* Disclaimer */}
               <p className="text-center text-white/30 text-xs mt-4">
-                Candidature soumise a validation. Reponse sous 24h.
+                Candidature soumise à validation. Réponse sous 24h.
                 <br />
-                Satisfait ou rembourse pendant 14 jours.
+                Satisfait ou remboursé pendant 14 jours.
               </p>
             </div>
           </Card>

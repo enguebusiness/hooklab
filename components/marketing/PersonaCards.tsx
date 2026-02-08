@@ -4,15 +4,15 @@ const personas = [
   {
     id: "jeune",
     emoji: "🎓",
-    title: "Etudiant / Jeune actif",
+    title: "Étudiant / Jeune actif",
     subtitle: "18-25 ans",
     description:
-      "Tu veux generer tes premiers revenus en ligne tout en etudiant ou en debut de carriere. TikTok Shop est le levier parfait.",
+      "Tu veux générer tes premiers revenus en ligne tout en étudiant ou en début de carrière. TikTok Shop est le levier parfait.",
     benefits: [
-      "Flexibilite totale, travaille quand tu veux",
+      "Flexibilité totale, travaille quand tu veux",
       "Pas besoin de stock ni d'investissement",
-      "Competences marketing valorisables sur ton CV",
-      "Communaute de jeunes entrepreneurs motives",
+      "Compétences marketing valorisables sur ton CV",
+      "Communauté de jeunes entrepreneurs motivés",
     ],
   },
   {
@@ -21,12 +21,12 @@ const personas = [
     title: "Parent / Reconversion",
     subtitle: "25-45 ans",
     description:
-      "Tu cherches un complement de revenus ou une reconversion flexible depuis chez toi. TikTok Shop s'adapte a ton emploi du temps.",
+      "Tu cherches un complément de revenus ou une reconversion flexible depuis chez toi. TikTok Shop s'adapte à ton emploi du temps.",
     benefits: [
-      "2h par jour suffisent pour demarrer",
-      "Travaille depuis chez toi, a ton rythme",
-      "Revenus complementaires des le premier mois",
-      "Accompagnement personnalise et bienveillant",
+      "2h par jour suffisent pour démarrer",
+      "Travaille depuis chez toi, à ton rythme",
+      "Revenus complémentaires dès le premier mois",
+      "Accompagnement personnalisé et bienveillant",
     ],
   },
 ];
@@ -41,11 +41,11 @@ export default function PersonaCards() {
             Pour qui ?
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.02em] mb-4">
-            Un programme adapte a{" "}
+            Un programme adapté à{" "}
             <span className="gradient-text">ton profil</span>
           </h2>
           <p className="text-white/60 text-lg">
-            Que tu sois etudiant ou parent, notre methode s&apos;adapte a toi.
+            Que tu sois étudiant ou parent, notre méthode s&apos;adapte à toi.
           </p>
         </div>
 
