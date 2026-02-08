@@ -4,6 +4,8 @@ import ProgressBar from "@/components/dashboard/ProgressBar";
 import ModuleCard from "@/components/dashboard/ModuleCard";
 import type { Module, UserProgress, Profile } from "@/types/database.types";
 
+export const runtime = "nodejs";
+
 export default async function DashboardPage() {
   const supabase = await createClient();
 

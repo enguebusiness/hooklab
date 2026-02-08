@@ -3,6 +3,8 @@ import ModuleCard from "@/components/dashboard/ModuleCard";
 import ProgressBar from "@/components/dashboard/ProgressBar";
 import type { Module, UserProgress } from "@/types/database.types";
 
+export const runtime = "nodejs";
+
 export default async function FormationsPage() {
   const supabase = await createClient();
 

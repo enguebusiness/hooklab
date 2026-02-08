@@ -5,6 +5,8 @@ import Card from "@/components/ui/Card";
 import MarkCompleteButton from "./MarkCompleteButton";
 import type { Module, UserProgress } from "@/types/database.types";
 
+export const runtime = "nodejs";
+
 interface ModulePageProps {
   params: Promise<{ moduleId: string }>;
 }

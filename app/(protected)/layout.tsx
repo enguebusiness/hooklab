@@ -3,6 +3,8 @@ import { createClient } from "@/lib/supabase/server";
 import Sidebar from "@/components/dashboard/Sidebar";
 import type { Profile } from "@/types/database.types";
 
+export const runtime = "nodejs";
+
 export default async function DashboardLayout({
   children,
 }: {
