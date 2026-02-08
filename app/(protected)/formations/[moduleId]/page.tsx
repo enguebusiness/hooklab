@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import Card from "@/components/ui/Card";
@@ -40,12 +41,12 @@ export default async function ModulePage({ params }: ModulePageProps) {
     <div className="max-w-4xl">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm mb-8">
-        <a
+        <Link
           href="/formations"
           className="text-white/40 hover:text-white transition-colors"
         >
           Formations
-        </a>
+        </Link>
         <span className="text-white/20">/</span>
         <span className="text-white/40">Semaine {module.week_number}</span>
         <span className="text-white/20">/</span>
@@ -150,7 +151,7 @@ export default async function ModulePage({ params }: ModulePageProps) {
 
       {/* Actions */}
       <div className="flex items-center justify-between">
-        <a
+        <Link
           href="/formations"
           className="text-white/40 hover:text-white text-sm transition-colors flex items-center gap-1"
         >
@@ -168,7 +169,7 @@ export default async function ModulePage({ params }: ModulePageProps) {
             />
           </svg>
           Retour aux formations
-        </a>
+        </Link>
 
         <MarkCompleteButton
           moduleId={moduleId}

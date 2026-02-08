@@ -1,8 +1,8 @@
-import { type ClassValue, clsx } from "clsx";
+import { clsx, type ClassValue } from "clsx";
 
 // Utilitaire pour combiner les classes CSS (compatible Tailwind)
 export function cn(...inputs: ClassValue[]) {
-  return inputs.filter(Boolean).join(" ");
+  return clsx(inputs);
 }
 
 // Formater un prix en euros
