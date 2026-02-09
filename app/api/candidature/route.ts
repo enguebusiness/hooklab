@@ -100,9 +100,9 @@ export async function POST(request: Request) {
       .insert(candidature as never);
 
     if (insertError) {
-      console.error("Erreur insertion candidature:", insertError);
+      console.error("Erreur insertion candidature:", JSON.stringify(insertError));
       return NextResponse.json(
-        { error: "Erreur lors de l'enregistrement. Vérifiez que la base de données est configurée." },
+        { error: `Erreur base de données : ${insertError.message}` },
         { status: 500 }
       );
     }
