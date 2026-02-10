@@ -83,7 +83,7 @@ export async function POST(
           const firstname = (candidature as Record<string, unknown>).firstname as string;
 
           await resend.emails.send({
-            from: "HookLab <noreply@hooklab.fr>",
+            from: process.env.RESEND_FROM_EMAIL || "HookLab <onboarding@resend.dev>",
             to: email,
             subject: "Ta candidature HookLab est acceptée !",
             html: `

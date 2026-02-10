@@ -126,7 +126,7 @@ export async function POST(request: Request) {
             const resend = new Resend(process.env.RESEND_API_KEY);
 
             await resend.emails.send({
-              from: "HookLab <noreply@hooklab.fr>",
+              from: process.env.RESEND_FROM_EMAIL || "HookLab <onboarding@resend.dev>",
               to: email,
               subject: "Bienvenue dans HookLab ! Tes accès sont prêts",
               html: `
