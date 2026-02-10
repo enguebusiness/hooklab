@@ -1,16 +1,15 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/server";
+import { verifyAdmin, isAdminError } from "@/lib/admin";
 
 export const runtime = "nodejs";
 
 // GET /api/admin/candidatures - Lister toutes les candidatures
-// Protégé par ADMIN_SECRET en query param
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const secret = searchParams.get("secret");
-
-  if (!process.env.ADMIN_SECRET || secret !== process.env.ADMIN_SECRET) {
-    return NextResponse.json({ error: "Non autorisé." }, { status: 401 });
+// Sécurisé par auth Supabase + vérification is_admin
+export async function GET() {
+  const auth = await verifyAdmin();
+  if (isAdminError(auth)) {
+    return NextResponse.json({ error: auth.error }, { status: auth.status });
   }
 
   const supabase = createAdminClient();

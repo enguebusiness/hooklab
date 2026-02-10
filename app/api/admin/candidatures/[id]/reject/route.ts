@@ -1,21 +1,20 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/server";
+import { verifyAdmin, isAdminError } from "@/lib/admin";
 
 export const runtime = "nodejs";
 
 // POST /api/admin/candidatures/[id]/reject - Rejeter une candidature
 export async function POST(
-  request: Request,
+  _request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await params;
-  const body = await request.json();
-  const { secret } = body;
-
-  if (!process.env.ADMIN_SECRET || secret !== process.env.ADMIN_SECRET) {
-    return NextResponse.json({ error: "Non autorisé." }, { status: 401 });
+  const auth = await verifyAdmin();
+  if (isAdminError(auth)) {
+    return NextResponse.json({ error: auth.error }, { status: auth.status });
   }
 
+  const { id } = await params;
   const supabase = createAdminClient();
 
   const { error } = await supabase

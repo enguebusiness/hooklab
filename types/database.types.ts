@@ -11,6 +11,7 @@ export type Database = {
           stripe_customer_id: string | null;
           subscription_status: "inactive" | "active" | "cancelled" | "paused";
           subscription_end_date: string | null;
+          is_admin: boolean;
           created_at: string;
           updated_at: string;
         };
@@ -22,6 +23,7 @@ export type Database = {
           stripe_customer_id?: string | null;
           subscription_status?: "inactive" | "active" | "cancelled" | "paused";
           subscription_end_date?: string | null;
+          is_admin?: boolean;
           created_at?: string;
           updated_at?: string;
         };
@@ -33,6 +35,7 @@ export type Database = {
           stripe_customer_id?: string | null;
           subscription_status?: "inactive" | "active" | "cancelled" | "paused";
           subscription_end_date?: string | null;
+          is_admin?: boolean;
           updated_at?: string;
         };
       };
@@ -188,3 +191,5 @@ export type CandidatureInsert = Database["public"]["Tables"]["candidatures"]["In
 export type Module = Database["public"]["Tables"]["modules"]["Row"];
 export type UserProgress = Database["public"]["Tables"]["user_progress"]["Row"];
 export type Payment = Database["public"]["Tables"]["payments"]["Row"];
+export type ModuleInsert = Database["public"]["Tables"]["modules"]["Insert"];
+export type ModuleUpdate = Database["public"]["Tables"]["modules"]["Update"];
