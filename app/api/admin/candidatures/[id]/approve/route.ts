@@ -95,7 +95,7 @@ export async function POST(
     try {
       const { Resend } = await import("resend");
       const resend = new Resend(process.env.RESEND_API_KEY);
-      const fromEmail = process.env.RESEND_FROM_EMAIL || "HookLab <onboarding@resend.dev>";
+      const fromEmail = process.env.RESEND_FROM_EMAIL || "HookLab <onboarding@hooklab.eu>";
 
       const paymentButton = checkoutUrl
         ? `<a href="${checkoutUrl}" style="display:inline-block;background:linear-gradient(135deg,#6D5EF6,#9D8FF9);color:#ffffff;padding:16px 40px;border-radius:12px;text-decoration:none;font-weight:700;font-size:16px;margin:10px 0;">Finaliser mon inscription</a>`
