@@ -1,14 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -35,18 +37,31 @@ export default function LoginPage() {
         return;
       }
 
-      // Vérifier si l'utilisateur est admin pour la redirection
-      if (authData.user) {
-        const { data: profile } = await supabase
-          .from("profiles")
-          .select("is_admin")
-          .eq("id", authData.user.id)
-          .single();
+      // Si un redirect est spécifié dans l'URL, l'utiliser directement
+      if (redirectTo) {
+        router.push(redirectTo);
+        router.refresh();
+        return;
+      }
 
-        if (profile && (profile as { is_admin?: boolean }).is_admin) {
-          router.push("/admin");
-          router.refresh();
-          return;
+      // Sinon, vérifier si l'utilisateur est admin
+      if (authData.user) {
+        try {
+          const { data: profile } = await supabase
+            .from("profiles")
+            .select("is_admin, subscription_status")
+            .eq("id", authData.user.id)
+            .single();
+
+          const p = profile as { is_admin?: boolean; subscription_status?: string } | null;
+
+          if (p?.is_admin) {
+            router.push("/admin");
+            router.refresh();
+            return;
+          }
+        } catch {
+          // RLS peut bloquer, on continue vers dashboard
         }
       }
 
@@ -59,6 +74,55 @@ export default function LoginPage() {
     }
   };
 
+  return (
+    <div className="bg-dark-light border border-dark-border rounded-[20px] p-6 md:p-8">
+      <form onSubmit={handleLogin} className="space-y-5">
+        <Input
+          id="email"
+          label="Email"
+          type="email"
+          placeholder="ton@email.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <Input
+          id="password"
+          label="Mot de passe"
+          type="password"
+          placeholder="Ton mot de passe"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+
+        {error && (
+          <div className="p-3 bg-error/10 border border-error/20 rounded-xl">
+            <p className="text-error text-sm">{error}</p>
+          </div>
+        )}
+
+        <Button type="submit" loading={loading} className="w-full">
+          Se connecter
+        </Button>
+      </form>
+
+      <div className="mt-6 text-center">
+        <p className="text-white/40 text-sm">
+          Pas encore de compte ?{" "}
+          <Link
+            href="/candidature"
+            className="text-primary hover:text-primary-hover transition-colors"
+          >
+            Candidater
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default function LoginPage() {
   return (
     <main className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md">
@@ -80,51 +144,13 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* Form */}
-        <div className="bg-dark-light border border-dark-border rounded-[20px] p-6 md:p-8">
-          <form onSubmit={handleLogin} className="space-y-5">
-            <Input
-              id="email"
-              label="Email"
-              type="email"
-              placeholder="ton@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <Input
-              id="password"
-              label="Mot de passe"
-              type="password"
-              placeholder="Ton mot de passe"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-
-            {error && (
-              <div className="p-3 bg-error/10 border border-error/20 rounded-xl">
-                <p className="text-error text-sm">{error}</p>
-              </div>
-            )}
-
-            <Button type="submit" loading={loading} className="w-full">
-              Se connecter
-            </Button>
-          </form>
-
-          <div className="mt-6 text-center">
-            <p className="text-white/40 text-sm">
-              Pas encore de compte ?{" "}
-              <Link
-                href="/candidature"
-                className="text-primary hover:text-primary-hover transition-colors"
-              >
-                Candidater
-              </Link>
-            </p>
+        <Suspense fallback={
+          <div className="bg-dark-light border border-dark-border rounded-[20px] p-6 md:p-8 flex items-center justify-center py-12">
+            <div className="animate-spin w-6 h-6 border-2 border-primary border-t-transparent rounded-full" />
           </div>
-        </div>
+        }>
+          <LoginForm />
+        </Suspense>
       </div>
     </main>
   );
