@@ -30,6 +30,10 @@ export async function POST(
     return NextResponse.json({ error: "Candidature introuvable." }, { status: 404 });
   }
 
+  const email = (candidature as Record<string, unknown>).email as string;
+  const firstname = (candidature as Record<string, unknown>).firstname as string;
+  const candidatureId = (candidature as Record<string, unknown>).id as string;
+
   // Mettre à jour le statut
   const { error: updateError } = await supabase
     .from("candidatures")
@@ -42,13 +46,12 @@ export async function POST(
 
   // Générer le lien de paiement Stripe
   let checkoutUrl: string | null = null;
+  let stripeError: string | null = null;
+
   if (process.env.STRIPE_SECRET_KEY && process.env.STRIPE_PRICE_ID) {
     try {
       const baseUrl = getBaseUrl();
-      const email = (candidature as Record<string, unknown>).email as string;
-      const candidatureId = (candidature as Record<string, unknown>).id as string;
 
-      // Créer ou récupérer le customer Stripe
       const customers = await stripe.customers.list({ email, limit: 1 });
       let customerId: string;
       if (customers.data.length > 0) {
@@ -74,47 +77,110 @@ export async function POST(
       });
 
       checkoutUrl = session.url;
+    } catch (err) {
+      stripeError = err instanceof Error ? err.message : "Erreur Stripe inconnue";
+      console.error("Erreur Stripe:", err);
+    }
+  } else {
+    stripeError = "STRIPE_SECRET_KEY ou STRIPE_PRICE_ID non configuré.";
+  }
 
-      // Envoyer le lien par email si Resend est configuré
-      if (process.env.RESEND_API_KEY && process.env.RESEND_API_KEY !== "re_your-api-key") {
-        try {
-          const { Resend } = await import("resend");
-          const resend = new Resend(process.env.RESEND_API_KEY);
-          const firstname = (candidature as Record<string, unknown>).firstname as string;
+  // Envoyer l'email (indépendamment de Stripe)
+  let emailSent = false;
+  let emailError: string | null = null;
 
-          await resend.emails.send({
-            from: process.env.RESEND_FROM_EMAIL || "HookLab <onboarding@resend.dev>",
-            to: email,
-            subject: "Ta candidature HookLab est acceptée !",
-            html: `
-              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                <h1 style="color: #6D5EF6;">Félicitations ${firstname} !</h1>
-                <p>Ta candidature au programme HookLab a été <strong>acceptée</strong> !</p>
-                <p>Pour finaliser ton inscription et accéder au programme, clique sur le bouton ci-dessous :</p>
-                <div style="text-align: center; margin: 30px 0;">
-                  <a href="${checkoutUrl}" style="background: #6D5EF6; color: white; padding: 14px 32px; border-radius: 12px; text-decoration: none; font-weight: bold; display: inline-block;">
-                    Finaliser mon inscription (490€/mois)
-                  </a>
-                </div>
-                <p style="color: #888; font-size: 13px;">Le paiement est sécurisé via Stripe. Tu peux payer en 2 mensualités de 490€.</p>
-                <p>À très vite,<br/>L'équipe HookLab</p>
-              </div>
-            `,
-          });
-        } catch (emailError) {
-          console.error("Erreur envoi email approbation:", emailError);
-        }
-      }
-    } catch (stripeError) {
-      console.error("Erreur Stripe:", stripeError);
+  if (!process.env.RESEND_API_KEY) {
+    emailError = "RESEND_API_KEY non configuré sur Vercel.";
+  } else {
+    try {
+      const { Resend } = await import("resend");
+      const resend = new Resend(process.env.RESEND_API_KEY);
+      const fromEmail = process.env.RESEND_FROM_EMAIL || "HookLab <onboarding@resend.dev>";
+
+      const paymentButton = checkoutUrl
+        ? `<a href="${checkoutUrl}" style="display:inline-block;background:linear-gradient(135deg,#6D5EF6,#9D8FF9);color:#ffffff;padding:16px 40px;border-radius:12px;text-decoration:none;font-weight:700;font-size:16px;margin:10px 0;">Finaliser mon inscription</a>`
+        : `<p style="color:#F59E0B;font-weight:600;">Le lien de paiement sera envoyé séparément.</p>`;
+
+      await resend.emails.send({
+        from: fromEmail,
+        to: email,
+        subject: `${firstname}, ta candidature HookLab est acceptée !`,
+        html: `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background-color:#0B0F19;font-family:Arial,Helvetica,sans-serif;">
+  <div style="max-width:600px;margin:0 auto;padding:40px 20px;">
+
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:40px;">
+      <div style="display:inline-block;background:linear-gradient(135deg,#6D5EF6,#9D8FF9);width:48px;height:48px;border-radius:12px;line-height:48px;color:#fff;font-weight:800;font-size:20px;">H</div>
+      <span style="display:inline-block;vertical-align:top;margin-left:10px;line-height:48px;font-size:24px;font-weight:800;color:#ffffff;">Hook<span style="color:#6D5EF6;">Lab</span></span>
+    </div>
+
+    <!-- Card -->
+    <div style="background:#1A1F2E;border:1px solid #2A2F3F;border-radius:20px;padding:40px 32px;">
+      <h1 style="color:#ffffff;font-size:24px;margin:0 0 8px 0;">Félicitations ${firstname} !</h1>
+      <p style="color:#10B981;font-size:14px;font-weight:600;margin:0 0 24px 0;">Ta candidature a été acceptée</p>
+
+      <p style="color:#ffffffcc;font-size:15px;line-height:1.6;margin:0 0 16px 0;">
+        On a étudié ton profil et on pense que tu as le potentiel pour réussir sur TikTok Shop.
+      </p>
+      <p style="color:#ffffffcc;font-size:15px;line-height:1.6;margin:0 0 32px 0;">
+        Pour accéder au programme et commencer ta formation, il te reste une dernière étape :
+      </p>
+
+      <!-- CTA -->
+      <div style="text-align:center;margin:32px 0;">
+        ${paymentButton}
+      </div>
+
+      <!-- Détails -->
+      <div style="background:#252A3A;border-radius:12px;padding:20px;margin:24px 0;">
+        <p style="color:#ffffff99;font-size:13px;margin:0 0 8px 0;">Ce qui t'attend :</p>
+        <table style="width:100%;border-collapse:collapse;">
+          <tr><td style="color:#ffffffcc;font-size:14px;padding:6px 0;">Programme complet de 8 semaines</td></tr>
+          <tr><td style="color:#ffffffcc;font-size:14px;padding:6px 0;">Accompagnement personnalisé</td></tr>
+          <tr><td style="color:#ffffffcc;font-size:14px;padding:6px 0;">Accès à la communauté HookLab</td></tr>
+          <tr><td style="color:#ffffffcc;font-size:14px;padding:6px 0;">Stratégies TikTok Shop éprouvées</td></tr>
+        </table>
+      </div>
+
+      <p style="color:#ffffff66;font-size:13px;line-height:1.5;margin:24px 0 0 0;">
+        Le paiement est 100% sécurisé via Stripe. Tu peux payer en 2 mensualités de 490€.
+        Si tu as des questions, réponds directement à cet email.
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align:center;margin-top:32px;">
+      <p style="color:#ffffff40;font-size:12px;margin:0;">HookLab - Programme TikTok Shop</p>
+      <p style="color:#ffffff30;font-size:11px;margin:8px 0 0 0;">Enguerrand Ozano · SIREN 994538932</p>
+    </div>
+
+  </div>
+</body>
+</html>
+        `,
+      });
+
+      emailSent = true;
+    } catch (err) {
+      emailError = err instanceof Error ? err.message : "Erreur envoi email";
+      console.error("Erreur envoi email approbation:", err);
     }
   }
 
   return NextResponse.json({
     success: true,
     checkoutUrl,
-    message: checkoutUrl
-      ? "Candidature approuvée. Lien de paiement généré."
-      : "Candidature approuvée. Stripe non configuré, pas de lien de paiement.",
+    emailSent,
+    emailError,
+    stripeError,
+    message: [
+      "Candidature approuvée.",
+      checkoutUrl ? "Lien de paiement généré." : (stripeError || "Stripe non configuré."),
+      emailSent ? "Email envoyé." : (emailError || "Email non envoyé."),
+    ].join(" "),
   });
 }

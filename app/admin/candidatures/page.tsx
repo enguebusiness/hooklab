@@ -62,6 +62,15 @@ export default function AdminCandidaturesPage() {
         setCheckoutUrls((prev) => ({ ...prev, [id]: data.checkoutUrl }));
       }
 
+      // Afficher le statut détaillé
+      const msgs: string[] = [];
+      if (data.emailSent) msgs.push("Email envoyé !");
+      if (data.emailError) msgs.push("Email : " + data.emailError);
+      if (data.stripeError) msgs.push("Stripe : " + data.stripeError);
+      if (msgs.length > 0) {
+        setError(msgs.join(" | "));
+      }
+
       await fetchCandidatures();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erreur");
