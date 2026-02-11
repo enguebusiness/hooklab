@@ -8,7 +8,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass">
+    <nav className="sticky top-0 z-50 glass">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
@@ -27,13 +27,13 @@ export default function Navbar() {
               href="#methode"
               className="text-white/70 hover:text-white transition-colors text-sm font-medium"
             >
-              Methode
+              M&eacute;thode
             </a>
             <a
               href="#temoignages"
               className="text-white/70 hover:text-white transition-colors text-sm font-medium"
             >
-              Resultats
+              R&eacute;sultats
             </a>
             <a
               href="#tarif"
@@ -101,14 +101,14 @@ export default function Navbar() {
                 className="text-white/70 hover:text-white transition-colors text-sm font-medium"
                 onClick={() => setIsOpen(false)}
               >
-                Methode
+                M&eacute;thode
               </a>
               <a
                 href="#temoignages"
                 className="text-white/70 hover:text-white transition-colors text-sm font-medium"
                 onClick={() => setIsOpen(false)}
               >
-                Resultats
+                R&eacute;sultats
               </a>
               <a
                 href="#tarif"

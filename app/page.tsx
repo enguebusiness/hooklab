@@ -11,7 +11,6 @@ import TrustBadges from "@/components/marketing/TrustBadges";
 import FAQ from "@/components/marketing/FAQ";
 import FinalCTA from "@/components/marketing/FinalCTA";
 import Footer from "@/components/marketing/Footer";
-import SocialProofTicker from "@/components/marketing/SocialProofTicker";
 import ExitIntentPopup from "@/components/marketing/ExitIntentPopup";
 import StickyMobileCTA from "@/components/marketing/StickyMobileCTA";
 
@@ -59,10 +58,7 @@ export default function LandingPage() {
       {/* Footer */}
       <Footer />
 
-      {/* Social proof notifications (bottom left) */}
-      <SocialProofTicker />
-
-      {/* Exit intent popup (desktop only) */}
+      {/* Exit intent popup */}
       <ExitIntentPopup />
 
       {/* Sticky mobile CTA bar */}
