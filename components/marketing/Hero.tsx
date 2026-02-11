@@ -15,23 +15,24 @@ export default function Hero() {
           <div className="flex flex-wrap justify-center gap-3 mb-8">
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-medium">
               <span className="w-1.5 h-1.5 bg-success rounded-full animate-pulse" />
-              Places limitées - Promo en cours
+              Nouvelle session ouverte &mdash; Places limit&eacute;es
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-dark-light border border-dark-border rounded-full text-white/60 text-xs font-medium">
-              Programme 8 semaines
+              Programme intensif 8 semaines
             </span>
           </div>
 
-          {/* Titre principal */}
+          {/* H1 SEO-optimis&eacute; avec mots-cl&eacute;s cibles */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.02em] leading-[1.1] mb-6">
-            Lance ton business{" "}
-            <span className="gradient-text">TikTok Shop</span> en 8 semaines
+            La <span className="gradient-text">formation TikTok Shop</span>{" "}
+            pour devenir cr&eacute;ateur affili&eacute; en France
           </h1>
 
-          {/* Sous-titre */}
+          {/* Sous-titre SEO avec mots-cl&eacute;s secondaires */}
           <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Le programme de coaching complet pour devenir créateur affilié
-            TikTok Shop et générer tes premiers revenus en ligne.
+            Apprends &agrave; <strong className="text-white/80">gagner des commissions sur TikTok Shop</strong> en
+            cr&eacute;ant du contenu vid&eacute;o. Programme de coaching complet en 8 semaines :
+            de z&eacute;ro &agrave; tes premiers revenus d&apos;affiliation.
           </p>
 
           {/* CTAs */}
@@ -41,9 +42,9 @@ export default function Hero() {
                 Candidater maintenant
               </Button>
             </Link>
-            <a href="#methode">
+            <a href="#resultats">
               <Button variant="secondary" size="lg">
-                Découvrir la méthode
+                Voir les r&eacute;sultats
               </Button>
             </a>
           </div>
@@ -51,20 +52,19 @@ export default function Hero() {
           {/* Social proof */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-10">
             <div className="flex items-center gap-2">
-              {/* Avatars empilés */}
               <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
+                {["M", "S", "T", "A", "J"].map((letter, i) => (
                   <div
                     key={i}
                     className="w-8 h-8 rounded-full gradient-bg border-2 border-dark flex items-center justify-center text-xs font-bold text-white"
                   >
-                    {String.fromCharCode(64 + i)}
+                    {letter}
                   </div>
                 ))}
               </div>
               <span className="text-sm text-white/60">
-                <span className="text-white font-semibold">+120</span> élèves
-                formés
+                <span className="text-white font-semibold">+120</span> &eacute;l&egrave;ves
+                form&eacute;s
               </span>
             </div>
             <div className="flex items-center gap-1.5">
@@ -82,6 +82,18 @@ export default function Hero() {
                 <span className="text-white font-semibold">4.9/5</span> de
                 satisfaction
               </span>
+            </div>
+          </div>
+
+          {/* Compatible avec */}
+          <div className="mt-12 pt-8 border-t border-dark-border">
+            <p className="text-white/30 text-xs uppercase tracking-wider mb-4">
+              Programme compatible avec
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-8 text-white/20">
+              <span className="text-lg font-bold">TikTok Shop</span>
+              <span className="text-lg font-bold">Stripe</span>
+              <span className="text-lg font-bold">WhatsApp</span>
             </div>
           </div>
         </div>

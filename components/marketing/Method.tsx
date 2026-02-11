@@ -3,9 +3,15 @@ import Card from "@/components/ui/Card";
 const steps = [
   {
     number: "01",
-    title: "Apprends les bases",
+    title: "Ma\u00eetrise les fondamentaux",
     description:
-      "Maîtrise les fondamentaux de TikTok Shop, l'algorithme, et les techniques de création de contenu qui convertissent.",
+      "Comprends l\u2019algorithme TikTok, apprends \u00e0 cr\u00e9er du contenu qui capte l\u2019attention, et d\u00e9couvre comment fonctionne l\u2019affiliation TikTok Shop.",
+    details: [
+      "Cr\u00e9ation de ton compte TikTok Shop",
+      "Comprendre l\u2019algorithme et les tendances",
+      "Les bases de la cr\u00e9ation de contenu vid\u00e9o",
+      "Choisir ta niche et ton positionnement",
+    ],
     icon: (
       <svg
         className="w-6 h-6"
@@ -25,9 +31,15 @@ const steps = [
   },
   {
     number: "02",
-    title: "Lance ton activité",
+    title: "Lance ton activit\u00e9",
     description:
-      "Configure ton shop, sélectionne tes produits gagnants, et publie tes premières vidéos avec notre méthode éprouvée.",
+      "S\u00e9lectionne tes produits gagnants, publie tes premi\u00e8res vid\u00e9os avec nos templates, et g\u00e9n\u00e8re tes premi\u00e8res commissions d\u2019affiliation.",
+    details: [
+      "S\u00e9lection de produits \u00e0 fort potentiel",
+      "Scripts et templates de vid\u00e9os fournis",
+      "Techniques de hook (accroche) qui captent",
+      "Premi\u00e8res publications et optimisation",
+    ],
     icon: (
       <svg
         className="w-6 h-6"
@@ -49,7 +61,13 @@ const steps = [
     number: "03",
     title: "Scale tes revenus",
     description:
-      "Optimise tes performances, automatise tes process, et développe une stratégie de contenu rentable sur le long terme.",
+      "Optimise tes performances avec l\u2019analyse de donn\u00e9es, automatise ta strat\u00e9gie de contenu, et d\u00e9veloppe une activit\u00e9 p\u00e9renne.",
+    details: [
+      "Analyse des performances et KPIs",
+      "Strat\u00e9gie de contenu \u00e0 long terme",
+      "Diversification des produits",
+      "Automatisation et ind\u00e9pendance",
+    ],
     icon: (
       <svg
         className="w-6 h-6"
@@ -76,15 +94,18 @@ export default function Method() {
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="inline-block px-3 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-medium mb-4">
-            La méthode
+            La m&eacute;thode HookLab
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.02em] mb-4">
-            3 étapes vers tes{" "}
-            <span className="gradient-text">premiers revenus</span>
+            3 &eacute;tapes pour g&eacute;n&eacute;rer tes{" "}
+            <span className="gradient-text">
+              premiers revenus TikTok Shop
+            </span>
           </h2>
           <p className="text-white/60 text-lg">
-            Un programme structuré semaine par semaine pour te guider vers la
-            rentabilité.
+            Un programme structur&eacute; semaine par semaine con&ccedil;u pour
+            t&apos;emmener de z&eacute;ro &agrave; la rentabilit&eacute; en
+            affiliation TikTok Shop.
           </p>
         </div>
 
@@ -111,9 +132,31 @@ export default function Method() {
               <h3 className="text-xl font-bold text-white mb-3">
                 {step.title}
               </h3>
-              <p className="text-white/60 text-sm leading-relaxed">
+              <p className="text-white/60 text-sm leading-relaxed mb-4">
                 {step.description}
               </p>
+
+              {/* Details list */}
+              <ul className="space-y-2">
+                {step.details.map((detail, j) => (
+                  <li key={j} className="flex items-start gap-2">
+                    <svg
+                      className="w-4 h-4 text-primary mt-0.5 shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                    <span className="text-white/50 text-xs">{detail}</span>
+                  </li>
+                ))}
+              </ul>
             </Card>
           ))}
         </div>

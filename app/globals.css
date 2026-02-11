@@ -29,7 +29,12 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Scrollbar personnalisée */
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar personnalisee */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -89,4 +94,26 @@ body {
 
 .pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Scale in animation for popups */
+@keyframes scale-in {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(109, 94, 246, 0.3);
+  color: #ffffff;
 }

@@ -3,27 +3,57 @@ import Card from "@/components/ui/Card";
 const testimonials = [
   {
     name: "Sarah M.",
-    role: "Étudiante, 22 ans",
+    role: "\u00c9tudiante, 22 ans",
     content:
-      "En 4 semaines, j'ai généré mes premiers 800€ sur TikTok Shop. Le programme m'a donné une méthode claire et un accompagnement top.",
-    revenue: "2 400€/mois",
+      "En 4 semaines, j\u2019ai g\u00e9n\u00e9r\u00e9 mes premi\u00e8res commissions sur TikTok Shop. Le programme m\u2019a donn\u00e9 une m\u00e9thode claire et un accompagnement top. Avant HookLab, je ne savais m\u00eame pas par o\u00f9 commencer.",
+    revenue: "2 400\u20ac/mois apr\u00e8s 3 mois",
     avatar: "S",
+    stars: 5,
   },
   {
     name: "Thomas D.",
-    role: "Ex-salarié, 34 ans",
+    role: "Ex-salari\u00e9, 34 ans",
     content:
-      "J'hésitais à me lancer, mais le coaching m'a permis de structurer mon activité. Aujourd'hui je vis de TikTok Shop à plein temps.",
-    revenue: "4 200€/mois",
+      "J\u2019h\u00e9sitais \u00e0 me lancer, mais le coaching m\u2019a permis de structurer mon activit\u00e9 pas \u00e0 pas. Les appels de groupe et le support WhatsApp font vraiment la diff\u00e9rence par rapport \u00e0 une formation en ligne classique.",
+    revenue: "4 200\u20ac/mois apr\u00e8s 5 mois",
     avatar: "T",
+    stars: 5,
   },
   {
     name: "Amina K.",
-    role: "Mère au foyer, 29 ans",
+    role: "M\u00e8re au foyer, 29 ans",
     content:
-      "Je cherchais un complément de revenus flexible. Grâce à HookLab, je gagne un SMIC supplémentaire en travaillant 2h par jour.",
-    revenue: "1 600€/mois",
+      "Je cherchais un compl\u00e9ment de revenus flexible compatible avec mes enfants. Avec 2h par jour, j\u2019arrive \u00e0 g\u00e9n\u00e9rer un vrai revenu compl\u00e9mentaire. La communaut\u00e9 est super bienveillante.",
+    revenue: "1 600\u20ac/mois apr\u00e8s 2 mois",
     avatar: "A",
+    stars: 5,
+  },
+  {
+    name: "Mehdi L.",
+    role: "\u00c9tudiant, 20 ans",
+    content:
+      "J\u2019avais z\u00e9ro exp\u00e9rience en e-commerce. Le programme m\u2019a appris \u00e0 choisir les bons produits et \u00e0 cr\u00e9er du contenu qui convertit. Aujourd\u2019hui je finance mes \u00e9tudes gr\u00e2ce \u00e0 TikTok Shop.",
+    revenue: "900\u20ac/mois apr\u00e8s 6 semaines",
+    avatar: "M",
+    stars: 5,
+  },
+  {
+    name: "Laura B.",
+    role: "Freelance, 27 ans",
+    content:
+      "Ce qui m\u2019a convaincue c\u2019est la sp\u00e9cialisation TikTok Shop. Pas du g\u00e9n\u00e9rique, mais des strat\u00e9gies concr\u00e8tes test\u00e9es et prouv\u00e9es. Les templates de scripts m\u2019ont fait gagner un temps fou.",
+    revenue: "3 100\u20ac/mois apr\u00e8s 4 mois",
+    avatar: "L",
+    stars: 5,
+  },
+  {
+    name: "Yanis K.",
+    role: "En reconversion, 31 ans",
+    content:
+      "Apr\u00e8s 8 semaines de formation, j\u2019ai pu quitter mon job. Le retour sur investissement est l\u00e0. L\u2019\u00e9quipe est r\u00e9active, les modules sont clairs, et la communaut\u00e9 pousse \u00e0 se d\u00e9passer.",
+    revenue: "5 800\u20ac/mois apr\u00e8s 6 mois",
+    avatar: "Y",
+    stars: 5,
   },
 ];
 
@@ -34,23 +64,24 @@ export default function Testimonials() {
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="inline-block px-3 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-medium mb-4">
-            Témoignages
+            T&eacute;moignages
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.02em] mb-4">
-            Ils ont <span className="gradient-text">transformé</span> leur vie
+            Ils g&eacute;n&egrave;rent des{" "}
+            <span className="gradient-text">revenus avec TikTok Shop</span>
           </h2>
           <p className="text-white/60 text-lg">
-            Découvre les résultats de nos élèves après le programme.
+            D&eacute;couvre les retours de nos &eacute;l&egrave;ves apr&egrave;s le programme de coaching.
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <Card key={i} hover>
               {/* Stars */}
               <div className="flex gap-1 mb-4">
-                {[1, 2, 3, 4, 5].map((s) => (
+                {Array.from({ length: t.stars }).map((_, s) => (
                   <svg
                     key={s}
                     className="w-4 h-4 text-warning"
@@ -63,7 +94,7 @@ export default function Testimonials() {
               </div>
 
               {/* Content */}
-              <p className="text-white/80 mb-6 leading-relaxed">
+              <p className="text-white/80 mb-6 leading-relaxed text-sm">
                 &ldquo;{t.content}&rdquo;
               </p>
 
@@ -85,6 +116,13 @@ export default function Testimonials() {
             </Card>
           ))}
         </div>
+
+        {/* Google-compliant disclaimer */}
+        <p className="text-center text-white/25 text-xs mt-8 max-w-2xl mx-auto leading-relaxed">
+          Les r&eacute;sultats pr&eacute;sent&eacute;s sont bas&eacute;s sur les retours individuels de nos
+          &eacute;l&egrave;ves et ne constituent pas une garantie de revenus. Les r&eacute;sultats varient
+          selon l&apos;implication, le temps consacr&eacute; et la strat&eacute;gie de chaque participant.
+        </p>
       </div>
     </section>
   );
