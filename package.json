@@ -22,12 +22,14 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
+    "@sanity/vision": "^3.99.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^18.3.28",
     "@types/react-dom": "^18.3.7",
     "eslint": "^9",
     "eslint-config-next": "^15.5.12",
+    "sanity": "^3.99.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
