@@ -7,11 +7,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
     default:
-      "HookLab | Cr\u00e9ation de sites web pour artisans du b\u00e2timent dans le Nord",
+      "Cr\u00e9ation Site Internet Artisan & BTP Nord (59) | HookLab Flines-lez-Raches",
     template: "%s | HookLab",
   },
   description:
-    "Agence web locale sp\u00e9cialis\u00e9e dans la visibilit\u00e9 Google des artisans du b\u00e2timent dans le Nord (Douai, Orchies, Valenciennes). Sites web, r\u00e9f\u00e9rencement local, syst\u00e8me de confiance.",
+    "Sp\u00e9cialiste web pour artisans du b\u00e2timent et paysagistes \u00e0 Douai, Orchies, Valenciennes. Site ultra-rapide, s\u00e9curis\u00e9 et con\u00e7u pour g\u00e9n\u00e9rer des chantiers qualifi\u00e9s. Audit offert.",
   keywords: [
     "site web artisan",
     "cr\u00e9ation site artisan b\u00e2timent",

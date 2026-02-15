@@ -16,45 +16,23 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-text-light text-sm leading-relaxed max-w-xs">
-              Agence web sp&eacute;cialis&eacute;e dans la visibilit&eacute; locale des artisans
-              du b&acirc;timent dans le Nord.
+              Cr&eacute;ation de sites pour le B&acirc;timent et l&rsquo;Artisanat.
             </p>
             <p className="text-text-muted text-xs mt-3">
-              Flines-lez-Raches, Nord (59)
+              59148 Flines-lez-Raches
             </p>
           </div>
 
-          {/* Links */}
+          {/* Expertises SEO */}
           <div>
             <h4 className="text-navy font-semibold text-sm mb-4">
-              Navigation
+              Expertises
             </h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="#systeme" className="text-text-light hover:text-navy text-sm transition-colors">
-                  Le Syst&egrave;me
-                </a>
-              </li>
-              <li>
-                <a href="#portfolio" className="text-text-light hover:text-navy text-sm transition-colors">
-                  R&eacute;alisations
-                </a>
-              </li>
-              <li>
-                <a href="#qui-suis-je" className="text-text-light hover:text-navy text-sm transition-colors">
-                  Qui suis-je
-                </a>
-              </li>
-              <li>
-                <a href="#faq" className="text-text-light hover:text-navy text-sm transition-colors">
-                  FAQ
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-text-light hover:text-navy text-sm transition-colors">
-                  Contact
-                </a>
-              </li>
+            <ul className="space-y-2 text-text-light text-sm">
+              <li>Site internet Couvreur</li>
+              <li>SEO Ma&ccedil;onnerie</li>
+              <li>Webmaster Paysagiste</li>
+              <li>Visibilit&eacute; Menuisier</li>
             </ul>
           </div>
 
@@ -69,20 +47,25 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/confidentialite" className="text-text-light hover:text-navy text-sm transition-colors">
-                  Confidentialit&eacute;
+                  Politique de Confidentialit&eacute;
+                </Link>
+              </li>
+              <li>
+                <Link href="/plan-du-site" className="text-text-light hover:text-navy text-sm transition-colors">
+                  Plan du site
                 </Link>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom */}
+        {/* Bottom SEO */}
         <div className="border-t border-border mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-text-muted text-xs">
             &copy; {new Date().getFullYear()} HookLab &mdash; Enguerrand Ozano &middot; SIREN 994 538 932
           </p>
-          <p className="text-text-muted text-xs">
-            Douai &middot; Orchies &middot; Valenciennes &middot; Arleux
+          <p className="text-text-muted text-xs text-center md:text-right">
+            Intervention : Douai &middot; Orchies &middot; Arleux &middot; Valenciennes &middot; Saint-Amand-les-Eaux
           </p>
         </div>
       </div>
