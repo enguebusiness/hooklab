@@ -7,26 +7,26 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
     default:
-      "HookLab | Formation TikTok Shop France - Deviens Cr\u00e9ateur Affili\u00e9",
+      "HookLab | Cr\u00e9ation de sites web pour artisans du b\u00e2timent dans le Nord",
     template: "%s | HookLab",
   },
   description:
-    "Formation coaching TikTok Shop en 8 semaines. Deviens cr\u00e9ateur affili\u00e9 et g\u00e9n\u00e8re des revenus avec l\u2019affiliation TikTok Shop en France. Programme complet : strat\u00e9gie, contenu, mon\u00e9tisation.",
+    "Agence web locale sp\u00e9cialis\u00e9e dans la visibilit\u00e9 Google des artisans du b\u00e2timent dans le Nord (Douai, Orchies, Valenciennes). Sites web, r\u00e9f\u00e9rencement local, syst\u00e8me de confiance.",
   keywords: [
-    "formation TikTok Shop",
-    "coaching TikTok Shop",
-    "affiliation TikTok Shop France",
-    "gagner de l'argent TikTok Shop",
-    "cr\u00e9ateur TikTok Shop France",
-    "commission TikTok Shop",
-    "programme affiliation TikTok",
-    "revenus TikTok Shop",
-    "devenir affili\u00e9 TikTok Shop",
-    "mon\u00e9tisation TikTok France",
-    "tuto TikTok Shop d\u00e9butant",
-    "revenus passifs TikTok",
+    "site web artisan",
+    "cr\u00e9ation site artisan b\u00e2timent",
+    "r\u00e9f\u00e9rencement local artisan",
+    "agence web Nord",
+    "site internet couvreur",
+    "site internet menuisier",
+    "site internet paysagiste",
+    "visibilit\u00e9 Google artisan",
+    "site web Douai",
+    "site web Valenciennes",
+    "agence web Orchies",
+    "site pro artisan Nord",
   ],
-  authors: [{ name: "HookLab" }],
+  authors: [{ name: "HookLab - Enguerrand Ozano" }],
   creator: "HookLab",
   publisher: "HookLab",
   robots: {
@@ -46,23 +46,23 @@ export const metadata: Metadata = {
     url: BASE_URL,
     siteName: "HookLab",
     title:
-      "HookLab | Formation TikTok Shop France - Deviens Cr\u00e9ateur Affili\u00e9",
+      "HookLab | Sites web pour artisans du b\u00e2timent dans le Nord",
     description:
-      "Formation coaching TikTok Shop en 8 semaines. Deviens cr\u00e9ateur affili\u00e9 et g\u00e9n\u00e8re tes premiers revenus avec l\u2019affiliation TikTok Shop en France.",
+      "Transformez votre bouche-\u00e0-oreille en syst\u00e8me automatique. Sites web et r\u00e9f\u00e9rencement Google pour artisans \u00e0 Douai, Orchies, Valenciennes.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "HookLab - Formation TikTok Shop France",
+        alt: "HookLab - Sites web pour artisans du Nord",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "HookLab | Formation TikTok Shop France",
+    title: "HookLab | Sites web pour artisans du Nord",
     description:
-      "Deviens cr\u00e9ateur affili\u00e9 TikTok Shop et g\u00e9n\u00e8re des revenus en 8 semaines de coaching.",
+      "Agence web locale pour artisans du b\u00e2timent. Douai, Orchies, Valenciennes.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -80,41 +80,37 @@ export default function RootLayout({
 }>) {
   const jsonLdOrganization = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "LocalBusiness",
     name: "HookLab",
     url: BASE_URL,
     logo: `${BASE_URL}/logo.png`,
     description:
-      "Programme de coaching TikTok Shop pour devenir cr\u00e9ateur affili\u00e9 en France.",
+      "Agence web sp\u00e9cialis\u00e9e dans la cr\u00e9ation de sites et la visibilit\u00e9 Google pour les artisans du b\u00e2timent dans le Nord.",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "35 rue Mo\u00efse Lambert",
+      addressLocality: "Flines-lez-Raches",
+      postalCode: "59148",
+      addressRegion: "Nord",
+      addressCountry: "FR",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 50.4267,
+      longitude: 3.2372,
+    },
+    areaServed: [
+      { "@type": "City", name: "Douai" },
+      { "@type": "City", name: "Orchies" },
+      { "@type": "City", name: "Valenciennes" },
+      { "@type": "City", name: "Arleux" },
+      { "@type": "City", name: "Flines-lez-Raches" },
+    ],
+    priceRange: "$$",
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
       availableLanguage: "French",
-    },
-  };
-
-  const jsonLdCourse = {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    name: "Formation TikTok Shop - HookLab",
-    description:
-      "Programme de coaching intensif de 8 semaines pour devenir cr\u00e9ateur affili\u00e9 TikTok Shop. Apprenez \u00e0 cr\u00e9er du contenu, s\u00e9lectionner des produits et g\u00e9n\u00e9rer des commissions.",
-    provider: {
-      "@type": "Organization",
-      name: "HookLab",
-      url: BASE_URL,
-    },
-    offers: {
-      "@type": "Offer",
-      price: "490",
-      priceCurrency: "EUR",
-      availability: "https://schema.org/LimitedAvailability",
-    },
-    hasCourseInstance: {
-      "@type": "CourseInstance",
-      courseMode: "online",
-      duration: "P8W",
-      inLanguage: "fr",
     },
   };
 
@@ -127,14 +123,13 @@ export default function RootLayout({
             __html: JSON.stringify(jsonLdOrganization),
           }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLdCourse),
-          }}
-        />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <a href="#main-content" className="skip-to-content">
+          Aller au contenu principal
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

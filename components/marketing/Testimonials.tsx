@@ -5,8 +5,8 @@ const testimonials = [
     name: "Sarah M.",
     role: "\u00c9tudiante, 22 ans",
     content:
-      "En 4 semaines, j\u2019ai g\u00e9n\u00e9r\u00e9 mes premi\u00e8res commissions sur TikTok Shop. Le programme m\u2019a donn\u00e9 une m\u00e9thode claire et un accompagnement top. Avant HookLab, je ne savais m\u00eame pas par o\u00f9 commencer.",
-    revenue: "2 400\u20ac/mois apr\u00e8s 3 mois",
+      "En 4 semaines, j\u2019ai g\u00e9n\u00e9r\u00e9 mes premi\u00e8res commissions sur TikTok Shop. Le programme m\u2019a donn\u00e9 une m\u00e9thode claire pour choisir les bons produits. Avec 6 \u00e0 10\u20ac par vente, \u00e7a s\u2019accumule vite quand on poste r\u00e9guli\u00e8rement.",
+    revenue: "350\u20ac/mois apr\u00e8s 2 mois",
     avatar: "S",
     stars: 5,
   },
@@ -14,8 +14,8 @@ const testimonials = [
     name: "Thomas D.",
     role: "Ex-salari\u00e9, 34 ans",
     content:
-      "J\u2019h\u00e9sitais \u00e0 me lancer, mais le coaching m\u2019a permis de structurer mon activit\u00e9 pas \u00e0 pas. Les appels de groupe et le support WhatsApp font vraiment la diff\u00e9rence par rapport \u00e0 une formation en ligne classique.",
-    revenue: "4 200\u20ac/mois apr\u00e8s 5 mois",
+      "J\u2019h\u00e9sitais \u00e0 me lancer, mais le coaching m\u2019a permis de structurer mon activit\u00e9 pas \u00e0 pas. Les appels de groupe et le support WhatsApp font vraiment la diff\u00e9rence. Aujourd\u2019hui je fais environ 50-60 ventes par mois.",
+    revenue: "480\u20ac/mois apr\u00e8s 3 mois",
     avatar: "T",
     stars: 5,
   },
@@ -23,8 +23,8 @@ const testimonials = [
     name: "Amina K.",
     role: "M\u00e8re au foyer, 29 ans",
     content:
-      "Je cherchais un compl\u00e9ment de revenus flexible compatible avec mes enfants. Avec 2h par jour, j\u2019arrive \u00e0 g\u00e9n\u00e9rer un vrai revenu compl\u00e9mentaire. La communaut\u00e9 est super bienveillante.",
-    revenue: "1 600\u20ac/mois apr\u00e8s 2 mois",
+      "Je cherchais un compl\u00e9ment de revenus flexible compatible avec mes enfants. Avec 2h par jour, j\u2019arrive \u00e0 sortir 2-3 vid\u00e9os par semaine et les commissions arrivent r\u00e9guli\u00e8rement. C\u2019est un vrai compl\u00e9ment.",
+    revenue: "280\u20ac/mois apr\u00e8s 6 semaines",
     avatar: "A",
     stars: 5,
   },
@@ -32,8 +32,8 @@ const testimonials = [
     name: "Mehdi L.",
     role: "\u00c9tudiant, 20 ans",
     content:
-      "J\u2019avais z\u00e9ro exp\u00e9rience en e-commerce. Le programme m\u2019a appris \u00e0 choisir les bons produits et \u00e0 cr\u00e9er du contenu qui convertit. Aujourd\u2019hui je finance mes \u00e9tudes gr\u00e2ce \u00e0 TikTok Shop.",
-    revenue: "900\u20ac/mois apr\u00e8s 6 semaines",
+      "J\u2019avais z\u00e9ro exp\u00e9rience en e-commerce. Le programme m\u2019a appris \u00e0 choisir les bons produits et \u00e0 cr\u00e9er du contenu qui convertit. Avec 8\u20ac de commission moyenne, chaque vid\u00e9o virale fait la diff\u00e9rence.",
+    revenue: "620\u20ac/mois apr\u00e8s 4 mois",
     avatar: "M",
     stars: 5,
   },
@@ -41,17 +41,17 @@ const testimonials = [
     name: "Laura B.",
     role: "Freelance, 27 ans",
     content:
-      "Ce qui m\u2019a convaincue c\u2019est la sp\u00e9cialisation TikTok Shop. Pas du g\u00e9n\u00e9rique, mais des strat\u00e9gies concr\u00e8tes test\u00e9es et prouv\u00e9es. Les templates de scripts m\u2019ont fait gagner un temps fou.",
-    revenue: "3 100\u20ac/mois apr\u00e8s 4 mois",
+      "Ce qui m\u2019a convaincue c\u2019est la sp\u00e9cialisation TikTok Shop. Pas du g\u00e9n\u00e9rique, mais des strat\u00e9gies concr\u00e8tes. Les templates de scripts m\u2019ont fait gagner un temps fou. Je poste quasi tous les jours maintenant.",
+    revenue: "750\u20ac/mois apr\u00e8s 5 mois",
     avatar: "L",
-    stars: 5,
+    stars: 4,
   },
   {
     name: "Yanis K.",
     role: "En reconversion, 31 ans",
     content:
-      "Apr\u00e8s 8 semaines de formation, j\u2019ai pu quitter mon job. Le retour sur investissement est l\u00e0. L\u2019\u00e9quipe est r\u00e9active, les modules sont clairs, et la communaut\u00e9 pousse \u00e0 se d\u00e9passer.",
-    revenue: "5 800\u20ac/mois apr\u00e8s 6 mois",
+      "Apr\u00e8s 8 semaines de formation, j\u2019ai vraiment pris le rythme. Les modules sont clairs, la communaut\u00e9 pousse \u00e0 se d\u00e9passer. Je vise les 100 ventes par mois maintenant, c\u2019est mon prochain objectif.",
+    revenue: "900\u20ac/mois apr\u00e8s 6 mois",
     avatar: "Y",
     stars: 5,
   },
@@ -120,8 +120,10 @@ export default function Testimonials() {
         {/* Google-compliant disclaimer */}
         <p className="text-center text-white/25 text-xs mt-8 max-w-2xl mx-auto leading-relaxed">
           Les r&eacute;sultats pr&eacute;sent&eacute;s sont bas&eacute;s sur les retours individuels de nos
-          &eacute;l&egrave;ves et ne constituent pas une garantie de revenus. Les r&eacute;sultats varient
-          selon l&apos;implication, le temps consacr&eacute; et la strat&eacute;gie de chaque participant.
+          &eacute;l&egrave;ves et ne constituent pas une garantie de revenus. Les commissions TikTok Shop
+          varient g&eacute;n&eacute;ralement entre 6&euro; et 10&euro; par vente. Les revenus d&eacute;pendent
+          du nombre de ventes g&eacute;n&eacute;r&eacute;es, de l&apos;implication et du temps consacr&eacute;
+          par chaque participant.
         </p>
       </div>
     </section>

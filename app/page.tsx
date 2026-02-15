@@ -1,68 +1,41 @@
-import AnnouncementBar from "@/components/marketing/AnnouncementBar";
 import Navbar from "@/components/marketing/Navbar";
 import Hero from "@/components/marketing/Hero";
-import ResultsShowcase from "@/components/marketing/ResultsShowcase";
-import Method from "@/components/marketing/Method";
-import PersonaCards from "@/components/marketing/PersonaCards";
-import ComparisonTable from "@/components/marketing/ComparisonTable";
-import Testimonials from "@/components/marketing/Testimonials";
-import Pricing from "@/components/marketing/Pricing";
-import TrustBadges from "@/components/marketing/TrustBadges";
+import System from "@/components/marketing/System";
+import Portfolio from "@/components/marketing/Portfolio";
+import AboutMe from "@/components/marketing/AboutMe";
 import FAQ from "@/components/marketing/FAQ";
-import FinalCTA from "@/components/marketing/FinalCTA";
+import Contact from "@/components/marketing/Contact";
 import Footer from "@/components/marketing/Footer";
-import ExitIntentPopup from "@/components/marketing/ExitIntentPopup";
-import StickyMobileCTA from "@/components/marketing/StickyMobileCTA";
+import { getPortfolio } from "@/lib/sanity/queries";
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const portfolioItems = await getPortfolio();
+
   return (
-    <main className="min-h-screen">
-      {/* Top announcement bar */}
-      <AnnouncementBar />
-
+    <main id="main-content" className="min-h-screen">
       {/* Navigation */}
       <Navbar />
 
-      {/* Hero with SEO-optimized H1 */}
+      {/* Hero - La Promesse */}
       <Hero />
 
-      {/* Market opportunity + timeline */}
-      <section id="resultats">
-        <ResultsShowcase />
-      </section>
+      {/* Le Système - Dossier de Confiance */}
+      <System />
 
-      {/* 3-step method */}
-      <Method />
+      {/* Portfolio - Preuves */}
+      <Portfolio items={portfolioItems} />
 
-      {/* Target personas */}
-      <PersonaCards />
+      {/* Qui suis-je - Ancrage Local */}
+      <AboutMe />
 
-      {/* Comparison table */}
-      <ComparisonTable />
-
-      {/* Testimonials with disclaimer */}
-      <Testimonials />
-
-      {/* Pricing with urgency */}
-      <Pricing />
-
-      {/* Trust signals */}
-      <TrustBadges />
-
-      {/* FAQ with structured data */}
+      {/* FAQ */}
       <FAQ />
 
-      {/* Final CTA */}
-      <FinalCTA />
+      {/* Contact / Audit CTA */}
+      <Contact />
 
       {/* Footer */}
       <Footer />
-
-      {/* Exit intent popup */}
-      <ExitIntentPopup />
-
-      {/* Sticky mobile CTA bar */}
-      <StickyMobileCTA />
     </main>
   );
 }

@@ -10,6 +10,7 @@ export type Database = {
           persona: "jeune" | "parent" | null;
           stripe_customer_id: string | null;
           subscription_status: "inactive" | "active" | "cancelled" | "paused";
+          subscription_tier: "coaching" | "suivi" | null;
           subscription_end_date: string | null;
           is_admin: boolean;
           created_at: string;
@@ -22,6 +23,7 @@ export type Database = {
           persona?: "jeune" | "parent" | null;
           stripe_customer_id?: string | null;
           subscription_status?: "inactive" | "active" | "cancelled" | "paused";
+          subscription_tier?: "coaching" | "suivi" | null;
           subscription_end_date?: string | null;
           is_admin?: boolean;
           created_at?: string;
@@ -34,6 +36,7 @@ export type Database = {
           persona?: "jeune" | "parent" | null;
           stripe_customer_id?: string | null;
           subscription_status?: "inactive" | "active" | "cancelled" | "paused";
+          subscription_tier?: "coaching" | "suivi" | null;
           subscription_end_date?: string | null;
           is_admin?: boolean;
           updated_at?: string;

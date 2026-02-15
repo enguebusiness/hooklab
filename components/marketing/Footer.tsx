@@ -2,91 +2,74 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-dark-border py-12 md:py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
+    <footer className="border-t border-border py-10 md:py-12 bg-bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
-          <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
+          <div>
+            <Link href="/" className="flex items-center gap-2 mb-3" aria-label="HookLab - Accueil">
+              <div className="w-8 h-8 bg-navy rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">H</span>
               </div>
-              <span className="text-xl font-bold text-white">
-                Hook<span className="gradient-text">Lab</span>
+              <span className="text-lg font-bold text-navy">
+                Hook<span className="text-orange">Lab</span>
               </span>
             </Link>
-            <p className="text-white/40 text-sm max-w-xs leading-relaxed">
-              Le programme de coaching TikTok Shop pour lancer ton business
-              d&apos;affiliation en 8 semaines.
+            <p className="text-text-light text-sm leading-relaxed max-w-xs">
+              Agence web sp&eacute;cialis&eacute;e dans la visibilit&eacute; locale des artisans
+              du b&acirc;timent dans le Nord.
+            </p>
+            <p className="text-text-muted text-xs mt-3">
+              Flines-lez-Raches, Nord (59)
             </p>
           </div>
 
           {/* Links */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">
-              Programme
+            <h4 className="text-navy font-semibold text-sm mb-4">
+              Navigation
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-2">
               <li>
-                <a
-                  href="#methode"
-                  className="text-white/40 hover:text-white text-sm transition-colors"
-                >
-                  La méthode
+                <a href="#systeme" className="text-text-light hover:text-navy text-sm transition-colors">
+                  Le Syst&egrave;me
                 </a>
               </li>
               <li>
-                <a
-                  href="#temoignages"
-                  className="text-white/40 hover:text-white text-sm transition-colors"
-                >
-                  Témoignages
+                <a href="#portfolio" className="text-text-light hover:text-navy text-sm transition-colors">
+                  R&eacute;alisations
                 </a>
               </li>
               <li>
-                <a
-                  href="#tarif"
-                  className="text-white/40 hover:text-white text-sm transition-colors"
-                >
-                  Tarif
+                <a href="#qui-suis-je" className="text-text-light hover:text-navy text-sm transition-colors">
+                  Qui suis-je
                 </a>
               </li>
               <li>
-                <a
-                  href="#faq"
-                  className="text-white/40 hover:text-white text-sm transition-colors"
-                >
+                <a href="#faq" className="text-text-light hover:text-navy text-sm transition-colors">
                   FAQ
+                </a>
+              </li>
+              <li>
+                <a href="#contact" className="text-text-light hover:text-navy text-sm transition-colors">
+                  Contact
                 </a>
               </li>
             </ul>
           </div>
 
+          {/* Legal */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Légal</h4>
-            <ul className="space-y-2.5">
+            <h4 className="text-navy font-semibold text-sm mb-4">L&eacute;gal</h4>
+            <ul className="space-y-2">
               <li>
-                <Link
-                  href="/mentions-legales"
-                  className="text-white/40 hover:text-white text-sm transition-colors"
-                >
-                  Mentions légales
+                <Link href="/mentions-legales" className="text-text-light hover:text-navy text-sm transition-colors">
+                  Mentions l&eacute;gales
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/cgv"
-                  className="text-white/40 hover:text-white text-sm transition-colors"
-                >
-                  CGV
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/confidentialite"
-                  className="text-white/40 hover:text-white text-sm transition-colors"
-                >
-                  Confidentialité
+                <Link href="/confidentialite" className="text-text-light hover:text-navy text-sm transition-colors">
+                  Confidentialit&eacute;
                 </Link>
               </li>
             </ul>
@@ -94,34 +77,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-dark-border mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-sm">
-            &copy; {new Date().getFullYear()} HookLab. Tous droits réservés.
+        <div className="border-t border-border mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
+          <p className="text-text-muted text-xs">
+            &copy; {new Date().getFullYear()} HookLab &mdash; Enguerrand Ozano &middot; SIREN 994 538 932
           </p>
-          <div className="flex items-center gap-4">
-            <a
-              href="https://tiktok.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/30 hover:text-primary transition-colors"
-              aria-label="TikTok"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.11V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.92a8.2 8.2 0 004.76 1.52V7a4.84 4.84 0 01-1-.31z" />
-              </svg>
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/30 hover:text-primary transition-colors"
-              aria-label="Instagram"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-              </svg>
-            </a>
-          </div>
+          <p className="text-text-muted text-xs">
+            Douai &middot; Orchies &middot; Valenciennes &middot; Arleux
+          </p>
         </div>
       </div>
     </footer>
