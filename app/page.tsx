@@ -6,10 +6,16 @@ import AboutMe from "@/components/marketing/AboutMe";
 import FAQ from "@/components/marketing/FAQ";
 import Contact from "@/components/marketing/Contact";
 import Footer from "@/components/marketing/Footer";
-import { getPortfolio } from "@/lib/sanity/queries";
+import { getPortfolio, getSiteSettings } from "@/lib/sanity/queries";
+
+// Revalider les données Sanity toutes les 60 secondes
+export const revalidate = 60;
 
 export default async function LandingPage() {
-  const portfolioItems = await getPortfolio();
+  const [portfolioItems, siteSettings] = await Promise.all([
+    getPortfolio(),
+    getSiteSettings(),
+  ]);
 
   return (
     <main id="main-content" className="min-h-screen">
@@ -26,7 +32,7 @@ export default async function LandingPage() {
       <Portfolio items={portfolioItems} />
 
       {/* Qui suis-je - Ancrage Local */}
-      <AboutMe />
+      <AboutMe settings={siteSettings} />
 
       {/* FAQ */}
       <FAQ />
