@@ -30,11 +30,11 @@ export default function LocalSeoPage({ ville, codePostal, voisines }: LocalSeoPa
             Je cr&eacute;e votre site web professionnel et votre pr&eacute;sence Google pour g&eacute;n&eacute;rer
             des chantiers qualifi&eacute;s. Bas&eacute; &agrave; Flines-lez-Raches, je suis votre voisin.
           </p>
-          <a href="/#contact">
+          <Link href="/#contact">
             <Button size="lg" className="pulse-glow">
               D&Eacute;MARRER MON AUDIT GRATUIT
             </Button>
-          </a>
+          </Link>
           <p className="mt-4 text-white/40 text-sm">
             R&eacute;ponse sous 24h &middot; 100% gratuit &middot; Sans engagement
           </p>
@@ -128,11 +128,11 @@ export default function LocalSeoPage({ ville, codePostal, voisines }: LocalSeoPa
           <p className="text-white/60 mb-6">
             Je travaille avec des artisans dans tout le Douaisis, l&rsquo;Orch&eacute;sien et le Valenciennois.
           </p>
-          <a href="/#contact">
+          <Link href="/#contact">
             <Button size="lg" className="pulse-glow">
               R&eacute;server Mon Audit Gratuit
             </Button>
-          </a>
+          </Link>
         </div>
       </section>
 
