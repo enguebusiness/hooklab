@@ -1,8 +1,7 @@
-// Sanity schema: Site Settings (singleton)
-// Créez ce schéma dans votre projet Sanity Studio
-// Type: document (singleton)
+// Schema Sanity : Réglages du site (singleton)
+// À copier dans votre projet Sanity Studio
 
-const siteSettings = {
+export const siteSettingsSchema = {
   name: "siteSettings",
   title: "Réglages du site",
   type: "document",
@@ -18,7 +17,7 @@ const siteSettings = {
       title: "Votre bio",
       type: "text",
       rows: 4,
-      description: "Texte de présentation qui apparaît dans la section 'Qui suis-je'",
+      description: "Texte de présentation dans la section 'Qui suis-je'",
     },
     {
       name: "ownerPhoto",
@@ -57,4 +56,4 @@ const siteSettings = {
   ],
 };
 
-export default siteSettings;
+export default siteSettingsSchema;

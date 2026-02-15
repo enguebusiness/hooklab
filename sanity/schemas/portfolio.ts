@@ -1,8 +1,11 @@
-// Sanity schema: Portfolio
-// Créez ce schéma dans votre projet Sanity Studio
-// Type: document
+// Schema Sanity : Portfolio
+// À copier dans votre projet Sanity Studio (sanity.config.ts > schema.types)
+//
+// Si vous utilisez le CLI Sanity :
+//   npx sanity@latest init --create-project "HookLab" --dataset production
+//   Puis copiez ce fichier dans schemas/portfolio.ts de votre projet Studio
 
-const portfolio = {
+export const portfolioSchema = {
   name: "portfolio",
   title: "Portfolio",
   type: "document",
@@ -38,6 +41,9 @@ const portfolio = {
       type: "number",
     },
   ],
+  preview: {
+    select: { title: "title", subtitle: "result", media: "image" },
+  },
 };
 
-export default portfolio;
+export default portfolioSchema;
