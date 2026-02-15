@@ -3,11 +3,11 @@ import Link from "next/link";
 
 const demos = [
   {
-    title: "Le Pack \u00ab\u00a0Gros \u0152uvre\u00a0\u00bb",
-    subtitle: "Ma\u00e7on / Couvreur",
+    title: "L\u2019Expertise Solide",
+    subtitle: "Pour ceux dont le travail doit durer 100 ans.",
     pourQui: "Ma\u00e7ons, Couvreurs, Charpentiers.",
-    pointFort: "La galerie \u00ab\u00a0Avant / Apr\u00e8s\u00a0\u00bb qui prouve votre technique et justifie vos devis.",
-    fonctionnalite: "Bouton \u00ab\u00a0Urgence Fuite\u00a0\u00bb qui d\u00e9clenche l\u2019appel imm\u00e9diat.",
+    pointFort: "Slider \u00ab\u00a0Avant / Apr\u00e8s\u00a0\u00bb interactif + badges garanties (D\u00e9cennale, Qualibat, RGE) immanquables.",
+    fonctionnalite: "Formulaire intelligent : si Urgence Fuite \u2192 bouton rouge \u00ab\u00a0APPELER LE PATRON\u00a0\u00bb.",
     cta: "Voir la D\u00e9mo Ma\u00e7onnerie",
     href: "/macon",
     icon: (
@@ -17,11 +17,11 @@ const demos = [
     ),
   },
   {
-    title: "Le Pack \u00ab\u00a0Esth\u00e9tique\u00a0\u00bb",
-    subtitle: "Paysagiste / Peintre",
+    title: "L\u2019Artisan Cr\u00e9ateur",
+    subtitle: "Pour ceux qui vendent du beau et du confort.",
     pourQui: "Paysagistes, Peintres, D\u00e9corateurs.",
-    pointFort: "Un design \u00e9pur\u00e9 qui laisse toute la place \u00e0 la beaut\u00e9 de vos r\u00e9alisations.",
-    fonctionnalite: "Filtrage \u00ab\u00a0Cr\u00e9ation vs Entretien\u00a0\u00bb pour ne recevoir que les projets \u00e0 forte valeur.",
+    pointFort: "Galerie filtrable par type + saisonnalit\u00e9 intelligente (le site change selon la saison).",
+    fonctionnalite: "Bouton WhatsApp flottant \u00ab\u00a0Je veux le m\u00eame jardin\u00a0\u00bb + immersion locale par ville.",
     cta: "Voir la D\u00e9mo Paysagiste",
     href: "/paysagiste",
     icon: (
@@ -31,11 +31,11 @@ const demos = [
     ),
   },
   {
-    title: "Le Pack \u00ab\u00a0Urgence & Service\u00a0\u00bb",
-    subtitle: "Plombier / \u00c9lec",
+    title: "L\u2019Intervention \u00c9clair",
+    subtitle: "Pour ceux qui sauvent la mise (et veulent \u00eatre pay\u00e9s vite).",
     pourQui: "Plombiers, \u00c9lectriciens, Serruriers.",
-    pointFort: "Vitesse de chargement \u00e9clair et rassurance imm\u00e9diate (Avis + Tarifs clairs).",
-    fonctionnalite: "Formulaire de diagnostic rapide pour qualifier la panne avant de vous d\u00e9placer.",
+    pointFort: "Avis Google en haut + tarifs transparents + bouton d\u2019appel sticky sur mobile.",
+    fonctionnalite: "Diagnostic en 3 clics : qualifie la panne + d\u00e9tecte si hors zone.",
     cta: "Voir la D\u00e9mo Plombier",
     href: "/plombier",
     icon: (
