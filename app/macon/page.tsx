@@ -4,9 +4,9 @@ import Button from "@/components/ui/Button";
 import MaconClient from "./MaconClient";
 
 export const metadata: Metadata = {
-  title: "D\u00e9mo Site Ma\u00e7on / Couvreur - L'Expertise Solide | HookLab",
+  title: "Démo Site Maçon / Couvreur - L'Expertise Solide | HookLab",
   description:
-    "Mod\u00e8le de site HookLab pour ma\u00e7ons, couvreurs et charpentiers. Slider Avant/Apr\u00e8s interactif, badges garanties, formulaire intelligent, bouton urgence.",
+    "Modèle de site HookLab pour maçons, couvreurs et charpentiers. Slider Avant/Après interactif, badges garanties, formulaire intelligent, bouton urgence.",
 };
 
 export default function MaconDemo() {
@@ -21,14 +21,14 @@ export default function MaconDemo() {
             </Link>
             <span className="text-white/30">|</span>
             <span className="text-white font-bold text-sm">
-              [Votre Entreprise] &mdash; <span className="text-orange">Ma\u00e7onnerie & Couverture</span>
+              [Votre Entreprise] &mdash; <span className="text-orange-500">Maçonnerie & Couverture</span>
             </span>
           </div>
           <div className="flex items-center gap-3">
             {/* Badge dispo */}
             <div className="hidden sm:flex items-center gap-2 bg-green-500/20 border border-green-500/30 rounded-full px-3 py-1">
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span className="text-green-400 text-xs font-semibold">Dispo imm\u00e9diate</span>
+              <span className="text-green-400 text-xs font-semibold">Dispo immédiate</span>
             </div>
             <a
               href="tel:+33604408157"
@@ -47,7 +47,7 @@ export default function MaconDemo() {
       {/* Certifications en haut - immanquables */}
       <div className="bg-[#1b2a4a] border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-4 sm:gap-8">
-          {["D\u00e9cennale", "Qualibat", "RGE"].map((cert) => (
+          {["Décennale", "Qualibat", "RGE"].map((cert) => (
             <MaconClient key={cert} certName={cert} />
           ))}
         </div>
@@ -56,24 +56,24 @@ export default function MaconDemo() {
       {/* Hero */}
       <section className="py-20 md:py-28 bg-[#1b2a4a] text-center">
         <div className="max-w-4xl mx-auto px-4">
-          <span className="inline-block px-3 py-1.5 bg-orange/20 border border-orange/30 rounded-full text-orange text-xs font-semibold mb-6">
-            Ma\u00e7onnerie &middot; Couverture &middot; Charpente
+          <span className="inline-block px-3 py-1.5 bg-orange-500/20 border border-orange-500/30 rounded-full text-orange-500 text-xs font-semibold mb-6">
+            Maçonnerie &middot; Couverture &middot; Charpente
           </span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4">
             Vos chantiers parlent pour vous.{" "}
-            <span className="text-orange">Votre site aussi.</span>
+            <span className="text-orange-500">Votre site aussi.</span>
           </h1>
           <p className="text-white/60 text-lg max-w-2xl mx-auto mb-4">
-            Plus de 15 ans d&rsquo;exp&eacute;rience en ma&ccedil;onnerie, couverture et charpente.
-            Chaque chantier est r&eacute;alis&eacute; dans les r&egrave;gles de l&rsquo;art, avec des garanties solides
-            pour votre tranquillit&eacute;.
+            Plus de 15 ans d’expérience en maçonnerie, couverture et charpente.
+            Chaque chantier est réalisé dans les règles de l’art, avec des garanties solides
+            pour votre tranquillité.
           </p>
           <p className="text-white/40 text-sm mb-8">
             Intervention rapide sur Douai, Orchies, Valenciennes et environs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#devis">
-              <Button size="lg" className="w-full sm:w-auto pulse-glow">
+              <Button size="lg" className="w-full sm:w-auto pulse-glow bg-orange-500 hover:bg-orange-600 text-white border-orange-500">
                 Demander un Devis Toiture
               </Button>
             </a>
@@ -90,32 +90,32 @@ export default function MaconDemo() {
         </div>
       </section>
 
-      {/* Slider Magic Reveal - Avant/Apr\u00e8s */}
+      {/* Slider Magic Reveal - Avant/Après */}
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-[#1b2a4a] mb-3">
-              La preuve par l&rsquo;image &mdash; <span className="text-orange">Avant / Apr\u00e8s</span>
+              La preuve par l’image &mdash; <span className="text-orange-500">Avant / Après</span>
             </h2>
-            <p className="text-gray-500">Glissez la barre pour voir la transformation. Impact visuel imm\u00e9diat.</p>
+            <p className="text-gray-500">Glissez la barre pour voir la transformation. Impact visuel immédiat.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                avant: "Toiture v\u00e9tuste \u2014 Tuiles cass\u00e9es",
-                apres: "R\u00e9fection compl\u00e8te en tuiles m\u00e9caniques",
+                avant: "Toiture vétuste — Tuiles cassées",
+                apres: "Réfection complète en tuiles mécaniques",
                 avantImg: "https://images.unsplash.com/photo-1632823469850-2f77dd9c7f93?auto=format&fit=crop&w=800&q=80",
                 apresImg: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
               },
               {
-                avant: "Fa\u00e7ade fissur\u00e9e \u2014 Enduit d\u00e9grad\u00e9",
+                avant: "Façade fissurée — Enduit dégradé",
                 apres: "Ravalement complet + isolation",
                 avantImg: "https://images.unsplash.com/photo-1590274853856-f22d5ee3d228?auto=format&fit=crop&w=800&q=80",
                 apresImg: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
               },
               {
-                avant: "Mur porteur ab\u00eem\u00e9 \u2014 Fissures",
+                avant: "Mur porteur abîmé — Fissures",
                 apres: "Reconstruction + renforcement",
                 avantImg: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
                 apresImg: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c0?auto=format&fit=crop&w=800&q=80",
@@ -132,27 +132,27 @@ export default function MaconDemo() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-[#1b2a4a] mb-3">
-              Vos <span className="text-orange">garanties</span>
+              Vos <span className="text-orange-500">garanties</span>
             </h2>
-            <p className="text-gray-500">Des certifications qui prot\u00e8gent votre investissement.</p>
+            <p className="text-gray-500">Des certifications qui protègent votre investissement.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                name: "Garantie D\u00e9cennale",
-                desc: "Votre ouvrage est couvert pendant 10 ans. En cas de d\u00e9faut structurel, les r\u00e9parations sont prises en charge int\u00e9gralement.",
-                icon: "\ud83d\udee1\ufe0f",
+                name: "Garantie Décennale",
+                desc: "Votre ouvrage est couvert pendant 10 ans. En cas de défaut structurel, les réparations sont prises en charge intégralement.",
+                icon: "🛡️",
               },
               {
                 name: "Qualibat RGE",
-                desc: "Cette certification vous garantit des aides de l\u2019\u00c9tat (MaPrimeR\u00e9nov\u2019, CEE). Jusqu\u2019\u00e0 90% de vos travaux financ\u00e9s.",
-                icon: "\u2705",
+                desc: "Cette certification vous garantit des aides de l’État (MaPrimeRénov’, CEE). Jusqu’à 90% de vos travaux financés.",
+                icon: "✅",
               },
               {
-                name: "Assurance Responsabilit\u00e9",
-                desc: "Chaque chantier est assur\u00e9. Vous ne prenez aucun risque financier, m\u00eame en cas d\u2019impr\u00e9vu.",
-                icon: "\ud83d\udcbc",
+                name: "Assurance Responsabilité",
+                desc: "Chaque chantier est assuré. Vous ne prenez aucun risque financier, même en cas d’imprévu.",
+                icon: "💼",
               },
             ].map((g, i) => (
               <div key={i} className="bg-white border border-gray-200 rounded-2xl p-6 text-center hover:shadow-md transition-shadow">
@@ -169,25 +169,25 @@ export default function MaconDemo() {
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-[#1b2a4a] mb-10">
-            Ce que disent <span className="text-orange">nos clients</span>
+            Ce que disent <span className="text-orange-500">nos clients</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { name: "Marc D.", ville: "Douai", text: "Toiture refaite en 3 jours. Propre, ponctuel, prix respect\u00e9. Je recommande \u00e0 100%.", note: 5 },
-              { name: "Sophie L.", ville: "Orchies", text: "Fuite d\u2019urgence un dimanche. Ils sont venus en 2h. Travail impeccable et prix honn\u00eate.", note: 5 },
-              { name: "Patrick M.", ville: "Valenciennes", text: "Ravalement fa\u00e7ade complet. R\u00e9sultat magnifique, les voisins nous demandent le contact !", note: 5 },
-              { name: "Isabelle R.", ville: "Arleux", text: "Charpente trait\u00e9e et renforc\u00e9e. \u00c9quipe s\u00e9rieuse, devis respect\u00e9 au centime pr\u00e8s.", note: 5 },
+              { name: "Marc D.", ville: "Douai", text: "Toiture refaite en 3 jours. Propre, ponctuel, prix respecté. Je recommande à 100%.", note: 5 },
+              { name: "Sophie L.", ville: "Orchies", text: "Fuite d’urgence un dimanche. Ils sont venus en 2h. Travail impeccable et prix honnête.", note: 5 },
+              { name: "Patrick M.", ville: "Valenciennes", text: "Ravalement façade complet. Résultat magnifique, les voisins nous demandent le contact !", note: 5 },
+              { name: "Isabelle R.", ville: "Arleux", text: "Charpente traitée et renforcée. Équipe sérieuse, devis respecté au centime près.", note: 5 },
             ].map((avis, i) => (
               <div key={i} className="bg-[#f8f6f3] border border-gray-200 rounded-xl p-6 text-left">
                 <div className="flex gap-1 mb-3">
                   {[...Array(avis.note)].map((_, j) => (
-                    <svg key={j} className="w-4 h-4 text-orange" fill="currentColor" viewBox="0 0 24 24">
+                    <svg key={j} className="w-4 h-4 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                     </svg>
                   ))}
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed mb-3">&ldquo;{avis.text}&rdquo;</p>
-                <p className="text-[#1b2a4a] font-semibold text-sm">{avis.name} &mdash; <span className="text-gray-400 font-normal">{avis.ville}</span></p>
+                <p className="text-gray-600 text-sm leading-relaxed mb-3">“{avis.text}”</p>
+                <p className="text-[#1b2a4a] font-semibold text-sm">{avis.name} — <span className="text-gray-400 font-normal">{avis.ville}</span></p>
               </div>
             ))}
           </div>
@@ -199,7 +199,7 @@ export default function MaconDemo() {
         <div className="max-w-2xl mx-auto px-4">
           <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-              Demander un <span className="text-orange">devis gratuit</span>
+              Demander un <span className="text-orange-500">devis gratuit</span>
             </h2>
             <p className="text-white/60">Formulaire intelligent : on filtre pour ne recevoir que les vrais projets.</p>
           </div>
@@ -208,14 +208,14 @@ export default function MaconDemo() {
       </section>
 
       {/* CTA HookLab */}
-      <section className="py-16 bg-orange text-center">
+      <section className="py-16 bg-orange-500 text-center">
         <div className="max-w-2xl mx-auto px-4">
-          <p className="text-white/80 text-xs font-semibold uppercase tracking-wider mb-3">Ceci est une d\u00e9mo HookLab</p>
+          <p className="text-white/80 text-xs font-semibold uppercase tracking-wider mb-3">Ceci est une démo HookLab</p>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Vous voulez le m\u00eame site pour votre entreprise ?
+            Vous voulez le même site pour votre entreprise ?
           </h2>
           <p className="text-white/80 mb-6">
-            Imaginez votre logo, vos photos de chantier et votre num\u00e9ro \u00e0 la place. C&rsquo;est exactement ce que je construis pour vous.
+            Imaginez votre logo, vos photos de chantier et votre numéro à la place. C’est exactement ce que je construis pour vous.
           </p>
           <Link href="/#contact">
             <Button size="lg" className="bg-[#1b2a4a] hover:bg-[#1b2a4a]/90 border-[#1b2a4a]">
