@@ -72,12 +72,12 @@ export default function PlombierDemo() {
             <span className="text-red-400 text-xs font-semibold">Disponible 7j/7 &mdash; Intervention rapide</span>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4">
-            Convaincre en{" "}
-            <span className="text-[#facc15]">3 secondes chrono.</span>
+            Votre plombier{" "}
+            <span className="text-[#facc15]">r&eacute;actif et transparent.</span>
           </h1>
           <p className="text-white/50 text-lg max-w-2xl mx-auto mb-4">
-            Quand un client a une fuite d&rsquo;eau ou une panne de courant, il ne veut pas lire
-            votre histoire. Il veut un num\u00e9ro, un prix, et une arriv\u00e9e rapide.
+            Fuite d&rsquo;eau, panne de chauffe-eau, canalisation bouch&eacute;e ?
+            Intervention rapide avec devis gratuit. Disponible 7j/7 dans le Douaisis.
           </p>
           <p className="text-white/30 text-sm mb-8">
             D\u00e9pannage Douai &middot; Orchies &middot; Valenciennes &middot; Denain &middot; Saint-Amand &middot; Arleux

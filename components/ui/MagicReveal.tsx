@@ -5,16 +5,16 @@ import { useState, useRef, useCallback } from "react";
 interface MagicRevealProps {
   avantLabel: string;
   apresLabel: string;
-  avantColor?: string;
-  apresColor?: string;
+  avantImage: string;
+  apresImage: string;
   height?: string;
 }
 
 export default function MagicReveal({
   avantLabel,
   apresLabel,
-  avantColor = "bg-red-50",
-  apresColor = "bg-green-50",
+  avantImage,
+  apresImage,
   height = "h-64",
 }: MagicRevealProps) {
   const [position, setPosition] = useState(50);
@@ -45,47 +45,57 @@ export default function MagicReveal({
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className={`relative ${height} rounded-xl overflow-hidden cursor-col-resize select-none border border-border`}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-    >
-      {/* Apr\u00e8s (fond complet) */}
-      <div className={`absolute inset-0 ${apresColor} flex items-center justify-center`}>
-        <div className="text-center">
-          <p className="text-green-600 font-bold text-sm uppercase tracking-wider mb-1">Apr\u00e8s</p>
-          <p className="text-green-800 text-sm font-medium px-4">{apresLabel}</p>
-        </div>
-      </div>
-
-      {/* Avant (clip\u00e9 \u00e0 gauche) */}
+    <div className="rounded-xl overflow-hidden border border-border">
       <div
-        className={`absolute inset-0 ${avantColor} flex items-center justify-center`}
-        style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
+        ref={containerRef}
+        className={`relative ${height} cursor-col-resize select-none`}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
       >
-        <div className="text-center">
-          <p className="text-red-600 font-bold text-sm uppercase tracking-wider mb-1">Avant</p>
-          <p className="text-red-800 text-sm font-medium px-4">{avantLabel}</p>
+        {/* Après (fond complet) */}
+        <img
+          src={apresImage}
+          alt={apresLabel}
+          className="absolute inset-0 w-full h-full object-cover"
+          draggable={false}
+        />
+
+        {/* Avant (clipé à gauche) */}
+        <div
+          className="absolute inset-0"
+          style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
+        >
+          <img
+            src={avantImage}
+            alt={avantLabel}
+            className="absolute inset-0 w-full h-full object-cover"
+            draggable={false}
+          />
         </div>
+
+        {/* Barre de séparation */}
+        <div
+          className="absolute top-0 bottom-0 w-1 bg-white shadow-lg z-10"
+          style={{ left: `${position}%`, transform: "translateX(-50%)" }}
+        >
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-orange">
+            <svg className="w-5 h-5 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Labels gauche/droite */}
+        <div className="absolute top-2 left-3 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-20">AVANT</div>
+        <div className="absolute top-2 right-3 bg-green-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-20">APR&Egrave;S</div>
       </div>
 
-      {/* Barre de s\u00e9paration */}
-      <div
-        className="absolute top-0 bottom-0 w-1 bg-white shadow-lg z-10"
-        style={{ left: `${position}%`, transform: "translateX(-50%)" }}
-      >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-orange">
-          <svg className="w-5 h-5 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
-          </svg>
-        </div>
+      {/* Légendes sous l'image */}
+      <div className="flex justify-between bg-white px-4 py-2 text-xs">
+        <span className="text-red-600 font-semibold">{avantLabel}</span>
+        <span className="text-green-600 font-semibold">{apresLabel}</span>
       </div>
-
-      {/* Labels gauche/droite */}
-      <div className="absolute top-2 left-3 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-20">AVANT</div>
-      <div className="absolute top-2 right-3 bg-green-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-20">APR\u00c8S</div>
     </div>
   );
 }

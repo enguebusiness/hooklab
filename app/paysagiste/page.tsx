@@ -10,14 +10,14 @@ export const metadata: Metadata = {
 };
 
 const realisations = [
-  { titre: "Jardin contemporain avec terrasse composite", type: "Terrasses", lieu: "Orchies", saison: "printemps" },
-  { titre: "Am\u00e9nagement complet piscine + cl\u00f4ture", type: "Terrasses", lieu: "Douai", saison: "printemps" },
-  { titre: "Cr\u00e9ation massif fleuri 4 saisons", type: "Plantations", lieu: "Valenciennes", saison: "printemps" },
-  { titre: "Haie brise-vue naturelle en bambou", type: "Plantations", lieu: "Arleux", saison: "automne" },
-  { titre: "All\u00e9e carrossable en pav\u00e9s anciens", type: "All\u00e9es", lieu: "Saint-Amand", saison: "automne" },
-  { titre: "Jardin japonais zen avec bassin", type: "Plantations", lieu: "Flines-lez-Raches", saison: "printemps" },
-  { titre: "Taille architecturale haies buis", type: "Entretien", lieu: "Denain", saison: "automne" },
-  { titre: "Entretien annuel parc 3000m\u00b2", type: "Entretien", lieu: "Douai", saison: "automne" },
+  { titre: "Jardin contemporain avec terrasse composite", type: "Terrasses", lieu: "Orchies", saison: "printemps", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80" },
+  { titre: "Am\u00e9nagement complet piscine + cl\u00f4ture", type: "Terrasses", lieu: "Douai", saison: "printemps", image: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?auto=format&fit=crop&w=600&q=80" },
+  { titre: "Cr\u00e9ation massif fleuri 4 saisons", type: "Plantations", lieu: "Valenciennes", saison: "printemps", image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=600&q=80" },
+  { titre: "Haie brise-vue naturelle en bambou", type: "Plantations", lieu: "Arleux", saison: "automne", image: "https://images.unsplash.com/photo-1558171813-4c088753af8f?auto=format&fit=crop&w=600&q=80" },
+  { titre: "All\u00e9e carrossable en pav\u00e9s anciens", type: "All\u00e9es", lieu: "Saint-Amand", saison: "automne", image: "https://images.unsplash.com/photo-1598902108854-d1446c81e20e?auto=format&fit=crop&w=600&q=80" },
+  { titre: "Jardin japonais zen avec bassin", type: "Plantations", lieu: "Flines-lez-Raches", saison: "printemps", image: "https://images.unsplash.com/photo-1582547403609-4244e80be657?auto=format&fit=crop&w=600&q=80" },
+  { titre: "Taille architecturale haies buis", type: "Entretien", lieu: "Denain", saison: "automne", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=600&q=80" },
+  { titre: "Entretien annuel parc 3000m\u00b2", type: "Entretien", lieu: "Douai", saison: "automne", image: "https://images.unsplash.com/photo-1557429287-b2e26467fc2b?auto=format&fit=crop&w=600&q=80" },
 ];
 
 export default function PaysagisteDemo() {
@@ -63,12 +63,12 @@ export default function PaysagisteDemo() {
             Paysagisme &middot; Espaces Verts &middot; D\u00e9coration
           </span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
-            Ne vendez pas des travaux,{" "}
-            <span className="text-green-600">vendez du r\u00eave.</span>
+            Transformez votre ext&eacute;rieur en un{" "}
+            <span className="text-green-600">espace de vie unique.</span>
           </h1>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto mb-4">
-            Pour un jardin ou un int\u00e9rieur, votre client n&rsquo;ach\u00e8te pas de la technique,
-            il ach\u00e8te une &laquo;&nbsp;ambiance&nbsp;&raquo;. Ce site est votre galerie d&rsquo;art.
+            Cr&eacute;ation de jardins, terrasses et am&eacute;nagements paysagers sur-mesure.
+            Chaque projet est con&ccedil;u pour sublimer votre environnement et valoriser votre bien.
           </p>
           <p className="text-gray-400 text-sm mb-8">
             Cr\u00e9ations &agrave; Douai, Orchies, Valenciennes, Saint-Amand et environs.

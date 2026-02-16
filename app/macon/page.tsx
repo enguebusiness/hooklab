@@ -64,8 +64,9 @@ export default function MaconDemo() {
             <span className="text-orange">Votre site aussi.</span>
           </h1>
           <p className="text-white/60 text-lg max-w-2xl mx-auto mb-4">
-            Dans le gros \u0153uvre, le client a peur. Peur que \u00e7a s&rsquo;\u00e9croule, peur des fuites,
-            peur que vous partiez avec l&rsquo;acompte. Ce site est une machine \u00e0 tuer les objections.
+            Plus de 15 ans d&rsquo;exp&eacute;rience en ma&ccedil;onnerie, couverture et charpente.
+            Chaque chantier est r&eacute;alis&eacute; dans les r&egrave;gles de l&rsquo;art, avec des garanties solides
+            pour votre tranquillit&eacute;.
           </p>
           <p className="text-white/40 text-sm mb-8">
             Intervention rapide sur Douai, Orchies, Valenciennes et environs.
@@ -101,11 +102,26 @@ export default function MaconDemo() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { avant: "Toiture v\u00e9tuste \u2014 Tuiles cass\u00e9es, infiltrations", apres: "R\u00e9fection compl\u00e8te en tuiles m\u00e9caniques" },
-              { avant: "Fa\u00e7ade fissur\u00e9e \u2014 Enduit d\u00e9grad\u00e9", apres: "Ravalement complet + isolation thermique" },
-              { avant: "Chemin\u00e9e en ruine \u2014 Danger effondrement", apres: "Reconstruction + \u00e9tanch\u00e9it\u00e9 garantie" },
+              {
+                avant: "Toiture v\u00e9tuste \u2014 Tuiles cass\u00e9es",
+                apres: "R\u00e9fection compl\u00e8te en tuiles m\u00e9caniques",
+                avantImg: "https://images.unsplash.com/photo-1632823469850-2f77dd9c7f93?auto=format&fit=crop&w=800&q=80",
+                apresImg: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+              },
+              {
+                avant: "Fa\u00e7ade fissur\u00e9e \u2014 Enduit d\u00e9grad\u00e9",
+                apres: "Ravalement complet + isolation",
+                avantImg: "https://images.unsplash.com/photo-1590274853856-f22d5ee3d228?auto=format&fit=crop&w=800&q=80",
+                apresImg: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+              },
+              {
+                avant: "Mur porteur ab\u00eem\u00e9 \u2014 Fissures",
+                apres: "Reconstruction + renforcement",
+                avantImg: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
+                apresImg: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c0?auto=format&fit=crop&w=800&q=80",
+              },
             ].map((item, i) => (
-              <MaconClient key={i} type="slider" avantLabel={item.avant} apresLabel={item.apres} />
+              <MaconClient key={i} type="slider" avantLabel={item.avant} apresLabel={item.apres} avantImage={item.avantImg} apresImage={item.apresImg} />
             ))}
           </div>
         </div>

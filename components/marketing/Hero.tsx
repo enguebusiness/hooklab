@@ -21,10 +21,10 @@ export default function Hero() {
 
           {/* Subtitle */}
           <p className="text-white/70 text-base sm:text-lg md:text-xl leading-relaxed mb-8 max-w-2xl">
-            Couvreurs, Ma&ccedil;ons, Paysagistes : Arr&ecirc;tez de perdre des chantiers
-            &agrave; cause d&rsquo;une image &laquo;&nbsp;bricol&eacute;e&nbsp;&raquo;. Depuis Flines-lez-Raches, je vous
-            construis une forteresse num&eacute;rique inviolable qui filtre les curieux
-            et attire les vrais projets &agrave; Douai, Orchies et Valenciennes.
+            Un site professionnel &agrave; la hauteur de votre savoir-faire.
+            Depuis Flines-lez-Raches, je con&ccedil;ois des vitrines num&eacute;riques
+            performantes qui inspirent confiance et g&eacute;n&egrave;rent des demandes
+            qualifi&eacute;es &agrave; Douai, Orchies et Valenciennes.
           </p>
 
           {/* CTA */}

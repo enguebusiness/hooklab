@@ -7,6 +7,7 @@ interface Realisation {
   type: string;
   lieu: string;
   saison: string;
+  image: string;
 }
 
 interface PaysagisteClientProps {
@@ -74,15 +75,14 @@ function GalerieFiltrable({ realisations }: { realisations: Realisation[] }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         {filtered.map((r, i) => (
           <div key={i} className="bg-[#f0f5ed] border border-gray-100 rounded-2xl overflow-hidden group hover:shadow-lg transition-shadow">
-            <div className="h-48 bg-gradient-to-br from-green-100 to-green-50 flex items-center justify-center relative overflow-hidden">
-              <div className="text-center">
-                <svg className="w-12 h-12 text-green-300 mx-auto mb-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                </svg>
-                <p className="text-gray-400 text-xs">Photo HD du projet</p>
-              </div>
+            <div className="h-48 relative overflow-hidden">
+              <img
+                src={r.image}
+                alt={r.titre}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
               {/* Tag type */}
-              <span className={`absolute top-3 left-3 text-[10px] font-bold px-2 py-0.5 rounded-full ${
+              <span className={`absolute top-3 left-3 text-[10px] font-bold px-2 py-0.5 rounded-full z-10 ${
                 r.type === "Entretien" ? "bg-amber-100 text-amber-700" : "bg-green-100 text-green-700"
               }`}>
                 {r.type}

@@ -9,9 +9,11 @@ interface MaconClientProps {
   certName?: string;
   avantLabel?: string;
   apresLabel?: string;
+  avantImage?: string;
+  apresImage?: string;
 }
 
-export default function MaconClient({ type, certName, avantLabel, apresLabel }: MaconClientProps) {
+export default function MaconClient({ type, certName, avantLabel, apresLabel, avantImage, apresImage }: MaconClientProps) {
   // Cert badge with popup
   if (!type || type === "cert") {
     return <CertBadge name={certName || ""} />;
@@ -22,8 +24,8 @@ export default function MaconClient({ type, certName, avantLabel, apresLabel }: 
       <MagicReveal
         avantLabel={avantLabel || ""}
         apresLabel={apresLabel || ""}
-        avantColor="bg-red-50"
-        apresColor="bg-green-50"
+        avantImage={avantImage || ""}
+        apresImage={apresImage || ""}
         height="h-64"
       />
     );
@@ -97,7 +99,7 @@ function DevisForm() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
           </svg>
         </div>
-        <h3 className="text-[#1b2a4a] font-bold text-xl mb-2">Urgence d\u00e9tect\u00e9e !</h3>
+        <h3 className="text-[#1b2a4a] font-bold text-xl mb-2">Urgence d&eacute;tect&eacute;e !</h3>
         <p className="text-gray-500 text-sm mb-6">Pour une intervention rapide, appelez directement le patron :</p>
         <a
           href="tel:+33604408157"
@@ -121,17 +123,17 @@ function DevisForm() {
       <div className="bg-white rounded-2xl p-6 sm:p-8">
         <div className="flex items-center gap-2 mb-6">
           <span className="bg-orange text-white text-xs font-bold px-2.5 py-1 rounded-full">2/2</span>
-          <h3 className="text-[#1b2a4a] font-bold text-lg">D\u00e9tails du projet</h3>
+          <h3 className="text-[#1b2a4a] font-bold text-lg">D&eacute;tails du projet</h3>
         </div>
         <p className="text-gray-400 text-sm mb-5">Type : <strong className="text-[#1b2a4a]">{projectType}</strong></p>
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1.5">Surface approximative</label>
             <select className="w-full px-4 py-3 bg-[#f8f6f3] border border-gray-200 rounded-xl text-gray-800 text-sm focus:border-orange focus:ring-1 focus:ring-orange outline-none">
-              <option>Moins de 50m\u00b2</option>
-              <option>50 \u00e0 100m\u00b2</option>
-              <option>100 \u00e0 200m\u00b2</option>
-              <option>Plus de 200m\u00b2</option>
+              <option>Moins de 50m&sup2;</option>
+              <option>50 &agrave; 100m&sup2;</option>
+              <option>100 &agrave; 200m&sup2;</option>
+              <option>Plus de 200m&sup2;</option>
             </select>
           </div>
           <div>
@@ -139,7 +141,7 @@ function DevisForm() {
             <input type="text" placeholder="Marc Dupont" className="w-full px-4 py-3 bg-[#f8f6f3] border border-gray-200 rounded-xl text-gray-800 text-sm placeholder:text-gray-400 focus:border-orange focus:ring-1 focus:ring-orange outline-none" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">T\u00e9l\u00e9phone</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">T&eacute;l&eacute;phone</label>
             <input type="tel" placeholder="06 12 34 56 78" className="w-full px-4 py-3 bg-[#f8f6f3] border border-gray-200 rounded-xl text-gray-800 text-sm placeholder:text-gray-400 focus:border-orange focus:ring-1 focus:ring-orange outline-none" />
           </div>
           <div>
