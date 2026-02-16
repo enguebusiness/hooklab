@@ -4,9 +4,12 @@ import Button from "@/components/ui/Button";
 import MaconClient from "./MaconClient";
 
 export const metadata: Metadata = {
-  title: "Démo Site Maçon / Couvreur - L'Expertise Solide | HookLab",
+  title: "Démo Site Maçon / Couvreur - L'Expertise Solide",
   description:
     "Modèle de site HookLab pour maçons, couvreurs et charpentiers. Slider Avant/Après interactif, badges garanties, formulaire intelligent, bouton urgence.",
+  alternates: {
+    canonical: "https://hooklab.eu/macon",
+  },
 };
 
 export default function MaconDemo() {

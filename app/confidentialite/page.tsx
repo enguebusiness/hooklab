@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Politique de Confidentialité",
+  description:
+    "Politique de confidentialité et protection des données personnelles du site HookLab.eu, conformément au RGPD.",
+  alternates: {
+    canonical: "https://hooklab.eu/confidentialite",
+  },
+};
 
 export default function Confidentialite() {
   return (

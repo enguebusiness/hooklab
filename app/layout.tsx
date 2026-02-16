@@ -25,6 +25,10 @@ export const metadata: Metadata = {
     "site web Valenciennes",
     "agence web Orchies",
     "site pro artisan Nord",
+    "HookLab",
+    "hooklab.eu",
+    "cr\u00e9ation site internet Nord",
+    "site internet artisan 59",
   ],
   authors: [{ name: "HookLab - Enguerrand Ozano" }],
   creator: "HookLab",
@@ -40,6 +44,15 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.svg", type: "image/svg+xml", sizes: "180x180" },
+    ],
+  },
+  manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
     locale: "fr_FR",
@@ -78,20 +91,25 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Schema.org LocalBusiness
   const jsonLdOrganization = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": `${BASE_URL}/#organization`,
     name: "HookLab",
     url: BASE_URL,
-    logo: `${BASE_URL}/logo.png`,
+    logo: `${BASE_URL}/icon-512.svg`,
+    image: `${BASE_URL}/og-image.png`,
     description:
       "Agence web sp\u00e9cialis\u00e9e dans la cr\u00e9ation de sites et la visibilit\u00e9 Google pour les artisans du b\u00e2timent dans le Nord.",
+    telephone: "+33604408157",
+    email: "contact@hooklab.eu",
     address: {
       "@type": "PostalAddress",
       streetAddress: "35 rue Mo\u00efse Lambert",
       addressLocality: "Flines-lez-Raches",
       postalCode: "59148",
-      addressRegion: "Nord",
+      addressRegion: "Hauts-de-France",
       addressCountry: "FR",
     },
     geo: {
@@ -105,22 +123,104 @@ export default function RootLayout({
       { "@type": "City", name: "Valenciennes" },
       { "@type": "City", name: "Arleux" },
       { "@type": "City", name: "Flines-lez-Raches" },
+      { "@type": "City", name: "Saint-Amand-les-Eaux" },
+      { "@type": "City", name: "Denain" },
     ],
     priceRange: "$$",
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
     contactPoint: {
       "@type": "ContactPoint",
+      telephone: "+33604408157",
       contactType: "customer service",
       availableLanguage: "French",
     },
+    sameAs: [],
+  };
+
+  // Schema.org WebSite - aide Google à afficher le nom du site et les sitelinks
+  const jsonLdWebSite = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${BASE_URL}/#website`,
+    name: "HookLab",
+    alternateName: "HookLab Tech",
+    url: BASE_URL,
+    description:
+      "Cr\u00e9ation de sites internet et r\u00e9f\u00e9rencement Google pour artisans du b\u00e2timent dans le Nord (59).",
+    publisher: {
+      "@id": `${BASE_URL}/#organization`,
+    },
+    inLanguage: "fr-FR",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${BASE_URL}/?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+
+  // Schema.org SiteNavigationElement - signale les pages principales à Google
+  const jsonLdNavigation = {
+    "@context": "https://schema.org",
+    "@type": "SiteNavigationElement",
+    "@id": `${BASE_URL}/#navigation`,
+    name: "Navigation principale",
+    hasPart: [
+      {
+        "@type": "WebPage",
+        name: "Accueil",
+        url: BASE_URL,
+      },
+      {
+        "@type": "WebPage",
+        name: "D\u00e9mo Ma\u00e7on / Couvreur",
+        url: `${BASE_URL}/macon`,
+      },
+      {
+        "@type": "WebPage",
+        name: "D\u00e9mo Paysagiste",
+        url: `${BASE_URL}/paysagiste`,
+      },
+      {
+        "@type": "WebPage",
+        name: "D\u00e9mo Plombier",
+        url: `${BASE_URL}/plombier`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Candidature Formation",
+        url: `${BASE_URL}/candidature`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Mentions L\u00e9gales",
+        url: `${BASE_URL}/mentions-legales`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Politique de Confidentialit\u00e9",
+        url: `${BASE_URL}/confidentialite`,
+      },
+    ],
   };
 
   return (
     <html lang="fr">
       <head>
+        <meta name="theme-color" content="#1B2A4A" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLdOrganization),
+            __html: JSON.stringify([jsonLdOrganization, jsonLdWebSite, jsonLdNavigation]),
           }}
         />
       </head>

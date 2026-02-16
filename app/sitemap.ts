@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://www.hooklab.eu";
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://hooklab.eu";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   return [
-    // Page d'accueil - priorit\u00e9 max
+    // Page d'accueil - priorité max
     {
       url: BASE_URL,
       lastModified: now,
@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
 
-    // D\u00e9mos m\u00e9tiers - pages strat\u00e9giques SEO
+    // Démos métiers - pages stratégiques SEO
     {
       url: `${BASE_URL}/macon`,
       lastModified: now,
@@ -34,43 +34,45 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
 
+    // Candidature - page importante
+    {
+      url: `${BASE_URL}/candidature`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+
     // Pages SEO locales - site internet artisan + ville
-    // Douai
     {
       url: `${BASE_URL}/site-internet-artisan-douai`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    // Orchies
     {
       url: `${BASE_URL}/site-internet-artisan-orchies`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    // Valenciennes
     {
       url: `${BASE_URL}/site-internet-artisan-valenciennes`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    // Saint-Amand-les-Eaux
     {
       url: `${BASE_URL}/site-internet-artisan-saint-amand-les-eaux`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    // Arleux
     {
       url: `${BASE_URL}/site-internet-artisan-arleux`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    // Denain
     {
       url: `${BASE_URL}/site-internet-artisan-denain`,
       lastModified: now,
@@ -78,24 +80,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
 
-    // L\u00e9gal
+    // Légal
+    {
+      url: `${BASE_URL}/cgv`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
     {
       url: `${BASE_URL}/mentions-legales`,
       lastModified: now,
       changeFrequency: "yearly",
-      priority: 0.2,
+      priority: 0.3,
     },
     {
       url: `${BASE_URL}/confidentialite`,
       lastModified: now,
       changeFrequency: "yearly",
-      priority: 0.2,
-    },
-    {
-      url: `${BASE_URL}/plan-du-site`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.2,
+      priority: 0.3,
     },
   ];
 }

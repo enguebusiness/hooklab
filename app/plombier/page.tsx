@@ -4,9 +4,12 @@ import Button from "@/components/ui/Button";
 import PlombierClient from "./PlombierClient";
 
 export const metadata: Metadata = {
-  title: "Démo Site Plombier / Électricien - L'Intervention Éclair | HookLab",
+  title: "Démo Site Plombier / Électricien - L'Intervention Éclair",
   description:
-    "Modèle de site HookLab pour plombiers, électriciens et serruriers. Bouton d’appel sticky, diagnostic en ligne, zone d’intervention, tarifs clairs.",
+    "Modèle de site HookLab pour plombiers, électriciens et serruriers. Bouton d'appel sticky, diagnostic en ligne, zone d'intervention, tarifs clairs.",
+  alternates: {
+    canonical: "https://hooklab.eu/plombier",
+  },
 };
 
 const tarifs = [

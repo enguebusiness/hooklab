@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Conditions Générales de Vente",
+  description:
+    "CGV de HookLab - Conditions générales de vente pour les prestations de création de sites internet et référencement.",
+  alternates: {
+    canonical: "https://hooklab.eu/cgv",
+  },
+};
 
 export default function CGV() {
   return (

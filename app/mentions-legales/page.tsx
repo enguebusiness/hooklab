@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Mentions Légales",
+  description:
+    "Mentions légales du site HookLab.eu - Agence web pour artisans du bâtiment à Flines-lez-Raches (59). SIREN 994 538 932.",
+  alternates: {
+    canonical: "https://hooklab.eu/mentions-legales",
+  },
+};
 
 export default function MentionsLegales() {
   return (

@@ -4,9 +4,12 @@ import Button from "@/components/ui/Button";
 import PaysagisteClient from "./PaysagisteClient";
 
 export const metadata: Metadata = {
-  title: "Démo Site Paysagiste / Peintre - L'Artisan Créateur | HookLab",
+  title: "Démo Site Paysagiste / Peintre - L'Artisan Créateur",
   description:
     "Modèle de site HookLab pour paysagistes, peintres et décorateurs. Galerie filtrable, saisonnalité intelligente, bouton WhatsApp flottant.",
+  alternates: {
+    canonical: "https://hooklab.eu/paysagiste",
+  },
 };
 
 const realisations = [
