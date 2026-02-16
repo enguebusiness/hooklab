@@ -4,20 +4,20 @@ import Button from "@/components/ui/Button";
 import PaysagisteClient from "./PaysagisteClient";
 
 export const metadata: Metadata = {
-  title: "D\u00e9mo Site Paysagiste / Peintre - L'Artisan Cr\u00e9ateur | HookLab",
+  title: "Démo Site Paysagiste / Peintre - L'Artisan Créateur | HookLab",
   description:
-    "Mod\u00e8le de site HookLab pour paysagistes, peintres et d\u00e9corateurs. Galerie filtrable, saisonnalit\u00e9 intelligente, bouton WhatsApp flottant.",
+    "Modèle de site HookLab pour paysagistes, peintres et décorateurs. Galerie filtrable, saisonnalité intelligente, bouton WhatsApp flottant.",
 };
 
 const realisations = [
   { titre: "Jardin contemporain avec terrasse composite", type: "Terrasses", lieu: "Orchies", saison: "printemps", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80" },
-  { titre: "Am\u00e9nagement complet piscine + cl\u00f4ture", type: "Terrasses", lieu: "Douai", saison: "printemps", image: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?auto=format&fit=crop&w=600&q=80" },
-  { titre: "Cr\u00e9ation massif fleuri 4 saisons", type: "Plantations", lieu: "Valenciennes", saison: "printemps", image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=600&q=80" },
+  { titre: "Aménagement complet piscine + clôture", type: "Terrasses", lieu: "Douai", saison: "printemps", image: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?auto=format&fit=crop&w=600&q=80" },
+  { titre: "Création massif fleuri 4 saisons", type: "Plantations", lieu: "Valenciennes", saison: "printemps", image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=600&q=80" },
   { titre: "Haie brise-vue naturelle en bambou", type: "Plantations", lieu: "Arleux", saison: "automne", image: "https://images.unsplash.com/photo-1558171813-4c088753af8f?auto=format&fit=crop&w=600&q=80" },
-  { titre: "All\u00e9e carrossable en pav\u00e9s anciens", type: "All\u00e9es", lieu: "Saint-Amand", saison: "automne", image: "https://images.unsplash.com/photo-1598902108854-d1446c81e20e?auto=format&fit=crop&w=600&q=80" },
+  { titre: "Allée carrossable en pavés anciens", type: "Allées", lieu: "Saint-Amand", saison: "automne", image: "https://images.unsplash.com/photo-1598902108854-d1446c81e20e?auto=format&fit=crop&w=600&q=80" },
   { titre: "Jardin japonais zen avec bassin", type: "Plantations", lieu: "Flines-lez-Raches", saison: "printemps", image: "https://images.unsplash.com/photo-1582547403609-4244e80be657?auto=format&fit=crop&w=600&q=80" },
   { titre: "Taille architecturale haies buis", type: "Entretien", lieu: "Denain", saison: "automne", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=600&q=80" },
-  { titre: "Entretien annuel parc 3000m\u00b2", type: "Entretien", lieu: "Douai", saison: "automne", image: "https://images.unsplash.com/photo-1557429287-b2e26467fc2b?auto=format&fit=crop&w=600&q=80" },
+  { titre: "Entretien annuel parc 3000m²", type: "Entretien", lieu: "Douai", saison: "automne", image: "https://images.unsplash.com/photo-1557429287-b2e26467fc2b?auto=format&fit=crop&w=600&q=80" },
 ];
 
 export default function PaysagisteDemo() {
@@ -26,7 +26,7 @@ export default function PaysagisteDemo() {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* Nav \u00e9pur\u00e9e */}
+      {/* Nav épurée */}
       <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           <div className="flex items-center gap-3">
@@ -47,36 +47,36 @@ export default function PaysagisteDemo() {
         </div>
       </nav>
 
-      {/* Banni\u00e8re saisonni\u00e8re */}
+      {/* Bannière saisonnière */}
       <div className={`text-center py-2 text-xs font-semibold ${isSpringSummer ? "bg-green-50 text-green-700" : "bg-amber-50 text-amber-700"}`}>
         {isSpringSummer
-          ? "C\u2019est la saison ! Cr\u00e9ation de terrasses & plantations \u2014 Demandez votre devis maintenant"
-          : "Pr\u00e9parez le printemps ! Taille, \u00e9lagage & entretien d\u2019automne \u2014 Planifiez vos travaux"
+          ? "C’est la saison ! Création de terrasses & plantations — Demandez votre devis maintenant"
+          : "Préparez le printemps ! Taille, élagage & entretien d’automne — Planifiez vos travaux"
         }
       </div>
 
-      {/* Hero \u00e9pur\u00e9 */}
+      {/* Hero épuré */}
       <section className="py-24 md:py-36 bg-[#f0f5ed] text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_80%,rgba(34,139,34,0.08),transparent_70%)]" />
         <div className="relative max-w-4xl mx-auto px-4">
           <span className="inline-block px-3 py-1.5 bg-green-100 border border-green-200 rounded-full text-green-700 text-xs font-semibold mb-6">
-            Paysagisme &middot; Espaces Verts &middot; D\u00e9coration
+            Paysagisme &middot; Espaces Verts &middot; Décoration
           </span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
-            Transformez votre ext&eacute;rieur en un{" "}
+            Transformez votre extérieur en un{" "}
             <span className="text-green-600">espace de vie unique.</span>
           </h1>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto mb-4">
-            Cr&eacute;ation de jardins, terrasses et am&eacute;nagements paysagers sur-mesure.
-            Chaque projet est con&ccedil;u pour sublimer votre environnement et valoriser votre bien.
+            Création de jardins, terrasses et aménagements paysagers sur-mesure.
+            Chaque projet est conçu pour sublimer votre environnement et valoriser votre bien.
           </p>
           <p className="text-gray-400 text-sm mb-8">
-            Cr\u00e9ations &agrave; Douai, Orchies, Valenciennes, Saint-Amand et environs.
+            Créations à Douai, Orchies, Valenciennes, Saint-Amand et environs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#devis">
               <Button size="lg" className="bg-green-600 hover:bg-green-700 border-green-600">
-                Demander un Devis Cr\u00e9ation
+                Demander un Devis Création
               </Button>
             </a>
             <a href="#devis">
@@ -88,15 +88,15 @@ export default function PaysagisteDemo() {
         </div>
       </section>
 
-      {/* R\u00e9alisations filtrables */}
+      {/* Réalisations filtrables */}
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-              Nos <span className="text-green-600">r\u00e9alisations</span>
+              Nos <span className="text-green-600">réalisations</span>
             </h2>
             <p className="text-gray-500 mb-2">
-              Des cr\u00e9ations dans des lieux que vous connaissez. Projetez-vous.
+              Des créations dans des lieux que vous connaissez. Projetez-vous.
             </p>
           </div>
           <PaysagisteClient realisations={realisations} />
@@ -107,7 +107,7 @@ export default function PaysagisteDemo() {
       <section className="py-16 md:py-24 bg-[#f0f5ed]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-10">
-            Des jardins pr\u00e8s de <span className="text-green-600">chez vous</span>
+            Des jardins près de <span className="text-green-600">chez vous</span>
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {["Douai", "Orchies", "Valenciennes", "Arleux", "Saint-Amand", "Denain"].map((ville) => (
@@ -118,7 +118,7 @@ export default function PaysagisteDemo() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
-                <p className="text-gray-800 font-semibold text-sm">Jardin \u00e0 {ville}</p>
+                <p className="text-gray-800 font-semibold text-sm">Jardin à {ville}</p>
               </div>
             ))}
           </div>
@@ -132,19 +132,19 @@ export default function PaysagisteDemo() {
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
               Demander un <span className="text-green-400">devis gratuit</span>
             </h2>
-            <p className="text-white/60">D\u00e9crivez votre projet, on vous recontacte sous 24h.</p>
+            <p className="text-white/60">Décrivez votre projet, on vous recontacte sous 24h.</p>
           </div>
           <div className="bg-white rounded-2xl p-6 sm:p-8">
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Type de projet</label>
                 <select className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 text-sm focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none">
-                  <option>Cr\u00e9ation de jardin complet</option>
-                  <option>Terrasse / Am\u00e9nagement</option>
+                  <option>Création de jardin complet</option>
+                  <option>Terrasse / Aménagement</option>
                   <option>Plantation / Massifs</option>
-                  <option>Entretien r\u00e9gulier</option>
-                  <option>Taille / \u00c9lagage</option>
-                  <option>Cl\u00f4ture / Brise-vue</option>
+                  <option>Entretien régulier</option>
+                  <option>Taille / Élagage</option>
+                  <option>Clôture / Brise-vue</option>
                 </select>
               </div>
               <div>
@@ -152,12 +152,12 @@ export default function PaysagisteDemo() {
                 <input type="text" placeholder="Votre nom" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 text-sm placeholder:text-gray-400 focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">T\u00e9l\u00e9phone</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Téléphone</label>
                 <input type="tel" placeholder="06 12 34 56 78" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 text-sm placeholder:text-gray-400 focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">D\u00e9crivez votre projet</label>
-                <textarea rows={3} placeholder="Surface, style souhait\u00e9, budget approximatif..." className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 text-sm placeholder:text-gray-400 focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none resize-none" />
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Décrivez votre projet</label>
+                <textarea rows={3} placeholder="Surface, style souhaité, budget approximatif..." className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-800 text-sm placeholder:text-gray-400 focus:border-green-500 focus:ring-1 focus:ring-green-500 outline-none resize-none" />
               </div>
               <Button size="lg" className="w-full bg-green-600 hover:bg-green-700 border-green-600">
                 Envoyer ma demande
@@ -173,12 +173,12 @@ export default function PaysagisteDemo() {
       {/* CTA HookLab */}
       <section className="py-16 bg-green-600 text-center">
         <div className="max-w-2xl mx-auto px-4">
-          <p className="text-white/80 text-xs font-semibold uppercase tracking-wider mb-3">Ceci est une d\u00e9mo HookLab</p>
+          <p className="text-white/80 text-xs font-semibold uppercase tracking-wider mb-3">Ceci est une démo HookLab</p>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Ce design vous pla\u00eet ? Il peut \u00eatre \u00e0 vous.
+            Ce design vous plaît ? Il peut être à vous.
           </h2>
           <p className="text-white/80 mb-6">
-            Imaginez vos plus beaux jardins mis en valeur comme \u00e7a. C&rsquo;est ce que je cr\u00e9e pour les paysagistes du Nord.
+            Imaginez vos plus beaux jardins mis en valeur comme ça. C&rsquo;est ce que je crée pour les paysagistes du Nord.
           </p>
           <Link href="/#contact">
             <Button size="lg" className="bg-gray-900 hover:bg-gray-800 border-gray-900">
