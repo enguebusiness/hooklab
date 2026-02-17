@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     q: "Est-ce que je pourrai changer mes photos moi-même\u00a0?",
-    a: "Oui. Je vous donne accès à une interface simplifiée (Sanity). C\u2019est aussi simple que d\u2019envoyer un SMS. Vous changez une photo, le site se met à jour tout seul.",
+    a: "Oui. Vous avez un panneau d'administration simple et intuitif. Collez un lien d'image, cliquez sur Sauver, et le site se met à jour tout seul. Aussi simple qu'envoyer un SMS.",
   },
   {
     q: "C\u2019est quoi la différence avec un site gratuit\u00a0?",

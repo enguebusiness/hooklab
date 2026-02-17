@@ -49,7 +49,11 @@ const demos = [
   },
 ];
 
-export default function DemosLive() {
+interface DemosLiveProps {
+  images?: Record<string, string>;
+}
+
+export default function DemosLive(_props: DemosLiveProps) {
   return (
     <section id="demos" className="py-16 md:py-24 bg-bg" aria-label="Démos live">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

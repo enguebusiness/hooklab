@@ -183,6 +183,26 @@ export type Database = {
           metadata?: Record<string, unknown> | null;
         };
       };
+      site_images: {
+        Row: {
+          key: string;
+          url: string;
+          label: string | null;
+          updated_at: string;
+        };
+        Insert: {
+          key: string;
+          url: string;
+          label?: string | null;
+          updated_at?: string;
+        };
+        Update: {
+          key?: string;
+          url?: string;
+          label?: string | null;
+          updated_at?: string;
+        };
+      };
     };
   };
 };
