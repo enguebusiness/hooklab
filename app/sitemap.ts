@@ -34,14 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
 
-    // Candidature - page importante
-    {
-      url: `${BASE_URL}/candidature`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-
     // Pages SEO locales - site internet artisan + ville
     {
       url: `${BASE_URL}/site-internet-artisan-douai`,

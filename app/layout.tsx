@@ -195,11 +195,6 @@ export default function RootLayout({
       },
       {
         "@type": "WebPage",
-        name: "Candidature Formation",
-        url: `${BASE_URL}/candidature`,
-      },
-      {
-        "@type": "WebPage",
         name: "Mentions L\u00e9gales",
         url: `${BASE_URL}/mentions-legales`,
       },

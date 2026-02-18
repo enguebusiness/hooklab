@@ -23,6 +23,17 @@
   --color-border-light: #F3F4F6;
 
   --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+
+  --color-primary: #6D5EF6;
+  --color-primary-hover: #5B4FDB;
+
+  --color-dark: #0B0F19;
+  --color-dark-bg: #0B0F19;
+  --color-dark-light: #1A1F2E;
+  --color-dark-lighter: #252A3A;
+  --color-dark-border: #2A2F3F;
 
   --font-sans: "Inter", sans-serif;
 }
@@ -35,6 +46,18 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Gradient utilities (used by login, admin, candidature pages) */
+.gradient-text {
+  background: linear-gradient(135deg, #6D5EF6, #9D8FF9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #6D5EF6, #9D8FF9);
 }
 
 /* Card hover */
