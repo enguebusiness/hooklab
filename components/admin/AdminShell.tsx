@@ -63,7 +63,7 @@ export default function AdminShell({ children, adminName, adminEmail }: AdminShe
   };
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-dark">
       {/* Sidebar */}
       <aside className="w-64 min-h-screen bg-dark-light border-r border-dark-border p-6 flex flex-col">
         {/* Logo */}

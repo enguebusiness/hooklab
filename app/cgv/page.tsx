@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function CGV() {
   return (
-    <main className="min-h-screen py-20 md:py-32">
+    <main className="min-h-screen py-20 md:py-32 bg-dark">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <Link href="/" className="inline-flex items-center gap-2 mb-10 text-white/40 hover:text-white text-sm transition-colors">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

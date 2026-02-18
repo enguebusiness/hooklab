@@ -108,7 +108,7 @@ export default function CandidaturePage() {
   };
 
   return (
-    <main className="min-h-screen py-20 md:py-32">
+    <main className="min-h-screen py-20 md:py-32 bg-dark">
       <div className="max-w-2xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center mb-12">

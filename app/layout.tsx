@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CookieBanner from "@/components/CookieBanner";
 import "./globals.css";
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://hooklab.eu";
@@ -224,6 +225,7 @@ export default function RootLayout({
           Aller au contenu principal
         </a>
         {children}
+        <CookieBanner />
       </body>
     </html>
   );
