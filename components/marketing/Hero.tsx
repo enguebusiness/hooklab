@@ -45,40 +45,35 @@ export default function Hero({ images }: HeroProps) {
                 Artisans du Nord :
               </span>
               <span className="block animate-hero-text-2">
-                Transformez votre
-              </span>
-              <span className="block animate-hero-text-2">
-                bouche-à-oreille en{" "}
+                Votre savoir-faire
               </span>
               <span className="block text-orange animate-hero-text-3 relative">
-                machine à chantiers.
+                m&eacute;rite d&rsquo;&ecirc;tre vu.
                 <span className="absolute -bottom-2 left-0 h-1 bg-orange/40 rounded-full animate-underline-grow" />
               </span>
             </h1>
 
             <p className="text-white/65 text-lg sm:text-xl leading-relaxed mb-10 max-w-xl animate-fade-in-up animation-delay-600">
-              Avis Google + Facebook + Site pro : le triptyque qui fait que vos
-              futurs clients vous appellent <strong className="text-white/90">vous</strong>, et pas votre concurrent.
+              Vous construisez du solide sur vos chantiers. Je construis votre r&eacute;putation solide sur internet.
+              Bas&eacute; &agrave; Flines-lez-Raches, j&rsquo;aide les professionnels du b&acirc;timent de Douai, Orchies
+              et Valenciennes &agrave; &ecirc;tre trouv&eacute;s et choisis par les bons clients.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-800">
               <a href="#contact">
                 <Button size="lg" className="w-full sm:w-auto pulse-glow text-base group">
                   <span className="flex items-center gap-2">
-                    DÉMARRER MON AUDIT GRATUIT
+                    D&Eacute;MARRER MON DIAGNOSTIC GRATUIT
                     <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </span>
                 </Button>
               </a>
-              <a
-                href="#process"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-white/20 text-white font-semibold text-sm rounded-xl hover:bg-white/10 hover:border-white/30 transition-all duration-300"
-              >
-                Comment ça marche ?
-              </a>
             </div>
+            <p className="text-white/40 text-xs mt-3 animate-fade-in-up animation-delay-800">
+              Sans engagement. R&eacute;ponse sous 24h.
+            </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-6 animate-fade-in-up animation-delay-1000">
               {["Réponse sous 24h", "100% Géré pour vous", "Pas de jargon"].map((t) => (

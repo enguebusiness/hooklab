@@ -6,12 +6,10 @@ import ScrollReveal from "@/components/animations/ScrollReveal";
 
 const demos = [
   {
-    title: "L\u2019Expertise Solide",
-    subtitle: "Pour ceux dont le travail doit durer 100 ans.",
-    pourQui: "Maçons, Couvreurs, Charpentiers.",
-    pointFort: "Slider «\u00a0Avant / Après\u00a0» interactif + badges garanties (Décennale, Qualibat, RGE) immanquables.",
-    fonctionnalite: "Formulaire intelligent : si Urgence Fuite \u2192 bouton rouge «\u00a0APPELER LE PATRON\u00a0».",
-    cta: "Voir la Démo Maçonnerie",
+    title: "Le Mod\u00e8le \u00ab\u00a0Gros \u0152uvre\u00a0\u00bb",
+    subtitle: "Ma\u00e7ons, Couvreurs",
+    description: "Id\u00e9al pour montrer la technique. Un site qui met en avant vos photos \u00ab\u00a0Avant / Apr\u00e8s\u00a0\u00bb pour prouver la qualit\u00e9 de vos finitions.",
+    cta: "Voir un exemple Ma\u00e7onnerie",
     href: "/macon",
     icon: (
       <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -20,12 +18,10 @@ const demos = [
     ),
   },
   {
-    title: "L\u2019Artisan Créateur",
-    subtitle: "Pour ceux qui vendent du beau et du confort.",
-    pourQui: "Paysagistes, Peintres, Décorateurs.",
-    pointFort: "Galerie filtrable par type + saisonnalité intelligente (le site change selon la saison).",
-    fonctionnalite: "Bouton WhatsApp flottant «\u00a0Je veux le même jardin\u00a0» + immersion locale par ville.",
-    cta: "Voir la Démo Paysagiste",
+    title: "Le Mod\u00e8le \u00ab\u00a0Cr\u00e9ation\u00a0\u00bb",
+    subtitle: "Paysagistes, Peintres",
+    description: "Id\u00e9al pour vendre du r\u00eave. Un design \u00e9pur\u00e9 qui laisse toute la place \u00e0 la beaut\u00e9 de vos r\u00e9alisations.",
+    cta: "Voir un exemple Paysagiste",
     href: "/paysagiste",
     icon: (
       <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,12 +30,10 @@ const demos = [
     ),
   },
   {
-    title: "L\u2019Intervention Éclair",
-    subtitle: "Pour ceux qui sauvent la mise (et veulent être payés vite).",
-    pourQui: "Plombiers, Électriciens, Serruriers.",
-    pointFort: "Avis Google en haut + tarifs transparents + bouton d\u2019appel sticky sur mobile.",
-    fonctionnalite: "Diagnostic en 3 clics : qualifie la panne + détecte si hors zone.",
-    cta: "Voir la Démo Plombier",
+    title: "Le Mod\u00e8le \u00ab\u00a0Intervention\u00a0\u00bb",
+    subtitle: "Plombiers, \u00c9lectriciens",
+    description: "Id\u00e9al pour l\u2019urgence. Un site ultra-rapide avec votre num\u00e9ro de t\u00e9l\u00e9phone bien visible pour \u00eatre appel\u00e9 en un clic.",
+    cta: "Voir un exemple Plombier",
     href: "/plombier",
     icon: (
       <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,21 +49,20 @@ interface DemosLiveProps {
 
 export default function DemosLive(_props: DemosLiveProps) {
   return (
-    <section id="demos" className="py-16 md:py-24 bg-bg" aria-label="Démos live">
+    <section id="exemples" className="py-16 md:py-24 bg-bg" aria-label="Exemples">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal direction="up">
           <div className="text-center mb-14">
             <span className="inline-block px-3 py-1.5 bg-orange/10 border border-orange/20 rounded-full text-orange text-xs font-semibold mb-4">
-              Démos Live
+              Exemples
             </span>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-navy tracking-[-0.02em] mb-3">
-              Ne signez pas sans voir.{" "}
-              <span className="text-orange">Testez votre futur site maintenant.</span>
+              Ne signez pas les yeux ferm&eacute;s.{" "}
+              <span className="text-orange">Regardez ce que je peux faire pour vous.</span>
             </h2>
             <p className="text-text-light text-base md:text-lg max-w-2xl mx-auto">
-              Je ne vous demande pas de me croire sur parole. J&rsquo;ai construit 3 modèles
-              de «&nbsp;Dossiers de Confiance&nbsp;» optimisés pour vos métiers.
-              Cliquez, naviguez, et imaginez votre logo à la place.
+              Je ne vous demande pas de me croire sur parole. J&rsquo;ai pr&eacute;par&eacute; des mod&egrave;les
+              adapt&eacute;s &agrave; votre m&eacute;tier. Cliquez et imaginez votre logo &agrave; la place.
             </p>
           </div>
         </ScrollReveal>
@@ -89,19 +82,8 @@ export default function DemosLive(_props: DemosLiveProps) {
 
                 {/* Content */}
                 <div className="p-5 flex-1 flex flex-col">
-                  <div className="space-y-3 flex-1">
-                    <div>
-                      <p className="text-navy font-semibold text-xs uppercase tracking-wider mb-1">Pour qui ?</p>
-                      <p className="text-text-light text-sm">{demo.pourQui}</p>
-                    </div>
-                    <div>
-                      <p className="text-navy font-semibold text-xs uppercase tracking-wider mb-1">Le point fort</p>
-                      <p className="text-text-light text-sm">{demo.pointFort}</p>
-                    </div>
-                    <div>
-                      <p className="text-navy font-semibold text-xs uppercase tracking-wider mb-1">Fonctionnalité clé</p>
-                      <p className="text-text-light text-sm">{demo.fonctionnalite}</p>
-                    </div>
+                  <div className="flex-1">
+                    <p className="text-text-light text-sm leading-relaxed">{demo.description}</p>
                   </div>
 
                   {/* CTA */}

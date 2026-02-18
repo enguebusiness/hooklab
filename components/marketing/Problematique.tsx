@@ -1,7 +1,6 @@
 "use client";
 
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import AnimatedCounter from "@/components/animations/AnimatedCounter";
 
 export default function Problematique() {
   return (
@@ -10,11 +9,11 @@ export default function Problematique() {
         <ScrollReveal direction="up">
           <div className="text-center mb-12">
             <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-navy tracking-[-0.02em] mb-4">
-              Vous êtes un pro sur le chantier.{" "}
-              <span className="text-orange">Pourquoi votre présence en ligne dit-elle le contraire&nbsp;?</span>
+              Chacun son m&eacute;tier.{" "}
+              <span className="text-orange">Vous &ecirc;tes l&rsquo;expert du chantier, je suis l&rsquo;expert du num&eacute;rique.</span>
             </h3>
             <p className="text-text-light text-base md:text-lg">
-              Marc, je sais ce que vous vivez&nbsp;:
+              Marc, je sais ce que vous vivez au quotidien&nbsp;:
             </p>
           </div>
         </ScrollReveal>
@@ -23,15 +22,15 @@ export default function Problematique() {
           {[
             {
               title: "Le temps perdu",
-              text: "Vos soirées passent à faire des devis pour des gens qui cherchent «\u00a0le moins cher\u00a0» sur Leboncoin.",
+              text: "Vos soir\u00e9es passent \u00e0 faire des devis pour des curieux qui cherchent juste \u00ab\u00a0un prix\u00a0\u00bb et ne signent jamais.",
             },
             {
-              title: "L\u2019invisibilité",
-              text: "Des concurrents moins qualifiés que vous sortent avant vous sur Google Maps.",
+              title: "L\u2019invisibilit\u00e9",
+              text: "Vous voyez des concurrents, parfois moins qualifi\u00e9s que vous, appara\u00eetre avant vous sur Google.",
             },
             {
-              title: "La peur de la technique",
-              text: "On vous a parlé de WordPress, de mises à jour, de piratage\u2026 Vous voulez un outil, pas un deuxième travail.",
+              title: "La complexit\u00e9",
+              text: "On vous parle de \u00ab\u00a0r\u00e9f\u00e9rencement\u00a0\u00bb, de \u00ab\u00a0mises \u00e0 jour\u00a0\u00bb\u2026 Pour vous, c\u2019est du chinois. Vous voulez un outil qui marche, pas une charge mentale suppl\u00e9mentaire.",
             },
           ].map((item, i) => (
             <ScrollReveal key={i} direction="left" delay={i * 150}>
@@ -54,13 +53,10 @@ export default function Problematique() {
         <ScrollReveal direction="none">
           <div className="bg-navy rounded-2xl p-6 md:p-8 text-center">
             <p className="text-white text-base md:text-lg leading-relaxed">
-              <strong className="text-orange text-2xl md:text-3xl font-extrabold block mb-2 animate-stat-glow">
-                <AnimatedCounter end={93} suffix="%" />
-              </strong>
-              des acheteurs jugent votre crédibilité sur le design de votre site.{" "}
-              <span className="text-white/70">
-                Si votre site est lent ou «&nbsp;moche&nbsp;», le client pense que votre travail l&rsquo;est aussi.
-              </span>
+              <strong className="text-orange text-lg md:text-xl font-extrabold">Mon engagement&nbsp;:</strong>{" "}
+              Je ne vous vends pas de la technologie pour le plaisir. Je mets en place un{" "}
+              <strong className="text-orange">Dossier de Confiance</strong>{" "}
+              qui prouve votre s&eacute;rieux aux clients qui vous cherchent.
             </p>
           </div>
         </ScrollReveal>

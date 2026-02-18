@@ -20,7 +20,7 @@ export default function Footer() {
                 </span>
               </Link>
               <p className="text-text-light text-sm leading-relaxed max-w-xs">
-                Création de sites pour le Bâtiment et l&rsquo;Artisanat.
+                Cr&eacute;ation de sites internet pour artisans.
               </p>
               <p className="text-text-muted text-xs mt-3">
                 59148 Flines-lez-Raches
@@ -54,11 +54,6 @@ export default function Footer() {
                     Politique de Confidentialité
                   </Link>
                 </li>
-                <li>
-                  <Link href="/plan-du-site" className="text-text-light hover:text-navy text-sm transition-colors">
-                    Plan du site
-                  </Link>
-                </li>
               </ul>
             </div>
           </div>
@@ -70,7 +65,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} HookLab &mdash; Enguerrand Ozano &middot; SIREN 994 538 932
           </p>
           <p className="text-text-muted text-xs text-center md:text-right">
-            Intervention : Douai &middot; Orchies &middot; Arleux &middot; Valenciennes &middot; Saint-Amand-les-Eaux
+            Intervention : Douai &middot; Orchies &middot; Arleux &middot; Valenciennes
           </p>
         </div>
       </div>

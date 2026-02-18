@@ -22,11 +22,11 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#systeme" className="text-text-light hover:text-navy text-sm font-medium transition-colors">
-              Le Syst&egrave;me
+            <a href="#methode" className="text-text-light hover:text-navy text-sm font-medium transition-colors">
+              Notre M&eacute;thode
             </a>
-            <a href="#demos" className="text-text-light hover:text-navy text-sm font-medium transition-colors">
-              R&eacute;alisations
+            <a href="#exemples" className="text-text-light hover:text-navy text-sm font-medium transition-colors">
+              Exemples
             </a>
             <a href="#qui-suis-je" className="text-text-light hover:text-navy text-sm font-medium transition-colors">
               Qui suis-je
@@ -68,11 +68,11 @@ export default function Navbar() {
         {/* Mobile menu */}
         {open && (
           <div className="md:hidden border-t border-border py-4 space-y-3">
-            <a href="#systeme" onClick={() => setOpen(false)} className="block text-text-light hover:text-navy text-sm font-medium py-2 transition-colors">
-              Le Syst&egrave;me
+            <a href="#methode" onClick={() => setOpen(false)} className="block text-text-light hover:text-navy text-sm font-medium py-2 transition-colors">
+              Notre M&eacute;thode
             </a>
-            <a href="#demos" onClick={() => setOpen(false)} className="block text-text-light hover:text-navy text-sm font-medium py-2 transition-colors">
-              R&eacute;alisations
+            <a href="#exemples" onClick={() => setOpen(false)} className="block text-text-light hover:text-navy text-sm font-medium py-2 transition-colors">
+              Exemples
             </a>
             <a href="#qui-suis-je" onClick={() => setOpen(false)} className="block text-text-light hover:text-navy text-sm font-medium py-2 transition-colors">
               Qui suis-je

@@ -1,7 +1,6 @@
 "use client";
 
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import AnimatedCounter from "@/components/animations/AnimatedCounter";
 
 interface AboutMeProps {
   images?: Record<string, string>;
@@ -19,25 +18,6 @@ export default function AboutMe({ images }: AboutMeProps) {
       </div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Stats top row */}
-        <ScrollReveal direction="up">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-14">
-            {[
-              { value: 100, suffix: "%", label: "Local Nord" },
-              { value: 24, suffix: "h", label: "Délai de réponse" },
-              { value: 0, suffix: "€", label: "L'audit" },
-              { value: 3, suffix: "", label: "Piliers du système" },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <p className="text-3xl md:text-4xl font-extrabold text-white">
-                  <AnimatedCounter end={stat.value} suffix={stat.suffix} />
-                </p>
-                <p className="text-white/70 text-sm font-medium mt-1">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
-
         {/* Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Photo */}
@@ -63,7 +43,7 @@ export default function AboutMe({ images }: AboutMeProps) {
                   )}
                 </div>
                 <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-navy text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg whitespace-nowrap">
-                  Basé à Flines-lez-Raches
+                  Bas&eacute; &agrave; Flines-lez-Raches
                 </div>
               </div>
             </div>
@@ -76,26 +56,33 @@ export default function AboutMe({ images }: AboutMeProps) {
                 Votre expert local
               </span>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-[-0.02em] mb-4">
-                Pas une plateforme anonyme.{" "}
-                <span className="text-navy">Un voisin.</span>
+                Enguerrand Ozano.{" "}
+                <span className="text-navy">Votre voisin &agrave; Flines-lez-Raches.</span>
               </h2>
-              <p className="text-white/90 text-base leading-relaxed mb-4">
-                Je suis <strong className="text-white">Enguerrand</strong>, spécialisé dans la
-                visibilité locale et la construction de{" "}
-                <strong className="text-white">systèmes de confiance en ligne</strong>{" "}
-                pour les artisans du Nord.
+              <p className="text-white/90 text-base leading-relaxed mb-6">
+                Oubliez les plateformes t&eacute;l&eacute;phoniques &agrave; l&rsquo;autre bout du monde.
+                Je suis ici, dans le Nord (59). Je connais la r&eacute;alit&eacute; de vos m&eacute;tiers
+                et vos contraintes g&eacute;ographiques.
               </p>
-              <p className="text-white/80 text-base leading-relaxed mb-4">
-                Je ne suis pas un call center parisien. Je connais la réalité de vos
-                chantiers à Douai, Orchies ou Valenciennes. Je sais que vous n&rsquo;avez pas
-                le temps de gérer &ldquo;un truc internet&rdquo; et que vous voulez des résultats
-                concrets : des appels de <strong className="text-white">vrais</strong> clients.
-              </p>
-              <p className="text-white/80 text-base leading-relaxed mb-6">
-                Mon approche : je vous construis un <strong className="text-white">système complet</strong>{" "}
-                (Google + Facebook + Site) qui transforme votre bouche-à-oreille en système
-                permanent. Pas de jargon, pas de blabla &mdash; du concret.
-              </p>
+
+              <ul className="space-y-4 mb-6">
+                {[
+                  { strong: "Un interlocuteur unique", text: "C\u2019est moi qui g\u00e8re votre dossier du d\u00e9but \u00e0 la fin." },
+                  { strong: "100% G\u00e9r\u00e9 pour vous", text: "Une fois le site lanc\u00e9, vous n\u2019avez rien \u00e0 faire. Si vous avez une nouvelle photo de chantier, vous me l\u2019envoyez, je la mets en ligne." },
+                  { strong: "Pas de mauvaise surprise", text: "Tout est clair d\u00e8s le d\u00e9part." },
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <p className="text-white/80 text-base leading-relaxed">
+                      <strong className="text-white">{item.strong}&nbsp;:</strong> {item.text}
+                    </p>
+                  </li>
+                ))}
+              </ul>
 
               <a
                 href="#contact"

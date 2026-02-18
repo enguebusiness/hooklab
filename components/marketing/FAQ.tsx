@@ -5,28 +5,16 @@ import ScrollReveal from "@/components/animations/ScrollReveal";
 
 const faqs = [
   {
-    q: "J\u2019ai déjà une page Facebook, ça suffit non\u00a0?",
-    a: "Facebook, c\u2019est pour les amis. Google, c\u2019est pour les clients qui ont un carnet de chèques et une urgence. Un site professionnel inspire 56% plus de confiance qu\u2019une simple page sociale.",
+    q: "Je n\u2019y connais rien en informatique, est-ce un probl\u00e8me\u00a0?",
+    a: "Absolument pas. C\u2019est mon travail. Vous continuez \u00e0 g\u00e9rer vos chantiers, je m\u2019occupe de tout ce qui est technique (s\u00e9curit\u00e9, mise en ligne, affichage sur mobile).",
   },
   {
-    q: "Est-ce que je pourrai changer mes photos moi-même\u00a0?",
-    a: "Oui. Vous avez un panneau d'administration simple et intuitif. Collez un lien d'image, cliquez sur Sauver, et le site se met à jour tout seul. Aussi simple qu'envoyer un SMS.",
+    q: "J\u2019ai d\u00e9j\u00e0 une page Facebook, \u00e7a suffit non\u00a0?",
+    a: "Facebook est utile, mais ce n\u2019est pas \u00e0 vous. Un site internet est votre propri\u00e9t\u00e9 et inspire beaucoup plus confiance pour signer des devis importants. C\u2019est la diff\u00e9rence entre un bricoleur et une entreprise \u00e9tablie.",
   },
   {
-    q: "C\u2019est quoi la différence avec un site gratuit\u00a0?",
-    a: "Un site gratuit, c\u2019est comme construire une maison sans fondations. Ça ne tient pas, Google ne le voit pas, et ça fait fuir les gros chantiers. Je vous construis un actif numérique durable.",
-  },
-  {
-    q: "Combien coûte un site avec HookLab\u00a0?",
-    a: "Chaque projet est différent. Je propose un audit gratuit pour comprendre votre situation et vous faire une proposition adaptée à votre activité. Pas d\u2019abonnement caché, pas de surprise.",
-  },
-  {
-    q: "Combien de temps pour avoir des résultats\u00a0?",
-    a: "Le site est en ligne en 2-3 semaines. Les premiers résultats Google arrivent en 4 à 8 semaines selon votre zone et votre métier. Mais le site commence à travailler pour vous dès le jour 1.",
-  },
-  {
-    q: "J\u2019y connais rien en informatique, c\u2019est un problème\u00a0?",
-    a: "C\u2019est justement mon métier. Je m\u2019occupe de tout\u00a0: création, mise en ligne, référencement. Vous, vous continuez vos chantiers. Et si vous voulez modifier quelque chose, un simple message suffit.",
+    q: "Combien \u00e7a co\u00fbte\u00a0?",
+    a: "Chaque artisan a des besoins diff\u00e9rents. Je propose des forfaits clairs et adapt\u00e9s aux TPE. Pas de frais cach\u00e9s. Nous en parlerons de vive voix lors de l\u2019audit.",
   },
 ];
 

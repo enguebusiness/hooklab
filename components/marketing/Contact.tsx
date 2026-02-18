@@ -23,12 +23,11 @@ export default function Contact() {
                 Audit gratuit
               </span>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-[-0.02em] mb-4">
-                Prêt à arrêter de courir après les chantiers ?
+                Pr&ecirc;t &agrave; s&eacute;curiser votre carnet de commandes&nbsp;?
               </h2>
               <p className="text-white/70 text-base leading-relaxed mb-6">
-                Réservez votre audit gratuit. Je regarde votre situation Google,
-                votre visibilité actuelle, et je vous dis concrètement ce
-                qu&rsquo;on peut améliorer. Sans engagement, sans jargon.
+                Je regarde votre situation actuelle sur internet (gratuitement)
+                et je vous dis honn&ecirc;tement ce qu&rsquo;on peut am&eacute;liorer.
               </p>
 
               <ul className="space-y-3">
@@ -124,7 +123,7 @@ export default function Contact() {
                       />
                     </div>
                     <Button type="submit" size="lg" className="w-full">
-                      Réserver mon Audit Gratuit
+                      R&Eacute;SERVER MON AUDIT GRATUIT
                     </Button>
                     <p className="text-text-muted text-xs text-center">
                       Gratuit &middot; Sans engagement &middot; Réponse sous 24h
