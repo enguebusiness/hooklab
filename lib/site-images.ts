@@ -43,8 +43,36 @@ export const DEFAULT_IMAGES: Record<string, { url: string; label: string }> = {
   },
 };
 
+const STORAGE_PREFIX = "storage:";
+const BUCKET = "private-gallery";
+// Durée de validité des Signed URLs : 1 heure
+const SIGNED_URL_TTL = 3600;
+
+/**
+ * Résout une valeur stockée en BDD vers une URL publique.
+ * Si la valeur commence par "storage:", génère une Signed URL temporaire (60 min)
+ * depuis le bucket privé Supabase.
+ * Sinon, retourne la valeur telle quelle (URL externe).
+ */
+async function resolveUrl(raw: string): Promise<string> {
+  if (!raw.startsWith(STORAGE_PREFIX)) return raw;
+
+  const filePath = raw.slice(STORAGE_PREFIX.length); // ex: "hero_portrait/image.jpg"
+  const supabase = createAdminClient();
+  const { data, error } = await supabase.storage
+    .from(BUCKET)
+    .createSignedUrl(filePath, SIGNED_URL_TTL);
+
+  if (error || !data?.signedUrl) {
+    // En cas d'erreur, on renvoie l'URL brute (le placeholder s'affichera)
+    return raw;
+  }
+  return data.signedUrl;
+}
+
 /**
  * Récupère toutes les images du site depuis Supabase.
+ * Les valeurs "storage:..." sont converties en Signed URLs à la volée.
  * Fallback sur les valeurs par défaut si la table n'existe pas.
  */
 export async function getSiteImages(): Promise<Record<string, string>> {
@@ -61,11 +89,14 @@ export async function getSiteImages(): Promise<Record<string, string>> {
     const rows = (data ?? []) as unknown as Pick<SiteImage, "key" | "url">[];
 
     if (!error) {
-      for (const row of rows) {
-        if (row.url) {
-          result[row.key] = row.url;
-        }
-      }
+      // Résoudre toutes les URLs en parallèle (signed URLs pour les paths storage:)
+      await Promise.all(
+        rows.map(async (row) => {
+          if (row.url) {
+            result[row.key] = await resolveUrl(row.url);
+          }
+        })
+      );
     }
   } catch {
     // Table n'existe pas encore, on utilise les defaults
@@ -76,6 +107,7 @@ export async function getSiteImages(): Promise<Record<string, string>> {
 
 /**
  * Met à jour une image du site.
+ * Accepte une URL externe (https://...) ou un chemin storage (storage:...).
  */
 export async function updateSiteImage(key: string, url: string): Promise<boolean> {
   try {

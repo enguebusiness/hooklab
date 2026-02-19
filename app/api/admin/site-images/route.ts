@@ -10,6 +10,9 @@ interface SiteImageRow {
   updated_at: string;
 }
 
+const BUCKET = "private-gallery";
+const SIGNED_URL_TTL = 3600; // 1 heure
+
 async function checkAdmin() {
   const supabase = await createClient();
   const {
@@ -27,6 +30,21 @@ async function checkAdmin() {
   return (profile as Pick<Profile, "is_admin"> | null)?.is_admin === true;
 }
 
+/**
+ * Génère une URL de prévisualisation pour l'admin.
+ * Pour les chemins "storage:", crée une Signed URL temporaire.
+ * Pour les URLs externes, retourne l'URL telle quelle.
+ */
+async function resolvePreviewUrl(rawUrl: string): Promise<string> {
+  if (!rawUrl.startsWith("storage:")) return rawUrl;
+  const filePath = rawUrl.slice("storage:".length);
+  const adminClient = createAdminClient();
+  const { data } = await adminClient.storage
+    .from(BUCKET)
+    .createSignedUrl(filePath, SIGNED_URL_TTL);
+  return data?.signedUrl ?? rawUrl;
+}
+
 // GET - Récupérer toutes les images
 export async function GET() {
   const isAdmin = await checkAdmin();
@@ -35,20 +53,25 @@ export async function GET() {
   }
 
   try {
-    const supabase = createAdminClient();
-    const { data } = await supabase.from("site_images").select("*");
+    const adminClient = createAdminClient();
+    const { data } = await adminClient.from("site_images").select("*");
     const rows = (data ?? []) as unknown as SiteImageRow[];
 
-    // Merge defaults avec les valeurs en base
-    const images = Object.entries(DEFAULT_IMAGES).map(([key, def]) => {
-      const saved = rows.find((d) => d.key === key);
-      return {
-        key,
-        url: saved?.url || def.url,
-        label: def.label,
-        updated_at: saved?.updated_at || null,
-      };
-    });
+    // Merge defaults avec les valeurs en base, résoudre les signed URLs en parallèle
+    const images = await Promise.all(
+      Object.entries(DEFAULT_IMAGES).map(async ([key, def]) => {
+        const saved = rows.find((d) => d.key === key);
+        const rawUrl = saved?.url || def.url;
+        const previewUrl = await resolvePreviewUrl(rawUrl);
+        return {
+          key,
+          url: rawUrl,           // valeur brute stockée (ex: "storage:hero_portrait/image.jpg")
+          previewUrl,            // URL résolvée pour l'affichage dans le navigateur
+          label: def.label,
+          updated_at: saved?.updated_at || null,
+        };
+      })
+    );
 
     return NextResponse.json({ images });
   } catch {
@@ -56,6 +79,7 @@ export async function GET() {
     const images = Object.entries(DEFAULT_IMAGES).map(([key, def]) => ({
       key,
       url: def.url,
+      previewUrl: def.url,
       label: def.label,
       updated_at: null,
     }));
@@ -77,11 +101,14 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json({ error: "key et url requis" }, { status: 400 });
   }
 
-  // Vérifier que l'URL est valide
-  try {
-    new URL(url);
-  } catch {
-    return NextResponse.json({ error: "URL invalide" }, { status: 400 });
+  // Accepter soit une URL externe (https://...) soit un chemin storage (storage:...)
+  const isStoragePath = url.startsWith("storage:");
+  if (!isStoragePath) {
+    try {
+      new URL(url);
+    } catch {
+      return NextResponse.json({ error: "URL invalide" }, { status: 400 });
+    }
   }
 
   const success = await updateSiteImage(key, url);
