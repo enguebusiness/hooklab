@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import MaconClient from "./MaconClient";
+import { getSiteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title:
@@ -83,7 +84,9 @@ const faqs = [
   },
 ];
 
-export default function MaconPage() {
+export default async function MaconPage() {
+  const images = await getSiteImages();
+
   return (
     <main className="min-h-screen bg-[#f8f6f3]">
       {/* ============================================================
@@ -94,8 +97,7 @@ export default function MaconPage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80')",
+            backgroundImage: `url('${images.macon_hero}')`,
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#1b2a4a]/95 via-[#1b2a4a]/85 to-[#1b2a4a]/70" />
@@ -282,22 +284,22 @@ export default function MaconPage() {
               {
                 avant: "Maison dans son jus",
                 apres: "Extension moderne 30m\u00b2 + terrasse",
-                avantImg: "https://images.unsplash.com/photo-1632823469850-2f77dd9c7f93?auto=format&fit=crop&w=800&q=80",
-                apresImg: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+                avantImg: images.macon_slider1_gauche,
+                apresImg: images.macon_slider1_droite,
                 legend: "Extension 30m\u00b2 \u00e0 Cysoing \u2014 R\u00e9alis\u00e9 en 4 semaines.",
               },
               {
                 avant: "Fa\u00e7ade fissur\u00e9e",
                 apres: "Ravalement complet",
-                avantImg: "https://images.unsplash.com/photo-1590274853856-f22d5ee3d228?auto=format&fit=crop&w=800&q=80",
-                apresImg: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+                avantImg: images.macon_slider2_gauche,
+                apresImg: images.macon_slider2_droite,
                 legend: "Rejointoiement briques \u00e0 Orchies.",
               },
               {
                 avant: "Terrain nu",
                 apres: "Terrasse carrel\u00e9e + muret",
-                avantImg: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
-                apresImg: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c0?auto=format&fit=crop&w=800&q=80",
+                avantImg: images.macon_slider3_gauche,
+                apresImg: images.macon_slider3_droite,
                 legend: "Am\u00e9nagement ext\u00e9rieur \u00e0 Sam\u00e9on.",
               },
             ].map((item, i) => (

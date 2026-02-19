@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import PaysagisteClient from "./PaysagisteClient";
+import { getSiteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title: "Démo Site Paysagiste - Conception & Entretien Espaces Verts",
@@ -12,16 +13,6 @@ export const metadata: Metadata = {
   },
 };
 
-const realisations = [
-  { titre: "Jardin contemporain avec terrasse composite", type: "Terrasses", lieu: "Orchies", saison: "printemps", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80" },
-  { titre: "Aménagement complet piscine + clôture", type: "Terrasses", lieu: "Douai", saison: "printemps", image: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?auto=format&fit=crop&w=600&q=80" },
-  { titre: "Création massif fleuri 4 saisons", type: "Plantations", lieu: "Valenciennes", saison: "printemps", image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=600&q=80" },
-  { titre: "Haie brise-vue naturelle en bambou", type: "Plantations", lieu: "Arleux", saison: "automne", image: "https://images.unsplash.com/photo-1558171813-4c088753af8f?auto=format&fit=crop&w=600&q=80" },
-  { titre: "Allée carrossable en pavés anciens", type: "Allées", lieu: "Saint-Amand", saison: "automne", image: "https://images.unsplash.com/photo-1598902108854-d1446c81e20e?auto=format&fit=crop&w=600&q=80" },
-  { titre: "Jardin japonais zen avec bassin", type: "Plantations", lieu: "Flines-lez-Raches", saison: "printemps", image: "https://images.unsplash.com/photo-1582547403609-4244e80be657?auto=format&fit=crop&w=600&q=80" },
-  { titre: "Taille architecturale haies buis", type: "Entretien", lieu: "Denain", saison: "automne", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=600&q=80" },
-  { titre: "Entretien annuel parc 3000m²", type: "Entretien", lieu: "Douai", saison: "automne", image: "https://images.unsplash.com/photo-1557429287-b2e26467fc2b?auto=format&fit=crop&w=600&q=80" },
-];
 
 const valeurs = [
   {
@@ -78,7 +69,20 @@ function ValeurIcon({ type }: { type: string }) {
   }
 }
 
-export default function PaysagisteDemo() {
+export default async function PaysagisteDemo() {
+  const images = await getSiteImages();
+
+  const realisations = [
+    { titre: "Jardin contemporain avec terrasse composite", type: "Terrasses", lieu: "Orchies", saison: "printemps", image: images.paysagiste_galerie_1 },
+    { titre: "Aménagement complet piscine + clôture", type: "Terrasses", lieu: "Douai", saison: "printemps", image: images.paysagiste_galerie_2 },
+    { titre: "Création massif fleuri 4 saisons", type: "Plantations", lieu: "Valenciennes", saison: "printemps", image: images.paysagiste_galerie_3 },
+    { titre: "Haie brise-vue naturelle en bambou", type: "Plantations", lieu: "Arleux", saison: "automne", image: images.paysagiste_galerie_4 },
+    { titre: "Allée carrossable en pavés anciens", type: "Allées", lieu: "Saint-Amand", saison: "automne", image: images.paysagiste_galerie_5 },
+    { titre: "Jardin japonais zen avec bassin", type: "Plantations", lieu: "Flines-lez-Raches", saison: "printemps", image: images.paysagiste_galerie_6 },
+    { titre: "Taille architecturale haies buis", type: "Entretien", lieu: "Denain", saison: "automne", image: images.paysagiste_galerie_7 },
+    { titre: "Entretien annuel parc 3000m²", type: "Entretien", lieu: "Douai", saison: "automne", image: images.paysagiste_galerie_8 },
+  ];
+
   return (
     <main className="min-h-screen bg-white">
       {/* ===== NAV TRANSPARENTE SUR LE HERO ===== */}
@@ -115,8 +119,9 @@ export default function PaysagisteDemo() {
 
       {/* ===== HERO PLEIN ÉCRAN AVEC PHOTO ===== */}
       <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1564429238961-bf8ad08feabb?auto=format&fit=crop&w=1920&q=80"
+          src={images.paysagiste_hero}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -167,8 +172,9 @@ export default function PaysagisteDemo() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Création */}
             <div className="relative group rounded-2xl overflow-hidden h-80 md:h-96">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=800&q=80"
+                src={images.paysagiste_service_creation}
                 alt="Création d'espaces verts"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
@@ -199,8 +205,9 @@ export default function PaysagisteDemo() {
 
             {/* Entretien */}
             <div className="relative group rounded-2xl overflow-hidden h-80 md:h-96">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80"
+                src={images.paysagiste_service_entretien}
                 alt="Entretien d'espaces verts"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
@@ -263,8 +270,9 @@ export default function PaysagisteDemo() {
               </ul>
             </div>
             <div className="relative">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+                src={images.paysagiste_services_photo}
                 alt="Jardin contemporain réalisé"
                 className="rounded-2xl shadow-xl w-full h-80 md:h-[420px] object-cover"
               />
@@ -297,8 +305,9 @@ export default function PaysagisteDemo() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative order-2 md:order-1">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80"
+                src={images.paysagiste_equipe}
                 alt="Équipe de paysagistes au travail"
                 className="rounded-2xl shadow-xl w-full h-80 md:h-[400px] object-cover"
               />
@@ -371,8 +380,9 @@ export default function PaysagisteDemo() {
 
       {/* ===== CTA + FORMULAIRE CONTACT ===== */}
       <section id="contact" className="relative py-20 md:py-32 overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?auto=format&fit=crop&w=1920&q=80"
+          src={images.paysagiste_cta}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
         />
