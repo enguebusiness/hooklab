@@ -382,17 +382,26 @@ export default async function MaconPage() {
               <div className="relative">
                 <div className="absolute -inset-3 bg-orange/20 rounded-3xl blur-xl" />
                 <div className="relative w-72 h-80 sm:w-80 sm:h-96 rounded-2xl overflow-hidden border-2 border-white/10">
-                  <div className="w-full h-full bg-navy-light flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-20 h-20 bg-orange/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <svg className="w-10 h-10 text-orange/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
+                  {images.macon_photo_cyprien ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={images.macon_photo_cyprien}
+                      alt="Cyprien, artisan maçon"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-navy-light flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="w-20 h-20 bg-orange/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                          <svg className="w-10 h-10 text-orange/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
+                        </div>
+                        <p className="text-white/30 text-sm">Photo de Cyprien</p>
+                        <p className="text-white/20 text-xs mt-1">(sur le chantier)</p>
                       </div>
-                      <p className="text-white/30 text-sm">Photo de Cyprien</p>
-                      <p className="text-white/20 text-xs mt-1">(sur le chantier)</p>
                     </div>
-                  </div>
+                  )}
                 </div>
                 <div className="absolute -bottom-3 -right-3 bg-orange text-white text-xs font-bold px-4 py-2 rounded-xl shadow-lg">
                   Artisan depuis 10 ans
