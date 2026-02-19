@@ -4,6 +4,8 @@ import Button from "@/components/ui/Button";
 import PaysagisteClient from "./PaysagisteClient";
 import { getSiteImages } from "@/lib/site-images";
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Démo Site Paysagiste - Conception & Entretien Espaces Verts",
   description:

@@ -1,7 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { createClient, createAdminClient } from "@/lib/supabase/server";
 import { DEFAULT_IMAGES, updateSiteImage } from "@/lib/site-images";
 import type { Profile } from "@/types/database.types";
+
+/** Pages à invalider selon le préfixe de la clé image */
+function getPathsToRevalidate(key: string): string[] {
+  if (key.startsWith("macon_")) return ["/macon"];
+  if (key.startsWith("paysagiste_")) return ["/paysagiste"];
+  // Clés de la page d'accueil (hero_portrait, about_photo, process_*, demo_*)
+  return ["/"];
+}
 
 interface SiteImageRow {
   key: string;
@@ -117,6 +126,12 @@ export async function PUT(request: NextRequest) {
       { error: "Erreur lors de la sauvegarde. Vérifiez que la table site_images existe dans Supabase." },
       { status: 500 }
     );
+  }
+
+  // Invalider immédiatement le cache Next.js des pages concernées
+  const paths = getPathsToRevalidate(key);
+  for (const path of paths) {
+    revalidatePath(path);
   }
 
   return NextResponse.json({ success: true });

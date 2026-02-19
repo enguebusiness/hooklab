@@ -3,6 +3,8 @@ import Link from "next/link";
 import MaconClient from "./MaconClient";
 import { getSiteImages } from "@/lib/site-images";
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title:
     "Ma\u00e7onnerie & Extension de Maison \u00e0 Orchies, Cysoing, Saint-Amand-les-Eaux | Artisan Ma\u00e7on Nord (59)",
