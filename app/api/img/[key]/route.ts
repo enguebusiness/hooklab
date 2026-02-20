@@ -29,12 +29,13 @@ export async function GET(
 
   // Valeur en BDD (prioritaire)
   try {
-    const { data } = await adminClient
+    const res = await adminClient
       .from("site_images")
       .select("url")
       .eq("key", key)
       .single();
-    if (data?.url) rawUrl = data.url;
+    const row = res.data as { url: string } | null;
+    if (row?.url) rawUrl = row.url;
   } catch {
     // Aucune ligne trouvée ou table absente → on garde le default
   }
