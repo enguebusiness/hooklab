@@ -136,42 +136,19 @@ export const DEFAULT_IMAGES: Record<string, { url: string; label: string }> = {
   },
 };
 
-const STORAGE_PREFIX = "storage:";
-const BUCKET = "private-gallery";
-// Durée de validité des Signed URLs : 1 heure
-const SIGNED_URL_TTL = 3600;
-
-/**
- * Résout une valeur stockée en BDD vers une URL publique.
- * Si la valeur commence par "storage:", génère une Signed URL temporaire (60 min)
- * depuis le bucket privé Supabase.
- * Sinon, retourne la valeur telle quelle (URL externe).
- */
-async function resolveUrl(raw: string): Promise<string> {
-  if (!raw.startsWith(STORAGE_PREFIX)) return raw;
-
-  const filePath = raw.slice(STORAGE_PREFIX.length); // ex: "hero_portrait/image.jpg"
-  const supabase = createAdminClient();
-  const { data, error } = await supabase.storage
-    .from(BUCKET)
-    .createSignedUrl(filePath, SIGNED_URL_TTL);
-
-  if (error || !data?.signedUrl) {
-    // En cas d'erreur, on renvoie l'URL brute (le placeholder s'affichera)
-    return raw;
-  }
-  return data.signedUrl;
-}
-
 /**
  * Récupère toutes les images du site depuis Supabase.
- * Les valeurs "storage:..." sont converties en Signed URLs à la volée.
- * Fallback sur les valeurs par défaut si la table n'existe pas.
+ *
+ * - URL externe (https://...)  → retournée telle quelle
+ * - Chemin privé (storage:...) → retourné comme /api/img/<key>
+ *   Le proxy génère une Signed URL fraîche à chaque requête du navigateur
+ *   (cache navigateur/CDN 55 min) — aucune signed URL n'est jamais embarquée
+ *   dans le HTML statique, ce qui élimine tout risque d'expiration.
  */
 export async function getSiteImages(): Promise<Record<string, string>> {
   const result: Record<string, string> = {};
 
-  // Mettre les defaults d'abord
+  // Initialiser avec les defaults
   for (const [key, val] of Object.entries(DEFAULT_IMAGES)) {
     result[key] = val.url;
   }
@@ -182,17 +159,19 @@ export async function getSiteImages(): Promise<Record<string, string>> {
     const rows = (data ?? []) as unknown as Pick<SiteImage, "key" | "url">[];
 
     if (!error) {
-      // Résoudre toutes les URLs en parallèle (signed URLs pour les paths storage:)
-      await Promise.all(
-        rows.map(async (row) => {
-          if (row.url) {
-            result[row.key] = await resolveUrl(row.url);
-          }
-        })
-      );
+      for (const row of rows) {
+        if (!row.url) continue;
+        if (row.url.startsWith("storage:")) {
+          // Proxy URL → la signed URL est générée à la demande côté navigateur
+          result[row.key] = `/api/img/${row.key}`;
+        } else {
+          // URL externe directe
+          result[row.key] = row.url;
+        }
+      }
     }
   } catch {
-    // Table n'existe pas encore, on utilise les defaults
+    // Table absente → on conserve les defaults
   }
 
   return result;
