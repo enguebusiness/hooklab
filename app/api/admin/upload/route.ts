@@ -1,18 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient, createAdminClient } from "@/lib/supabase/server";
 import type { Profile } from "@/types/database.types";
+import sharp from "sharp";
 
 const BUCKET = "private-gallery";
 
-// ── Types MIME autorisés → extension de stockage ───────────────────────────
-// L'extension est dérivée du MIME validé côté serveur, jamais du nom de fichier.
-const MIME_TO_EXT: Record<string, string> = {
-  "image/jpeg": "jpg",
-  "image/png":  "png",
-  "image/webp": "webp",
-  "image/gif":  "gif",
-  "image/avif": "avif",
-};
+// Taille cible : entre 300 Ko et 1 Mo
+const TARGET_MAX_BYTES = 1_000_000;       // 1 Mo
+const TARGET_MIN_BYTES =   300_000;       // 300 Ko (indicatif — on ne force pas l'inflation)
+
+// Paliers de qualité WebP : on descend jusqu'à rentrer sous 1 Mo
+const QUALITY_STEPS = [82, 72, 62, 50];
 
 // ── Signatures magic bytes ──────────────────────────────────────────────────
 // Permet de détecter le vrai format binaire indépendamment du Content-Type
@@ -33,7 +31,6 @@ const MAGIC_SIGNATURES: Array<{
   },
   {
     mime: "image/gif",
-    // GIF87a ou GIF89a
     check: (b) => b[0] === 0x47 && b[1] === 0x49 && b[2] === 0x46 && b[3] === 0x38,
   },
   {
@@ -61,6 +58,39 @@ function detectMimeFromBytes(buffer: Uint8Array): string | null {
   return null;
 }
 
+/**
+ * Optimise l'image :
+ * – Conversion en WebP (meilleur ratio qualité/poids sur le web)
+ * – Auto-rotation via l'orientation EXIF (corrige les photos de téléphone)
+ * – Strip de toutes les métadonnées (GPS, modèle appareil, EXIF) — les navigateurs assument sRGB
+ * – Compression adaptative : démarre à q82, descend par paliers si > 1 Mo
+ *
+ * Retourne le buffer WebP optimisé et les stats (pour logging).
+ */
+async function optimizeToWebP(
+  input: Buffer
+): Promise<{ buffer: Buffer; quality: number; originalBytes: number; finalBytes: number }> {
+  const originalBytes = input.length;
+
+  for (const quality of QUALITY_STEPS) {
+    const output = await sharp(input)
+      .rotate()                     // Auto-rotation EXIF (corrige portrait/paysage)
+      // withMetadata() non appelé → Sharp strip tout par défaut :
+      // GPS, modèle appareil, IPTC… supprimés. Navigateurs assument sRGB.
+      .webp({ quality, effort: 4 }) // effort 4 = bon compromis vitesse/compression
+      .toBuffer();
+
+    // On s'arrête dès qu'on passe sous 1 Mo
+    // ou si on est déjà au dernier palier (on prend quoi qu'il en soit)
+    if (output.length <= TARGET_MAX_BYTES || quality === QUALITY_STEPS.at(-1)) {
+      return { buffer: output, quality, originalBytes, finalBytes: output.length };
+    }
+  }
+
+  // Ne devrait jamais être atteint — TypeScript exige un return exhaustif
+  throw new Error("Optimisation impossible");
+}
+
 async function checkAdmin() {
   const supabase = await createClient();
   const {
@@ -78,7 +108,7 @@ async function checkAdmin() {
   return (profile as Pick<Profile, "is_admin"> | null)?.is_admin === true;
 }
 
-// POST - Upload un fichier dans le bucket private-gallery
+// POST — Upload + optimisation automatique vers Supabase Storage
 export async function POST(request: NextRequest) {
   const isAdmin = await checkAdmin();
   if (!isAdmin) {
@@ -99,54 +129,50 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Champs 'file' et 'key' requis" }, { status: 400 });
   }
 
-  // ── 1. Vérifier le type MIME déclaré ──────────────────────────────────────
-  if (!Object.hasOwn(MIME_TO_EXT, file.type)) {
-    return NextResponse.json(
-      { error: "Type de fichier non supporté. Utilisez JPEG, PNG, WebP, GIF ou AVIF." },
-      { status: 400 }
-    );
+  // ── 1. Limite de taille brute (avant optimisation) ────────────────────────
+  if (file.size > 20 * 1024 * 1024) {
+    return NextResponse.json({ error: "Fichier trop volumineux (max 20 Mo avant optimisation)" }, { status: 400 });
   }
 
-  // ── 2. Limite de taille ───────────────────────────────────────────────────
-  if (file.size > 5 * 1024 * 1024) {
-    return NextResponse.json({ error: "Fichier trop volumineux (max 5 Mo)" }, { status: 400 });
-  }
-
-  // ── 3. Lire le contenu binaire ────────────────────────────────────────────
+  // ── 2. Lire le contenu binaire ────────────────────────────────────────────
   const arrayBuffer = await file.arrayBuffer();
-  const buffer = new Uint8Array(arrayBuffer);
+  const rawBuffer = new Uint8Array(arrayBuffer);
 
-  // ── 4. Valider les magic bytes (anti-MIME spoofing) ───────────────────────
-  // On détecte le vrai format à partir des octets du fichier, pas du Content-Type
-  // envoyé par le client.
-  const detectedMime = detectMimeFromBytes(buffer);
+  // ── 3. Valider les magic bytes (anti-MIME spoofing) ───────────────────────
+  const detectedMime = detectMimeFromBytes(rawBuffer);
   if (!detectedMime) {
     return NextResponse.json(
-      { error: "Le fichier ne correspond pas à un format image valide." },
-      { status: 400 }
-    );
-  }
-  // Le MIME réel doit correspondre au MIME déclaré
-  if (detectedMime !== file.type) {
-    return NextResponse.json(
-      { error: "Le type du fichier ne correspond pas à son contenu." },
+      { error: "Le fichier ne correspond pas à un format image valide (JPEG, PNG, WebP, AVIF, GIF)." },
       { status: 400 }
     );
   }
 
+  // ── 4. Optimisation : conversion WebP + compression adaptative ────────────
+  let optimized: Awaited<ReturnType<typeof optimizeToWebP>>;
+  try {
+    optimized = await optimizeToWebP(Buffer.from(rawBuffer));
+  } catch {
+    return NextResponse.json(
+      { error: "Erreur lors de l'optimisation de l'image." },
+      { status: 500 }
+    );
+  }
+
+  const { buffer, quality, originalBytes, finalBytes } = optimized;
+
   // ── 5. Construire le chemin de stockage ───────────────────────────────────
-  // Extension toujours dérivée du MIME validé, jamais du nom de fichier fourni.
-  const ext = MIME_TO_EXT[detectedMime];
+  // Toujours .webp quelle que soit l'entrée (JPEG, PNG, AVIF…)
   const sanitizedKey = imageKey.replace(/[^a-z0-9_-]/gi, "_");
-  const filePath = `${sanitizedKey}/image.${ext}`;
+  const filePath = `${sanitizedKey}/image.webp`;
 
   // ── 6. Upload vers Supabase Storage ──────────────────────────────────────
   const adminClient = createAdminClient();
   const { error } = await adminClient.storage
     .from(BUCKET)
     .upload(filePath, buffer, {
-      contentType: detectedMime,
+      contentType: "image/webp",
       upsert: true,
+      cacheControl: "public, max-age=31536000", // 1 an (CDN Supabase)
     });
 
   if (error) {
@@ -157,5 +183,22 @@ export async function POST(request: NextRequest) {
   }
 
   const storagePath = `storage:${filePath}`;
-  return NextResponse.json({ storagePath, filePath });
+
+  // Infos retournées pour le feedback admin
+  const originalKb = Math.round(originalBytes / 1024);
+  const finalKb    = Math.round(finalBytes / 1024);
+  const inRange    = finalBytes >= TARGET_MIN_BYTES && finalBytes <= TARGET_MAX_BYTES;
+
+  return NextResponse.json({
+    storagePath,
+    filePath,
+    optimization: {
+      originalKb,
+      finalKb,
+      quality,
+      inRange,
+      // Message lisible en fr pour l'UI
+      summary: `${originalKb} Ko → ${finalKb} Ko (WebP q${quality})`,
+    },
+  });
 }

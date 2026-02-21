@@ -13,10 +13,11 @@ interface SiteImage {
 type UploadState = "idle" | "uploading" | "saving" | "done" | "error";
 
 interface ImageCardState {
-  editUrl: string;       // valeur brute en cours d'édition
-  previewUrl: string;    // URL pour l'aperçu
+  editUrl: string;          // valeur brute en cours d'édition
+  previewUrl: string;       // URL pour l'aperçu
   uploadState: UploadState;
   uploadError: string | null;
+  optimizationSummary: string | null; // ex: "2 400 Ko → 680 Ko (WebP q82)"
 }
 
 export default function AdminImages() {
@@ -40,6 +41,7 @@ export default function AdminImages() {
             previewUrl: img.previewUrl,
             uploadState: "idle",
             uploadError: null,
+            optimizationSummary: null,
           };
         }
         setCardState(state);
@@ -73,7 +75,10 @@ export default function AdminImages() {
           return;
         }
 
-        const { storagePath } = uploadData as { storagePath: string };
+        const { storagePath, optimization } = uploadData as {
+          storagePath: string;
+          optimization?: { summary: string; inRange: boolean };
+        };
 
         // Sauvegarde automatique en BDD
         updateCard(key, { uploadState: "saving" });
@@ -90,7 +95,12 @@ export default function AdminImages() {
         }
 
         // Succès : mettre à jour l'état
-        updateCard(key, { editUrl: storagePath, uploadState: "done", uploadError: null });
+        updateCard(key, {
+          editUrl: storagePath,
+          uploadState: "done",
+          uploadError: null,
+          optimizationSummary: optimization?.summary ?? null,
+        });
         setImages((prev) =>
           prev.map((img) =>
             img.key === key
@@ -98,8 +108,11 @@ export default function AdminImages() {
               : img
           )
         );
-        setGlobalMessage({ type: "success", text: `"${key}" uploadé et sauvegardé !` });
-        setTimeout(() => updateCard(key, { uploadState: "idle" }), 3000);
+        const successMsg = optimization
+          ? `"${key}" sauvegardé — ${optimization.summary}`
+          : `"${key}" uploadé et sauvegardé !`;
+        setGlobalMessage({ type: "success", text: successMsg });
+        setTimeout(() => updateCard(key, { uploadState: "idle", optimizationSummary: null }), 5000);
       } catch {
         updateCard(key, { uploadState: "error", uploadError: "Erreur réseau" });
       }
@@ -179,7 +192,7 @@ export default function AdminImages() {
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-white mb-2">Images du site</h1>
         <p className="text-white/60">
-          Uploadez vos fichiers directement dans le bucket privé Supabase, ou collez une URL externe.
+          Uploadez vos fichiers directement dans le bucket privé Supabase. Les images sont automatiquement converties en WebP et optimisées entre 300 Ko et 1 Mo.
         </p>
       </div>
 
@@ -301,18 +314,23 @@ CREATE POLICY "service_role_full_access"
                     />
 
                     {isUploading ? (
-                      <p className="text-orange text-xs font-medium">Upload en cours...</p>
+                      <p className="text-orange text-xs font-medium">Optimisation et upload en cours...</p>
                     ) : isSaving ? (
                       <p className="text-orange text-xs font-medium">Sauvegarde...</p>
                     ) : isDone ? (
-                      <p className="text-success text-xs font-medium">Fichier enregistré !</p>
+                      <div className="space-y-0.5">
+                        <p className="text-success text-xs font-medium">Fichier enregistré !</p>
+                        {state.optimizationSummary && (
+                          <p className="text-white/40 text-xs">{state.optimizationSummary}</p>
+                        )}
+                      </div>
                     ) : (
                       <div className="space-y-1">
                         <p className="text-white/50 text-xs">
                           <span className="text-white/80 font-medium">Glissez une image</span> ou{" "}
                           <span className="text-orange font-medium underline">parcourir</span>
                         </p>
-                        <p className="text-white/25 text-xs">JPEG · PNG · WebP · GIF · AVIF — max 5 Mo</p>
+                        <p className="text-white/25 text-xs">JPEG · PNG · WebP · AVIF — converti en WebP, max 20 Mo</p>
                       </div>
                     )}
                   </div>
