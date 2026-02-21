@@ -217,13 +217,14 @@ export async function POST(request: Request) {
   }
 }
 
-// Générateur de mot de passe temporaire
+// Générateur de mot de passe temporaire — crypto.getRandomValues() uniquement
+// (cryptographiquement sûr, contrairement à Math.random())
 function generatePassword(): string {
   const chars =
     "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$%";
-  let password = "";
-  for (let i = 0; i < 12; i++) {
-    password += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return password;
+  const randomBytes = new Uint8Array(16);
+  crypto.getRandomValues(randomBytes);
+  return Array.from(randomBytes.slice(0, 12))
+    .map((b) => chars[b % chars.length])
+    .join("");
 }
