@@ -58,9 +58,9 @@ export default function Problematique() {
           <div className="bg-navy rounded-2xl p-6 md:p-8 text-center">
             <p className="text-white text-base md:text-lg leading-relaxed">
               <strong className="text-orange text-lg md:text-xl font-extrabold">Mon engagement&nbsp;:</strong>{" "}
-              Je ne suis pas l\u00e0 pour vous vendre du \u00ab\u00a0r\u00eave digital\u00a0\u00bb. Je construis votre{" "}
+              Je ne suis pas là pour vous vendre du &laquo;&nbsp;rêve digital&nbsp;&raquo;. Je construis votre{" "}
               <strong className="text-orange">Dossier de Confiance</strong>{" "}
-              num\u00e9rique pour que vos devis soient sign\u00e9s plus vite, et plus souvent.
+              numérique pour que vos devis soient signés plus vite, et plus souvent.
             </p>
           </div>
         </ScrollReveal>
