@@ -5,11 +5,34 @@ import { DEFAULT_IMAGES } from "@/lib/site-images";
 export const dynamic = "force-dynamic";
 
 const BUCKET = "private-gallery";
-// Signed URL valide 1h côté Supabase
+// Signed URL valide 1h côté Supabase (sert uniquement pour le fetch interne)
 const SIGNED_URL_TTL = 3600;
-// Le navigateur/CDN met en cache la redirection 55 min
-// (légèrement inférieur au TTL pour éviter tout risque d'expiration)
-const REDIRECT_CACHE_TTL = 3300;
+// Le navigateur/CDN met en cache la réponse 55 min
+const PROXY_CACHE_TTL = 3300;
+
+async function proxyImage(
+  url: string,
+  cacheMaxAge: number
+): Promise<NextResponse> {
+  const upstream = await fetch(url, { redirect: "follow" });
+
+  if (!upstream.ok) {
+    return new NextResponse(null, { status: 502 });
+  }
+
+  const contentType =
+    upstream.headers.get("content-type") ?? "application/octet-stream";
+
+  return new NextResponse(upstream.body, {
+    status: 200,
+    headers: {
+      "Content-Type": contentType,
+      "Cache-Control": `public, max-age=${cacheMaxAge}, s-maxage=${cacheMaxAge}, stale-while-revalidate=60`,
+      // Empêche Google d'indexer cette route technique
+      "X-Robots-Tag": "noindex, nofollow",
+    },
+  });
+}
 
 export async function GET(
   _req: NextRequest,
@@ -45,38 +68,25 @@ export async function GET(
     return new NextResponse(null, { status: 404 });
   }
 
-  // ── URL externe (Unsplash, etc.) ──────────────────────────────────────────
+  // ── URL externe (Unsplash, etc.) → proxy direct ───────────────────────────
   if (!rawUrl.startsWith("storage:")) {
-    return NextResponse.redirect(rawUrl, {
-      status: 302,
-      headers: {
-        "Cache-Control": "public, max-age=86400, s-maxage=86400",
-      },
-    });
+    return proxyImage(rawUrl, 86400);
   }
 
-  // ── Chemin bucket privé → générer une Signed URL fraîche ─────────────────
+  // ── Chemin bucket privé → générer une Signed URL puis proxifier ───────────
   const filePath = rawUrl.slice("storage:".length);
   const { data, error } = await adminClient.storage
     .from(BUCKET)
     .createSignedUrl(filePath, SIGNED_URL_TTL);
 
   if (error || !data?.signedUrl) {
-    // Fallback sur l'image par défaut Unsplash si la génération échoue
+    // Fallback sur l'image par défaut si la génération échoue
     const fallback = DEFAULT_IMAGES[key]?.url;
     if (fallback) {
-      return NextResponse.redirect(fallback, {
-        status: 302,
-        headers: { "Cache-Control": "public, max-age=60, s-maxage=60" },
-      });
+      return proxyImage(fallback, 60);
     }
     return new NextResponse(null, { status: 503 });
   }
 
-  return NextResponse.redirect(data.signedUrl, {
-    status: 302,
-    headers: {
-      "Cache-Control": `public, max-age=${REDIRECT_CACHE_TTL}, s-maxage=${REDIRECT_CACHE_TTL}, stale-while-revalidate=60`,
-    },
-  });
+  return proxyImage(data.signedUrl, PROXY_CACHE_TTL);
 }
