@@ -31,7 +31,7 @@ export async function POST(request: Request) {
 
     const fromEmail =
       process.env.RESEND_FROM_EMAIL || "HookLab <onboarding@resend.dev>";
-    const adminEmail = process.env.ADMIN_EMAIL || fromEmail;
+    const adminEmail = process.env.ADMIN_EMAIL || "enguerrandbusiness@outlook.com";
 
     await resend.emails.send({
       from: fromEmail,

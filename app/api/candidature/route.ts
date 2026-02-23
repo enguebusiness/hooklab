@@ -134,7 +134,7 @@ export async function POST(request: Request) {
       }
 
       // Notification admin
-      const adminEmail = process.env.ADMIN_EMAIL || fromEmail;
+      const adminEmail = process.env.ADMIN_EMAIL || "enguerrandbusiness@outlook.com";
       try {
         await resend.emails.send({
           from: fromEmail,
