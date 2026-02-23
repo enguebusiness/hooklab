@@ -6,10 +6,38 @@ import ScrollReveal from "@/components/animations/ScrollReveal";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [fields, setFields] = useState({
+    name: "",
+    phone: "",
+    metier: "",
+    ville: "",
+  });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const updateField = (key: keyof typeof fields, value: string) =>
+    setFields((prev) => ({ ...prev, [key]: value }));
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fields),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Erreur lors de l'envoi");
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Erreur inattendue");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -83,6 +111,8 @@ export default function Contact() {
                         type="text"
                         required
                         placeholder="Marc Dupont"
+                        value={fields.name}
+                        onChange={(e) => updateField("name", e.target.value)}
                         className="w-full px-4 py-3 bg-bg border border-border rounded-xl text-text text-sm placeholder:text-text-muted focus:border-orange focus:ring-1 focus:ring-orange outline-none transition-colors"
                       />
                     </div>
@@ -95,6 +125,8 @@ export default function Contact() {
                         type="tel"
                         required
                         placeholder="06 12 34 56 78"
+                        value={fields.phone}
+                        onChange={(e) => updateField("phone", e.target.value)}
                         className="w-full px-4 py-3 bg-bg border border-border rounded-xl text-text text-sm placeholder:text-text-muted focus:border-orange focus:ring-1 focus:ring-orange outline-none transition-colors"
                       />
                     </div>
@@ -107,6 +139,8 @@ export default function Contact() {
                         type="text"
                         required
                         placeholder="Couvreur, Menuisier, Paysagiste..."
+                        value={fields.metier}
+                        onChange={(e) => updateField("metier", e.target.value)}
                         className="w-full px-4 py-3 bg-bg border border-border rounded-xl text-text text-sm placeholder:text-text-muted focus:border-orange focus:ring-1 focus:ring-orange outline-none transition-colors"
                       />
                     </div>
@@ -119,10 +153,15 @@ export default function Contact() {
                         type="text"
                         required
                         placeholder="Douai, Valenciennes, Orchies..."
+                        value={fields.ville}
+                        onChange={(e) => updateField("ville", e.target.value)}
                         className="w-full px-4 py-3 bg-bg border border-border rounded-xl text-text text-sm placeholder:text-text-muted focus:border-orange focus:ring-1 focus:ring-orange outline-none transition-colors"
                       />
                     </div>
-                    <Button type="submit" size="lg" className="w-full">
+                    {error && (
+                      <p className="text-red-600 text-sm">{error}</p>
+                    )}
+                    <Button type="submit" size="lg" className="w-full" loading={loading}>
                       R&Eacute;SERVER MON AUDIT GRATUIT
                     </Button>
                     <p className="text-text-muted text-xs text-center">

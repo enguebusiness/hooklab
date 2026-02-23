@@ -90,8 +90,50 @@ function FaqAccordion({ faqs }: { faqs: { q: string; a: string }[] }) {
    SMART DEVIS FORM
    ============================================================ */
 function DevisForm() {
-  const [step, setStep] = useState<"type" | "details">("type");
+  const [step, setStep] = useState<"type" | "details" | "done">("type");
   const [projectType, setProjectType] = useState("");
+  const [fields, setFields] = useState({ name: "", phone: "", ville: "", description: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const updateField = (key: keyof typeof fields, value: string) =>
+    setFields((prev) => ({ ...prev, [key]: value }));
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/devis", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...fields, projectType }),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Erreur lors de l'envoi");
+      }
+      setStep("done");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Erreur inattendue");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (step === "done") {
+    return (
+      <div className="bg-white rounded-2xl p-6 sm:p-8 text-center">
+        <div className="w-14 h-14 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 className="text-navy font-bold text-lg mb-2">Demande envoyée !</h3>
+        <p className="text-text-muted text-sm">Nous vous recontactons sous 24h pour votre devis.</p>
+      </div>
+    );
+  }
 
   if (step === "details") {
     return (
@@ -103,12 +145,15 @@ function DevisForm() {
         <p className="text-text-muted text-sm mb-5">
           Projet : <strong className="text-navy">{projectType}</strong>
         </p>
-        <div className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-text mb-1.5">Votre nom</label>
             <input
               type="text"
+              required
               placeholder="Marc Dupont"
+              value={fields.name}
+              onChange={(e) => updateField("name", e.target.value)}
               className="w-full px-4 py-3 bg-[#f8f6f3] border border-gray-200 rounded-xl text-text text-sm placeholder:text-text-muted focus:border-orange focus:ring-1 focus:ring-orange outline-none"
             />
           </div>
@@ -116,7 +161,10 @@ function DevisForm() {
             <label className="block text-sm font-medium text-text mb-1.5">T&eacute;l&eacute;phone</label>
             <input
               type="tel"
+              required
               placeholder="06 12 34 56 78"
+              value={fields.phone}
+              onChange={(e) => updateField("phone", e.target.value)}
               className="w-full px-4 py-3 bg-[#f8f6f3] border border-gray-200 rounded-xl text-text text-sm placeholder:text-text-muted focus:border-orange focus:ring-1 focus:ring-orange outline-none"
             />
           </div>
@@ -124,7 +172,10 @@ function DevisForm() {
             <label className="block text-sm font-medium text-text mb-1.5">Ville</label>
             <input
               type="text"
+              required
               placeholder="Orchies, Cysoing, Sam&eacute;on..."
+              value={fields.ville}
+              onChange={(e) => updateField("ville", e.target.value)}
               className="w-full px-4 py-3 bg-[#f8f6f3] border border-gray-200 rounded-xl text-text text-sm placeholder:text-text-muted focus:border-orange focus:ring-1 focus:ring-orange outline-none"
             />
           </div>
@@ -133,19 +184,23 @@ function DevisForm() {
             <textarea
               placeholder="Surface, type de travaux, d&eacute;lais souhait&eacute;s..."
               rows={3}
+              value={fields.description}
+              onChange={(e) => updateField("description", e.target.value)}
               className="w-full px-4 py-3 bg-[#f8f6f3] border border-gray-200 rounded-xl text-text text-sm placeholder:text-text-muted focus:border-orange focus:ring-1 focus:ring-orange outline-none resize-none"
             />
           </div>
-          <Button size="lg" className="w-full">
+          {error && <p className="text-red-600 text-sm">{error}</p>}
+          <Button type="submit" size="lg" className="w-full" loading={loading}>
             Envoyer ma demande de devis
           </Button>
           <button
+            type="button"
             onClick={() => setStep("type")}
             className="w-full text-text-muted hover:text-text text-sm underline cursor-pointer"
           >
             &larr; Retour
           </button>
-        </div>
+        </form>
       </div>
     );
   }
