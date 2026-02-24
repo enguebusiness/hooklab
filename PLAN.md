@@ -4,51 +4,60 @@
 
 ## PHASE 1 — Serveur OVH `(toi + moi)`
 
-### 1.1 — Créer le VPS
-- [ ] Commander VPS OVH (région Roubaix ou Gravelines)
-- [ ] Choisir Ubuntu 24.04 LTS
-- [ ] Noter l'IP publique
+### 1.1 — VPS ✅ FAIT
+- [x] VPS OVH commandé — IP : `51.83.162.147` / host : `vps-9993ccd0.vps.ovh.net`
+- [x] Ubuntu **22.04** LTS
+- [x] WordOps installé et accessible sur `https://51.83.162.147:22222`
 
-### 1.2 — Sécuriser l'accès SSH
+### 1.2 — Accès SSH
+
+> **Problème connu :** `Permission denied (publickey,password)`
+>
+> **Solutions selon le cas :**
+
+**Cas A — Tu as une clé SSH (créée à la commande du VPS)**
 ```bash
-# Connexion initiale
-ssh root@TON_IP
+ssh -i ~/.ssh/ta_cle_privee root@51.83.162.147
+```
 
-# Créer un utilisateur admin
-adduser hooklab
-usermod -aG sudo hooklab
-
-# Désactiver le login root SSH
+**Cas B — Mot de passe root OVH (reçu par email à la création)**
+```bash
+# Vérifier que l'auth par mot de passe est autorisée :
+# → Espace client OVH > VPS > Console KVM
+# → puis dans le terminal KVM :
 nano /etc/ssh/sshd_config
-# → PermitRootLogin no
+# Vérifier/changer : PasswordAuthentication yes
 systemctl restart ssh
 ```
 
-### 1.3 — Installer la stack LEMP
-```bash
-sudo apt update && sudo apt upgrade -y
-
-# Nginx
-sudo apt install nginx -y
-
-# MariaDB (base de données)
-sudo apt install mariadb-server -y
-sudo mysql_secure_installation
-
-# PHP 8.2 + extensions WordPress
-sudo apt install php8.2 php8.2-fpm php8.2-mysql php8.2-curl \
-  php8.2-gd php8.2-mbstring php8.2-xml php8.2-zip php8.2-intl -y
+**Cas C — Réinitialiser le mot de passe root depuis OVH**
+```
+Espace client OVH → VPS → "Réinitialiser le mot de passe"
+(reçu par email dans les 2 minutes)
 ```
 
-### 1.4 — Installer Certbot (HTTPS gratuit)
+**Cas D — Root déjà désactivé (si étape 1.2 déjà faite)**
 ```bash
-sudo apt install certbot python3-certbot-nginx -y
+# Essayer avec l'utilisateur hooklab
+ssh hooklab@51.83.162.147
 ```
 
-### 1.5 — Configurer le pare-feu
+### 1.3 — Stack LEMP ✅ FAIT (via WordOps)
+> WordOps gère Nginx, PHP 8.2, MariaDB, Redis automatiquement.
+> Pas besoin d'installer manuellement.
+
+### 1.4 — Certbot ✅ FAIT (via WordOps)
+> WordOps intègre Let's Encrypt nativement.
+
+### 1.5 — Pare-feu
 ```bash
+# À vérifier une fois connecté en SSH :
+sudo ufw status
+# Si inactif :
 sudo ufw allow OpenSSH
-sudo ufw allow 'Nginx Full'
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw allow 22222  # WordOps backend
 sudo ufw enable
 ```
 
@@ -58,65 +67,31 @@ sudo ufw enable
 
 > **Objectif :** Un seul WordPress qui héberge tous les sites clients.
 > Chaque client = un sous-site isolé avec son propre accès.
+>
+> **Avec WordOps, les étapes 2.1 à 2.4 se font en 2 commandes.**
 
-### 2.1 — Créer la base de données
+### 2.1 à 2.4 — Installation WordPress Multisite via WordOps
+
 ```bash
-sudo mysql -u root -p
+# Se connecter en SSH d'abord (voir Phase 1.2)
+ssh root@51.83.162.147
 
-CREATE DATABASE hooklab_wp;
-CREATE USER 'wp_user'@'localhost' IDENTIFIED BY 'MOT_DE_PASSE_FORT';
-GRANT ALL PRIVILEGES ON hooklab_wp.* TO 'wp_user'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
+# Créer le site WordPress Multisite (sous-répertoires)
+# WordOps gère : BDD, Nginx, PHP, permissions automatiquement
+wo site create hooklab.fr --wpsubdir --php82
+
+# Activer HTTPS (Let's Encrypt)
+wo site update hooklab.fr --letsencrypt
+
+# Voir les identifiants générés (BDD, WP admin...)
+wo site info hooklab.fr
 ```
 
-### 2.2 — Télécharger WordPress
-```bash
-cd /var/www/
-sudo wget https://wordpress.org/latest.tar.gz
-sudo tar -xzf latest.tar.gz
-sudo mv wordpress hooklab
-sudo chown -R www-data:www-data /var/www/hooklab
-```
-
-### 2.3 — Configurer Nginx pour le Multisite
-```nginx
-# /etc/nginx/sites-available/hooklab
-server {
-    listen 80;
-    server_name hooklab.fr *.hooklab.fr;
-    root /var/www/hooklab;
-    index index.php;
-
-    location / {
-        try_files $uri $uri/ /index.php?$args;
-    }
-
-    location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
-    }
-
-    # Multisite — sous-répertoires
-    if (!-e $request_filename) {
-        rewrite /wp-admin$ $scheme://$host$uri/ permanent;
-        rewrite ^(/[^/]+)?(/wp-.*) $2 last;
-        rewrite ^(/[^/]+)?(/.*\.php) $2 last;
-    }
-}
-```
-
-### 2.4 — Activer le Multisite dans wp-config.php
-```php
-/* Multisite */
-define('WP_ALLOW_MULTISITE', true);
-define('MULTISITE', true);
-define('SUBDOMAIN_INSTALL', false); // sous-répertoires
-define('DOMAIN_CURRENT_SITE', 'hooklab.fr');
-define('PATH_CURRENT_SITE', '/');
-define('SITE_ID_CURRENT_SITE', 1);
-define('BLOG_ID_CURRENT_SITE', 1);
-```
+> **Si le DNS hooklab.fr ne pointe pas encore vers le serveur**, utiliser l'IP :
+> ```bash
+> wo site create 51.83.162.147 --wpsubdir --php82
+> # Puis migrer vers hooklab.fr une fois le DNS configuré (Phase 6)
+> ```
 
 ### 2.5 — Installer les plugins essentiels (réseau)
 - [ ] **Kadence Blocks** — page builder
