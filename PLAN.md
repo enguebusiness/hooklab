@@ -9,37 +9,17 @@
 - [x] Ubuntu **22.04** LTS
 - [x] WordOps installé et accessible sur `https://51.83.162.147:22222`
 
-### 1.2 — Accès SSH
+### 1.2 — Accès SSH ✅ FAIT
 
-> **Problème connu :** `Permission denied (publickey,password)`
->
-> **Solutions selon le cas :**
+> **Note :** Sur OVH Ubuntu, l'utilisateur par défaut est `ubuntu`, **pas** `root`.
+> `ssh root@IP` → Permission denied (c'est normal)
 
-**Cas A — Tu as une clé SSH (créée à la commande du VPS)**
 ```bash
-ssh -i ~/.ssh/ta_cle_privee root@51.83.162.147
-```
+# Connexion correcte :
+ssh ubuntu@51.83.162.147
 
-**Cas B — Mot de passe root OVH (reçu par email à la création)**
-```bash
-# Vérifier que l'auth par mot de passe est autorisée :
-# → Espace client OVH > VPS > Console KVM
-# → puis dans le terminal KVM :
-nano /etc/ssh/sshd_config
-# Vérifier/changer : PasswordAuthentication yes
-systemctl restart ssh
-```
-
-**Cas C — Réinitialiser le mot de passe root depuis OVH**
-```
-Espace client OVH → VPS → "Réinitialiser le mot de passe"
-(reçu par email dans les 2 minutes)
-```
-
-**Cas D — Root déjà désactivé (si étape 1.2 déjà faite)**
-```bash
-# Essayer avec l'utilisateur hooklab
-ssh hooklab@51.83.162.147
+# Pour passer root une fois connecté :
+sudo -i
 ```
 
 ### 1.3 — Stack LEMP ✅ FAIT (via WordOps)
@@ -70,28 +50,26 @@ sudo ufw enable
 >
 > **Avec WordOps, les étapes 2.1 à 2.4 se font en 2 commandes.**
 
-### 2.1 à 2.4 — Installation WordPress Multisite via WordOps
+### 2.1 à 2.4 — Installation WordPress Multisite via WordOps ✅ FAIT
 
 ```bash
-# Se connecter en SSH d'abord (voir Phase 1.2)
-ssh root@51.83.162.147
-
-# Créer le site WordPress Multisite (sous-répertoires)
-# WordOps gère : BDD, Nginx, PHP, permissions automatiquement
-wo site create hooklab.fr --wpsubdir --php82
-
-# Activer HTTPS (Let's Encrypt)
-wo site update hooklab.fr --letsencrypt
-
-# Voir les identifiants générés (BDD, WP admin...)
-wo site info hooklab.fr
+# Commandes déjà exécutées :
+ssh ubuntu@51.83.162.147
+sudo wo site create hooklab.fr --wp --wpsubdomain
 ```
 
-> **Si le DNS hooklab.fr ne pointe pas encore vers le serveur**, utiliser l'IP :
-> ```bash
-> wo site create 51.83.162.147 --wpsubdir --php82
-> # Puis migrer vers hooklab.fr une fois le DNS configuré (Phase 6)
-> ```
+> **Mode choisi : sous-domaines**
+> Chaque client aura son propre sous-domaine :
+> `cyprien.hooklab.fr`, `dupont.hooklab.fr`, etc.
+> (Nécessite un enregistrement DNS wildcard `*.hooklab.fr → 51.83.162.147`)
+
+```bash
+# Si HTTPS pas encore activé :
+sudo wo site update hooklab.fr --letsencrypt
+
+# Voir les identifiants WP admin et BDD :
+sudo wo site info hooklab.fr
+```
 
 ### 2.5 — Installer les plugins essentiels (réseau)
 - [ ] **Kadence Blocks** — page builder
@@ -103,14 +81,14 @@ wo site info hooklab.fr
 
 ### 2.6 — Structure des sous-sites
 ```
-hooklab.fr/              ← Site principal (vitrine HookLab)
-hooklab.fr/cyprien/      ← Site de Cyprien (maçon)
-hooklab.fr/dupont/       ← Site de M. Dupont (plombier)
-hooklab.fr/martin/       ← Site de M. Martin (paysagiste)
+hooklab.fr               ← Site principal (vitrine HookLab)
+cyprien.hooklab.fr       ← Site de Cyprien (maçon)
+dupont.hooklab.fr        ← Site de M. Dupont (plombier)
+martin.hooklab.fr        ← Site de M. Martin (paysagiste)
 ```
 
-> Ou avec sous-domaines si préféré :
-> `cyprien.hooklab.fr`, `dupont.hooklab.fr`
+> DNS requis (Phase 6) :
+> `Type A  *.hooklab.fr → 51.83.162.147`  (wildcard — un seul enregistrement pour tous)
 
 ### 2.7 — Permissions client
 - Chaque client reçoit un accès **Éditeur** (ou **Administrateur de sous-site**)
