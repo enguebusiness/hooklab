@@ -55,20 +55,20 @@ sudo ufw enable
 ```bash
 # Commandes déjà exécutées :
 ssh ubuntu@51.83.162.147
-sudo wo site create hooklab.fr --wp --wpsubdomain
+sudo wo site create hooklab.eu --wp --wpsubdomain
 ```
 
 > **Mode choisi : sous-domaines**
 > Chaque client aura son propre sous-domaine :
-> `cyprien.hooklab.fr`, `dupont.hooklab.fr`, etc.
-> (Nécessite un enregistrement DNS wildcard `*.hooklab.fr → 51.83.162.147`)
+> `cyprien.hooklab.eu`, `dupont.hooklab.eu`, etc.
+> (Nécessite un enregistrement DNS wildcard `*.hooklab.eu → 51.83.162.147`)
 
 ```bash
 # Si HTTPS pas encore activé :
-sudo wo site update hooklab.fr --letsencrypt
+sudo wo site update hooklab.eu --letsencrypt
 
 # Voir les identifiants WP admin et BDD :
-sudo wo site info hooklab.fr
+sudo wo site info hooklab.eu
 ```
 
 ### 2.5 — Accéder au tableau de bord WordPress
@@ -78,20 +78,29 @@ sudo wo site info hooklab.fr
 **Récupérer le mot de passe WordPress :**
 ```bash
 # Dans le terminal SSH :
-sudo wo site info hooklab.fr
+sudo wo site info hooklab.eu
 # → Affiche : URL admin, login, mot de passe, identifiants BDD
 ```
 
 **Se connecter à WordPress :**
 1. Ouvre ton navigateur
-2. Va sur `http://hooklab.fr/wp-login.php`
-   *(ou `http://51.83.162.147/wp-login.php` si le DNS n'est pas encore configuré)*
+2. Va sur `http://hooklab.eu/wp-login.php`
 3. Saisis le login et mot de passe affichés par `wo site info`
 4. Tu es dans le tableau de bord WordPress
 
+> **Le DNS n'est pas encore configuré ?** Pas de problème.
+> Ajoute cette ligne sur ton PC pour simuler le DNS **uniquement chez toi** :
+> Vercel reste en ligne pour tout le monde — toi seul vois le WordPress.
+>
+> **Mac/Linux :** `sudo nano /etc/hosts` → ajoute `51.83.162.147  hooklab.eu`
+>
+> **Windows :** Bloc-notes (admin) → ouvre `C:\Windows\System32\drivers\etc\hosts` → ajoute `51.83.162.147  hooklab.eu`
+>
+> Quand tout est prêt pour basculer : supprime cette ligne + fais le DNS OVH (Phase 6).
+
 **Accéder à l'administration réseau (Multisite) :**
 - En haut à gauche, clique sur **"Mes sites"** → **"Administration du réseau"**
-- OU va directement sur `http://hooklab.fr/wp-admin/network/`
+- OU va directement sur `http://hooklab.eu/wp-admin/network/`
 - C'est depuis là que tu gères TOUS les sites clients
 
 ---
@@ -154,14 +163,14 @@ sudo wo site info hooklab.fr
 
 ### 2.7 — Structure des sous-sites
 ```
-hooklab.fr               ← Site principal (vitrine HookLab)
-cyprien.hooklab.fr       ← Site de Cyprien (maçon)
-dupont.hooklab.fr        ← Site de M. Dupont (plombier)
-martin.hooklab.fr        ← Site de M. Martin (paysagiste)
+hooklab.eu               ← Site principal (vitrine HookLab)
+cyprien.hooklab.eu       ← Site de Cyprien (maçon)
+dupont.hooklab.eu        ← Site de M. Dupont (plombier)
+martin.hooklab.eu        ← Site de M. Martin (paysagiste)
 ```
 
 > DNS requis (Phase 6) :
-> `Type A  *.hooklab.fr → 51.83.162.147`  (wildcard — un seul enregistrement pour tous)
+> `Type A  *.hooklab.eu → 51.83.162.147`  (wildcard — un seul enregistrement pour tous)
 
 ---
 
@@ -169,7 +178,7 @@ martin.hooklab.fr        ← Site de M. Martin (paysagiste)
 
 1. Administration réseau → **"Sites"** → **"Ajouter"**
 2. Remplis le formulaire :
-   - **Adresse du site** : `cyprien` *(donnera `cyprien.hooklab.fr`)*
+   - **Adresse du site** : `cyprien` *(donnera `cyprien.hooklab.eu`)*
    - **Titre du site** : `Cyprien Maçonnerie`
    - **Langue** : Français
    - **Email admin** : ton email *(ou celui du client)*
@@ -202,7 +211,7 @@ martin.hooklab.fr        ← Site de M. Martin (paysagiste)
 
 ### 3.1 — Configurer le thème Kadence (couleurs + polices)
 
-1. Va sur un sous-site client : `cyprien.hooklab.fr/wp-admin`
+1. Va sur un sous-site client : `cyprien.hooklab.eu/wp-admin`
 2. Menu gauche → **"Apparence"** → **"Personnaliser"**
 3. Un panneau s'ouvre à gauche, l'aperçu du site à droite
 
@@ -421,7 +430,7 @@ H1 : Maçon à Lyon — Cyprien Maçonnerie, devis gratuit sous 24h
 1. Va sur `https://search.google.com/search-console`
 2. Connecte-toi avec un compte Google
 3. Clique **"Ajouter une propriété"**
-4. Entre l'URL : `https://cyprien.hooklab.fr`
+4. Entre l'URL : `https://cyprien.hooklab.eu`
 5. Méthode de vérification : choisis **"Google Analytics"** ou **"Balise HTML"**
 6. Avec Rank Math, c'est automatique :
    - Rank Math → Général → Google Search Console → clique **"Connecter"**
@@ -451,15 +460,15 @@ H1 : Maçon à Lyon — Cyprien Maçonnerie, devis gratuit sous 24h
 
 ### 5.1 — Sauvegarder le premier site comme template
 
-1. Sur le premier site client terminé (ex: `cyprien.hooklab.fr`)
+1. Sur le premier site client terminé (ex: `cyprien.hooklab.eu`)
 2. Dans l'admin de CE sous-site → Extensions → **"NS Cloner"**
 3. Clique **"Clone Site"**
-4. **Site source** : `cyprien.hooklab.fr`
-5. **Nouveau sous-domaine** : `template` *(donne `template.hooklab.fr`)*
+4. **Site source** : `cyprien.hooklab.eu`
+5. **Nouveau sous-domaine** : `template` *(donne `template.hooklab.eu`)*
 6. **Nouveau titre** : `TEMPLATE ARTISAN`
 7. Clique **"Cloner"** → le site est dupliqué en 30 secondes
 
-> Ce site `template.hooklab.fr` est ton modèle de base.
+> Ce site `template.hooklab.eu` est ton modèle de base.
 > **Ne le publie pas** — c'est juste pour dupliquer.
 
 ---
@@ -470,13 +479,13 @@ H1 : Maçon à Lyon — Cyprien Maçonnerie, devis gratuit sous 24h
 
 **Étape 1 — Dupliquer le template**
 1. Administration réseau → NS Cloner
-2. Source : `template.hooklab.fr`
-3. Nouveau sous-domaine : `martin` *(→ `martin.hooklab.fr`)*
+2. Source : `template.hooklab.eu`
+3. Nouveau sous-domaine : `martin` *(→ `martin.hooklab.eu`)*
 4. Nouveau titre : `Martin Paysagiste`
 5. Clique **"Cloner"**
 
 **Étape 2 — Personnaliser le site**
-1. Va sur `martin.hooklab.fr/wp-admin`
+1. Va sur `martin.hooklab.eu/wp-admin`
 2. Apparence → Personnaliser → **change les couleurs** selon le client
 3. **Remplace le logo** par le logo du client
 4. Édite chaque page → remplace textes et photos
@@ -499,10 +508,10 @@ H1 : Maçon à Lyon — Cyprien Maçonnerie, devis gratuit sous 24h
 2. Mets les infos de Martin Paysagiste (nom, adresse, téléphone)
 
 **Étape 4 — Créer l'accès client**
-1. Administration réseau → Sites → `martin.hooklab.fr` → Utilisateurs
+1. Administration réseau → Sites → `martin.hooklab.eu` → Utilisateurs
 2. Ajouter l'email de Martin, rôle : Administrateur
 3. Martin reçoit un email avec ses identifiants
-4. Il peut se connecter sur `martin.hooklab.fr/wp-login.php`
+4. Il peut se connecter sur `martin.hooklab.eu/wp-login.php`
 
 **Étape 5 — Connecter son domaine (si le client a le sien)**
 > Voir Phase 6.2
@@ -543,9 +552,13 @@ Montrer :
 ## PHASE 6 — DNS `(toi + moi)`
 
 > Le DNS c'est comme un annuaire téléphonique :
-> il dit aux navigateurs "pour hooklab.fr, va à l'IP 51.83.162.147".
+> il dit aux navigateurs "pour hooklab.eu, va à l'IP 51.83.162.147".
 
-### 6.1 — Configurer le DNS de hooklab.fr (OVH)
+### 6.1 — Configurer le DNS de hooklab.eu (OVH)
+
+> **A faire en dernier**, une fois que tout est prêt sur WordPress.
+> Avant ça, utilise le hosts file pour tester (voir étape 2.5).
+> La bascule prend 5 min et le site Vercel reste en ligne jusqu'au moment où tu valides.
 
 **Connexion à l'espace OVH :**
 1. Va sur `https://www.ovhcloud.com/fr/`
@@ -555,7 +568,7 @@ Montrer :
 **Accéder à la zone DNS :**
 1. Menu gauche → **"Web Cloud"**
 2. Clique sur **"Noms de domaine"**
-3. Clique sur `hooklab.fr`
+3. Clique sur `hooklab.eu`
 4. Clique sur l'onglet **"Zone DNS"**
 
 **Ajouter les enregistrements :**
@@ -564,12 +577,12 @@ Clique **"Ajouter une entrée"** et répète pour chaque ligne :
 
 | Type | Sous-domaine | Cible | TTL |
 |------|-------------|-------|-----|
-| A | *(vide = hooklab.fr)* | `51.83.162.147` | 3600 |
+| A | *(vide = hooklab.eu)* | `51.83.162.147` | 3600 |
 | A | `*` | `51.83.162.147` | 3600 |
 | A | `www` | `51.83.162.147` | 3600 |
 
 > Le `*` (wildcard) couvre automatiquement tous les sous-domaines :
-> `cyprien.hooklab.fr`, `martin.hooklab.fr`, etc.
+> `cyprien.hooklab.eu`, `martin.hooklab.eu`, etc.
 > **Un seul enregistrement pour tous les clients.**
 
 **Valider :**
@@ -581,7 +594,7 @@ Clique **"Ajouter une entrée"** et répète pour chaque ligne :
 ### 6.2 — Domaine custom pour un client (optionnel)
 
 > Si un client veut son propre domaine (ex: `martin-paysagiste.fr`)
-> au lieu de `martin.hooklab.fr`.
+> au lieu de `martin.hooklab.eu`.
 
 **Dans la zone DNS du domaine client (chez son registrar) :**
 
@@ -591,7 +604,7 @@ Clique **"Ajouter une entrée"** et répète pour chaque ligne :
 | A | `www` | `51.83.162.147` |
 
 **Dans WordPress (Network Admin) :**
-1. Administration réseau → Sites → `martin.hooklab.fr`
+1. Administration réseau → Sites → `martin.hooklab.eu`
 2. Clique **"Modifier"**
 3. Change **"Adresse du site"** → `https://martin-paysagiste.fr`
 4. Clique **"Enregistrer"**
@@ -600,7 +613,7 @@ Clique **"Ajouter une entrée"** et répète pour chaque ligne :
 ```bash
 # Dans le terminal SSH :
 ssh ubuntu@51.83.162.147
-sudo wo site update hooklab.fr --letsencrypt
+sudo wo site update hooklab.eu --letsencrypt
 # WordOps détecte automatiquement les nouveaux domaines
 ```
 
@@ -610,12 +623,12 @@ sudo wo site update hooklab.fr --letsencrypt
 
 ```bash
 # Dans le terminal SSH, une seule commande :
-sudo wo site update hooklab.fr --letsencrypt
+sudo wo site update hooklab.eu --letsencrypt
 ```
 
 > WordOps génère automatiquement les certificats SSL pour :
-> - `hooklab.fr`
-> - `*.hooklab.fr` (tous les sous-domaines clients)
+> - `hooklab.eu`
+> - `*.hooklab.eu` (tous les sous-domaines clients)
 >
 > Le certificat se renouvelle automatiquement tous les 90 jours.
 
@@ -623,8 +636,8 @@ sudo wo site update hooklab.fr --letsencrypt
 
 ### 6.4 — Vérifications finales après DNS
 
-- [ ] Ouvre `https://hooklab.fr` → doit afficher ton site (avec cadenas vert)
-- [ ] Ouvre `https://cyprien.hooklab.fr` → doit afficher le site de Cyprien
+- [ ] Ouvre `https://hooklab.eu` → doit afficher ton site (avec cadenas vert)
+- [ ] Ouvre `https://cyprien.hooklab.eu` → doit afficher le site de Cyprien
 - [ ] Teste le formulaire de contact → vérifie que tu reçois l'email
 - [ ] Teste depuis un téléphone → le site doit être lisible et rapide
 - [ ] Va sur `https://pagespeed.web.dev/` → entre l'URL → score doit être > 80
