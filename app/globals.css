@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --color-navy: #1B2A4A;
+  --color-navy-light: #2A3D66;
+  --color-navy-dark: #111D36;
+
+  --color-orange: #E8772E;
+  --color-orange-hover: #D06522;
+  --color-orange-light: #F5A623;
+
+  --color-bg: #F7F8FA;
+  --color-bg-white: #FFFFFF;
+  --color-bg-card: #FFFFFF;
+  --color-bg-muted: #F0F2F5;
+
+  --color-text: #1A1A2E;
+  --color-text-light: #6B7280;
+  --color-text-muted: #9CA3AF;
+
+  --color-border: #E5E7EB;
+  --color-border-light: #F3F4F6;
+
+  --color-success: #10B981;
+
+  --font-sans: "Inter", sans-serif;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Card hover */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(27, 42, 74, 0.12);
+}
+
+/* Orange CTA glow */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(232, 119, 46, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(232, 119, 46, 0.5);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+/* Selection */
+::selection {
+  background: rgba(27, 42, 74, 0.15);
+  color: var(--color-text);
+}
+
+/* Skip to content */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-navy);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 0 0 8px 0;
+  text-decoration: none;
+}
+
+.skip-to-content:focus {
+  left: 0;
+  top: 0;
+}
+
+/* Focus visible */
+*:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 2px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-navy);
+}
